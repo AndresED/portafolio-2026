@@ -1,0 +1,105 @@
+---
+import { projects } from '../../data/projects';
+---
+
+<section id="portfolio" class="mb-16 lg:mb-24">
+  <h2 class="section-title mb-8 reveal" data-i18n="portfolio.title">Featured Projects</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {projects.map((project, index) => (
+      <article 
+        class="group glass-card overflow-hidden hover:border-accent-500/20 transition-all duration-500 reveal"
+        style={`animation-delay: ${index * 100}ms`}
+      >
+        <!-- Thumbnail -->
+        <div class="relative h-48 bg-gradient-to-br from-dark-600 to-dark-800 overflow-hidden">
+          <img
+            src={project.thumbnail}
+            alt=""
+            width={800}
+            height={450}
+            class="h-full w-full object-cover opacity-70 transition-opacity group-hover:opacity-90"
+            loading="lazy"
+            decoding="async"
+          />
+          <!-- Hover Overlay -->
+          <div class="absolute inset-0 bg-dark-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+            {project.githubUrl && (
+              <a 
+                href={project.githubUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="w-12 h-12 rounded-xl bg-dark-700 hover:bg-dark-600 flex items-center justify-center text-gray-400 hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300"
+                aria-label={`${project.title} — GitHub repository`}
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.387 2.865 8.107 6.839 9.421.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.125 22 16.404 22 12.021 22 6.484 17.522 2 12 2z"/>
+                </svg>
+              </a>
+            )}
+            {project.liveUrl && (
+              <a 
+                href={project.liveUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="w-12 h-12 rounded-xl bg-accent-500 hover:bg-accent-600 flex items-center justify-center text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300"
+                aria-label={`${project.title} — live demo`}
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            )}
+          </div>
+          {project.featured && (
+            <div class="absolute top-4 right-4">
+              <span class="rounded-full border border-accent-500/30 bg-accent-500/20 px-3 py-1 text-xs font-medium text-accent-400" data-i18n="portfolio.featuredBadge">
+                Featured
+              </span>
+            </div>
+          )}
+        </div>
+
+        <!-- Content -->
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-accent-400 transition-colors">
+            {project.title}
+          </h3>
+          <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+            {project.description}
+          </p>
+          
+          <!-- Tech Stack -->
+          <div class="flex flex-wrap gap-2 mb-4">
+            {project.techStack.map((tech) => {
+              const nestTechs = ['NestJS'];
+              const dbTechs = ['PostgreSQL', 'MongoDB', 'Redis', 'TypeORM'];
+              const infraTechs = ['Kubernetes', 'Docker', 'BullMQ', 'KafkaJS', 'RabbitMQ'];
+              const blockchainTechs = ['Algorand'];
+              const aiTechs = ['AI Agents', 'AI', 'LLM'];
+              const langTechs = ['TypeScript', 'Shell', 'Markdown'];
+              
+              let colorClass = 'bg-dark-600 text-gray-400 border-white/5';
+              if (tech.includes('AWS')) colorClass = 'bg-orange-500/10 text-orange-400 border-orange-500/20';
+              else if (nestTechs.includes(tech)) colorClass = 'bg-red-500/10 text-red-400 border-red-500/20';
+              else if (dbTechs.includes(tech)) colorClass = 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20';
+              else if (infraTechs.includes(tech)) colorClass = 'bg-blue-500/10 text-blue-400 border-blue-500/20';
+              else if (blockchainTechs.includes(tech)) colorClass = 'bg-teal-500/10 text-teal-400 border-teal-500/20';
+              else if (aiTechs.includes(tech)) colorClass = 'bg-purple-500/10 text-purple-400 border-purple-500/20';
+              else if (langTechs.includes(tech)) colorClass = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+              
+              return <span class={`px-2.5 py-1 text-xs rounded-lg border ${colorClass}`}>{tech}</span>;
+            })}
+          </div>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <span class="tag text-xs">{tag}</span>
+            ))}
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,154 @@
+---
+import type { Experience, Education } from '../../types';
+import LocalePair from '../LocalePair.astro';
+
+interface Props {
+  experiences: Experience[];
+  education: Education[];
+}
+
+const { experiences, education } = Astro.props;
+---
+
+<div class="reveal space-y-16">
+  <!-- Work experience: same accent blue as About (accent-400 / accent-500) -->
+  <section aria-labelledby="work-experience-heading">
+    <div class="mb-10 flex flex-wrap items-end gap-3 border-b border-accent-500/25 pb-3">
+      <div class="flex items-center gap-3">
+        <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/10 text-accent-400 ring-1 ring-accent-400/20">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.75"
+              d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m8 0V4a2 2 0 012-2h0a2 2 0 012 2v2M4 7V6a2 2 0 012-2h12a2 2 0 012 2v1M4 7h16v10a2 2 0 01-2 2H6a2 2 0 01-2-2V7z"
+            />
+          </svg>
+        </span>
+        <h2 id="work-experience-heading" class="text-xl font-bold tracking-tight text-white md:text-2xl" data-i18n="resume.workExperienceTitle">
+          Work experience
+        </h2>
+      </div>
+      <div class="h-px min-w-[4rem] flex-1 bg-gradient-to-r from-accent-400/40 to-transparent" aria-hidden="true"></div>
+    </div>
+
+    <div class="relative">
+      <div
+        class="pointer-events-none absolute left-[19px] top-3 bottom-3 w-px bg-gradient-to-b from-accent-500/45 via-accent-500/20 to-neutral-700/25 md:left-[21px]"
+        aria-hidden="true"
+      >
+      </div>
+
+      <ul class="relative m-0 list-none space-y-12 p-0 md:space-y-14">
+        {
+          experiences.map((exp) => (
+            <li class="relative">
+              <div class="flex gap-4 md:gap-6">
+                <div class="relative z-[1] flex w-10 shrink-0 justify-center md:w-11">
+                  <span
+                    class="mt-1.5 h-3.5 w-3.5 shrink-0 rounded-full bg-accent-400 shadow-[0_0_0_4px_#0a0a0f] ring-2 ring-accent-500/35"
+                    aria-hidden="true"
+                  />
+                </div>
+
+                <div class="grid min-w-0 flex-1 grid-cols-1 gap-5 pb-2 md:grid-cols-[minmax(0,14rem)_1fr] md:gap-x-10 md:gap-y-0 lg:grid-cols-[minmax(0,17rem)_1fr]">
+                  <div class="space-y-1.5">
+                    <h3 class="text-lg font-bold leading-snug text-accent-400 md:text-xl">
+                      <LocalePair text={exp.role} />
+                    </h3>
+                    <p class="font-semibold text-white">{exp.company}</p>
+                    <p class="text-sm text-neutral-400">
+                      <LocalePair text={exp.period} />
+                    </p>
+                  </div>
+                  <div class="space-y-3 text-[0.9375rem] leading-relaxed text-neutral-200">
+                    <p>
+                      <LocalePair text={exp.description} display="block" />
+                    </p>
+                    {exp.highlights?.length ? (
+                      <ul class="m-0 list-none space-y-2 p-0 text-sm text-neutral-300">
+                        {exp.highlights.map((line) => (
+                          <li class="flex gap-2.5">
+                            <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-400" aria-hidden="true" />
+                            <span>
+                              <LocalePair text={line} />
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  {
+    education.length > 0 && (
+      <section aria-labelledby="education-brief-heading">
+        <div class="mb-10 flex flex-wrap items-end gap-3 border-b border-accent-500/25 pb-3">
+          <div class="flex items-center gap-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/10 text-accent-400 ring-1 ring-accent-400/20">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.75"
+                  d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84 51.39 51.39 0 00-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm6 0a.75.75 0 100-1.5.75.75 0 000 1.5zm6.75 0a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                />
+              </svg>
+            </span>
+            <h2 id="education-brief-heading" class="text-xl font-bold tracking-tight text-white md:text-2xl" data-i18n="resume.educationHeading">
+              Education
+            </h2>
+          </div>
+          <div class="h-px min-w-[4rem] flex-1 bg-gradient-to-r from-accent-400/40 to-transparent" aria-hidden="true" />
+        </div>
+
+        <div class="relative">
+          <div
+            class="pointer-events-none absolute left-[19px] top-3 bottom-3 w-px bg-gradient-to-b from-accent-500/45 via-accent-500/20 to-neutral-700/25 md:left-[21px]"
+            aria-hidden="true"
+          />
+
+          <ul class="relative m-0 list-none space-y-12 p-0 md:space-y-14">
+            {education.map((edu) => (
+              <li class="relative">
+                <div class="flex gap-4 md:gap-6">
+                  <div class="relative z-[1] flex w-10 shrink-0 justify-center md:w-11">
+                    <span
+                      class="mt-1.5 h-3.5 w-3.5 shrink-0 rounded-full bg-accent-400 shadow-[0_0_0_4px_#0a0a0f] ring-2 ring-accent-500/35"
+                      aria-hidden="true"
+                    />
+                  </div>
+
+                  <div class="grid min-w-0 flex-1 grid-cols-1 gap-5 pb-2 md:grid-cols-[minmax(0,14rem)_1fr] md:gap-x-10 lg:grid-cols-[minmax(0,17rem)_1fr]">
+                    <div class="space-y-1.5">
+                      <h3 class="text-lg font-bold leading-snug text-accent-400 md:text-xl">
+                        <LocalePair text={edu.degree} />
+                      </h3>
+                      <p class="font-semibold text-white">{edu.institution}</p>
+                      <p class="text-sm text-neutral-400">
+                        <LocalePair text={edu.period} />
+                      </p>
+                    </div>
+                    <div class="text-[0.9375rem] leading-relaxed text-neutral-200">
+                      {edu.description ? (
+                        <p>
+                          <LocalePair text={edu.description} display="block" />
+                        </p>
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )}
+</div>

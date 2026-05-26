@@ -1,0 +1,17 @@
+---
+import type { LocalizedText } from '../types';
+
+interface Props {
+  text: LocalizedText;
+  display?: 'inline' | 'block';
+  class?: string;
+}
+
+const { text, display = 'inline', class: className } = Astro.props;
+const flow = display === 'block' ? 'block' : 'inline';
+---
+
+<span class:list={['locale-pair', display === 'block' ? 'block' : 'inline', className]}>
+  <span class:list={['locale-en', flow]} lang="en">{text.en}</span>
+  <span class:list={['locale-es', flow]} lang="es">{text.es}</span>
+</span>

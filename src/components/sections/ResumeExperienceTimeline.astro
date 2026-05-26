@@ -1,0 +1,65 @@
+---
+import type { Experience, Education } from '../../types';
+import ResumeTimelineCard from './ResumeTimelineCard.astro';
+
+type TimelineItem =
+  | { kind: 'experience'; data: Experience }
+  | { kind: 'education'; data: Education };
+
+interface Props {
+  timelineItems: TimelineItem[];
+  firstEducationIndex: number;
+}
+
+const { timelineItems, firstEducationIndex } = Astro.props;
+---
+
+<div class="relative mb-12 reveal">
+  <div
+    class="pointer-events-none absolute bottom-2 left-[15px] top-2 w-px bg-gradient-to-b from-accent-500/50 via-accent-500/20 to-transparent md:left-1/2 md:-translate-x-px"
+  >
+  </div>
+
+  <div class="space-y-8 md:space-y-12">
+    {
+      timelineItems.map((item, index) => {
+        const isLeft = index % 2 === 0;
+        const showEducationHeading = item.kind === 'education' && index === firstEducationIndex;
+
+        return (
+          <div class="relative">
+            {showEducationHeading && (
+              <h3 class="mb-6 text-center text-xl font-semibold text-white md:mb-8" data-i18n="resume.educationHeading">Education</h3>
+            )}
+
+            <div class="relative flex items-start">
+              <div class="absolute left-[11px] top-5 z-10 h-3 w-3 rounded-full border-[3px] border-dark-900 bg-accent-500 md:left-1/2 md:-translate-x-1/2" />
+
+              <div class="hidden w-full pt-1 md:grid md:grid-cols-2 md:gap-8">
+                {isLeft ? (
+                  <>
+                    <div class="flex justify-end md:pr-10">
+                      <ResumeTimelineCard item={item} />
+                    </div>
+                    <div aria-hidden="true" />
+                  </>
+                ) : (
+                  <>
+                    <div aria-hidden="true" />
+                    <div class="flex justify-start md:pl-10">
+                      <ResumeTimelineCard item={item} />
+                    </div>
+                  </>
+                )}
+              </div>
+
+              <div class="w-full pl-10 pt-1 md:hidden">
+                <ResumeTimelineCard item={item} compactHeader />
+              </div>
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</div>
