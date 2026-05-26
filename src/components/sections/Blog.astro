@@ -1,5 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 import { posts } from '../../data/blog';
+
+const imageModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/blog/*.{png,jpg}', { eager: true });
+
+const blogImages: Record<string, ImageMetadata> = {};
+for (const [path, mod] of Object.entries(imageModules)) {
+  const filename = path.split('/').pop()!;
+  blogImages[filename] = mod.default;
+}
 
 const allPosts = posts;
 ---
@@ -24,16 +33,21 @@ const allPosts = posts;
         aria-label={`${post.title} — opens on Making Code`}
       >
         <div class="relative h-44 bg-gradient-to-br from-dark-600 to-dark-800 overflow-hidden">
-          <img
-            src={post.coverImage}
-            alt=""
-            width={800}
-            height={450}
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            class="h-full w-full object-cover opacity-60 transition-opacity group-hover:opacity-80"
-            loading="lazy"
-            decoding="async"
-          />
+          {(() => {
+            const filename = post.coverImage.split('/').pop()!;
+            const localImg = blogImages[filename];
+            return localImg && (
+              <Image
+                src={localImg}
+                alt={post.title}
+                width={800}
+                height={450}
+                class="h-full w-full object-cover opacity-60 transition-opacity group-hover:opacity-80"
+                loading="lazy"
+                decoding="async"
+              />
+            );
+          })()}
           <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent"></div>
           <div class="absolute top-3 right-3 w-8 h-8 rounded-lg bg-dark-900/60 backdrop-blur-sm flex items-center justify-center text-gray-400 group-hover:text-accent-400 transition-colors">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

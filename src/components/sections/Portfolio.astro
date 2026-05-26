@@ -1,5 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 import { projects } from '../../data/projects';
+
+const imageModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/projects/*.png', { eager: true });
+
+const projectImages: Record<string, ImageMetadata> = {};
+for (const [path, mod] of Object.entries(imageModules)) {
+  const filename = path.split('/').pop()!;
+  projectImages[filename] = mod.default;
+}
 ---
 
 <section id="portfolio" class="mb-16 lg:mb-24">
@@ -13,15 +22,27 @@ import { projects } from '../../data/projects';
       >
         <!-- Thumbnail -->
         <div class="relative h-48 bg-gradient-to-br from-dark-600 to-dark-800 overflow-hidden">
-          <img
-            src={project.thumbnail}
-            alt=""
-            width={800}
-            height={450}
-            class="h-full w-full object-cover opacity-70 transition-opacity group-hover:opacity-90"
-            loading="lazy"
-            decoding="async"
-          />
+          {(() => {
+            const filename = project.thumbnail.split('/').pop()!;
+            const imgSrc = projectImages[filename];
+            return imgSrc ? (
+              <Image
+                src={imgSrc}
+                alt={project.title}
+                width={800}
+                height={450}
+                class="h-full w-full object-cover opacity-70 transition-opacity group-hover:opacity-90"
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <div class="absolute inset-0 flex items-center justify-center">
+                <svg class="w-16 h-16 text-white/10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+              </div>
+            );
+          })()}
           <!-- Hover Overlay -->
           <div class="absolute inset-0 bg-dark-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
             {project.githubUrl && (
