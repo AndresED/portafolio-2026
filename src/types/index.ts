@@ -1,3 +1,5 @@
+export type BlogCategory = 'data_structures' | 'cryptography' | 'algorithms' | 'ai';
+
 export interface BlogPost {
   id: string;
   title: string;
@@ -8,6 +10,7 @@ export interface BlogPost {
   mediumUrl: string;
   readingTime: string;
   featured: boolean;
+  category: BlogCategory;
 }
 
 export type ProjectCategory = 'microservices' | 'architecture' | 'blockchain' | 'content';

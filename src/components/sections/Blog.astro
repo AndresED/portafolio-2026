@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { posts, blogBatchSize } from '../../data/blog';
+import { posts, blogBatchSize, blogFilters } from '../../data/blog';
 
 const imageModules = import.meta.glob<{ default: ImageMetadata }>(
   '../../assets/blog/*.{png,jpg,jpeg,svg}',
@@ -25,12 +25,38 @@ const hasMorePosts = allPosts.length > blogBatchSize;
     </p>
   </div>
 
+  <div
+    class="reveal mb-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-b border-white/[0.06] pb-4"
+    role="tablist"
+    aria-label="Publication categories"
+  >
+    {
+      blogFilters.map((filter) => (
+        <button
+          type="button"
+          class:list={[
+            'blog-filter px-1 py-2 text-sm font-medium transition-colors',
+            filter.id === 'all'
+              ? 'border-b-2 border-accent-400 text-accent-400'
+              : 'border-b-2 border-transparent text-gray-400 hover:text-gray-200',
+          ]}
+          data-filter={filter.id}
+          role="tab"
+          aria-selected={filter.id === 'all' ? 'true' : 'false'}
+          data-i18n={filter.i18nKey}
+        >
+          {filter.label}
+        </button>
+      ))
+    }
+  </div>
+
   <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {
       allPosts.map((post, index) => {
         const filename = post.coverImage.split('/').pop()!;
         const localImg = blogImages[filename];
-        const isHidden = index >= blogBatchSize;
+        const isScrollHidden = index >= blogBatchSize;
 
         return (
           <a
@@ -39,10 +65,10 @@ const hasMorePosts = allPosts.length > blogBatchSize;
             rel="noopener noreferrer"
             class:list={[
               'blog-post group glass-card overflow-hidden hover:border-accent-500/20 transition-all duration-500 reveal',
-              isHidden && 'blog-post--hidden',
+              isScrollHidden && 'blog-post--scroll-hidden',
             ]}
             data-index={index}
-            data-tags={JSON.stringify(post.tags)}
+            data-category={post.category}
             style={`animation-delay: ${Math.min(index, blogBatchSize - 1) * 100}ms`}
             aria-label={`${post.title} — opens on Making Code`}
           >
@@ -84,13 +110,13 @@ const hasMorePosts = allPosts.length > blogBatchSize;
     }
   </div>
 
+  <p id="blog-empty" class="hidden py-16 text-center text-gray-500" data-i18n="blog.empty">
+    No articles in this category yet.
+  </p>
+
   {
     hasMorePosts && (
-      <div
-        id="blog-sentinel"
-        class="mt-8 flex justify-center py-4"
-        aria-hidden="true"
-      >
+      <div id="blog-sentinel" class="mt-8 flex justify-center py-4" aria-hidden="true">
         <span class="text-sm text-gray-500" data-i18n="blog.loading">Loading more articles…</span>
       </div>
     )
@@ -98,39 +124,87 @@ const hasMorePosts = allPosts.length > blogBatchSize;
 </section>
 
 <style>
-  .blog-post--hidden {
+  .blog-post--scroll-hidden,
+  .blog-post--filter-hidden {
     display: none;
   }
 </style>
 
-<script define:vars={{ blogBatchSize, totalPosts: allPosts.length }}>
+<script define:vars={{ blogBatchSize }}>
   const grid = document.getElementById('blog-grid');
   const sentinel = document.getElementById('blog-sentinel');
-  if (!grid || !sentinel || totalPosts <= blogBatchSize) {
-    sentinel?.remove();
-  } else {
-    const posts = [...grid.querySelectorAll('.blog-post--hidden')];
-    let loading = false;
+  const emptyState = document.getElementById('blog-empty');
+  const filterButtons = document.querySelectorAll('.blog-filter');
+  const allCards = grid ? [...grid.querySelectorAll('.blog-post')] : [];
 
-    const revealBatch = () => {
-      if (loading || posts.length === 0) return;
-      loading = true;
+  let currentFilter = 'all';
+  let scrollObserver = null;
 
-      const batch = posts.splice(0, blogBatchSize);
-      batch.forEach((post, i) => {
-        post.classList.remove('blog-post--hidden');
-        post.style.animationDelay = `${i * 80}ms`;
-      });
+  function matchesFilter(card) {
+    const category = card.getAttribute('data-category');
+    return currentFilter === 'all' || category === currentFilter;
+  }
 
-      loading = false;
+  function setActiveFilter(active) {
+    filterButtons.forEach((button) => {
+      const isActive = button === active;
+      button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      button.classList.toggle('border-accent-400', isActive);
+      button.classList.toggle('text-accent-400', isActive);
+      button.classList.toggle('border-transparent', !isActive);
+      button.classList.toggle('text-gray-400', !isActive);
+    });
+  }
 
-      if (posts.length === 0) {
-        observer.disconnect();
-        sentinel.remove();
-      }
-    };
+  function updateSentinel(matchingCards) {
+    if (!sentinel) return;
 
-    const observer = new IntersectionObserver(
+    const pending = matchingCards.filter((card) =>
+      card.classList.contains('blog-post--scroll-hidden'),
+    );
+
+    sentinel.classList.toggle('hidden', pending.length === 0);
+  }
+
+  function applyFilter(filter) {
+    currentFilter = filter;
+
+    const matchingCards = allCards.filter(matchesFilter);
+
+    allCards.forEach((card) => {
+      card.classList.toggle('blog-post--filter-hidden', !matchesFilter(card));
+      card.classList.add('blog-post--scroll-hidden');
+    });
+
+    matchingCards.slice(0, blogBatchSize).forEach((card) => {
+      card.classList.remove('blog-post--scroll-hidden');
+    });
+
+    emptyState?.classList.toggle('hidden', matchingCards.length > 0);
+    updateSentinel(matchingCards);
+  }
+
+  function revealBatch() {
+    const matchingCards = allCards.filter(
+      (card) => matchesFilter(card) && card.classList.contains('blog-post--scroll-hidden'),
+    );
+
+    if (matchingCards.length === 0) {
+      scrollObserver?.disconnect();
+      sentinel?.classList.add('hidden');
+      return;
+    }
+
+    matchingCards.slice(0, blogBatchSize).forEach((card, i) => {
+      card.classList.remove('blog-post--scroll-hidden');
+      card.style.animationDelay = `${i * 80}ms`;
+    });
+
+    updateSentinel(allCards.filter(matchesFilter));
+  }
+
+  if (sentinel && allCards.length > blogBatchSize) {
+    scrollObserver = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
           revealBatch();
@@ -139,6 +213,16 @@ const hasMorePosts = allPosts.length > blogBatchSize;
       { rootMargin: '240px 0px' },
     );
 
-    observer.observe(sentinel);
+    scrollObserver.observe(sentinel);
+    updateSentinel(allCards.filter(matchesFilter));
+  } else {
+    sentinel?.remove();
   }
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      setActiveFilter(button);
+      applyFilter(button.getAttribute('data-filter') ?? 'all');
+    });
+  });
 </script>

@@ -2,6 +2,14 @@ import type { BlogPost } from '../../types';
 
 const cover = (id: string) => `${id}.svg`;
 
+export const blogFilters = [
+  { id: 'all', label: 'All', i18nKey: 'blog.filter.all' },
+  { id: 'data_structures', label: 'Data Structures', i18nKey: 'blog.filter.dataStructures' },
+  { id: 'cryptography', label: 'Cryptography', i18nKey: 'blog.filter.cryptography' },
+  { id: 'algorithms', label: 'Algorithms', i18nKey: 'blog.filter.algorithms' },
+  { id: 'ai', label: 'AI', i18nKey: 'blog.filter.ai' },
+] as const;
+
 export const posts: BlogPost[] = [
   {
     id: 'heapsort-golang',
@@ -14,6 +22,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2018/09/implementacion-del-metodo-de-ordenacion_72.html',
     readingTime: '8 min',
     featured: false,
+    category: 'data_structures',
   },
   {
     id: 'mergesort-golang',
@@ -26,6 +35,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2018/09/implementacion-del-metodo-de-ordenacion_91.html',
     readingTime: '8 min',
     featured: false,
+    category: 'data_structures',
   },
   {
     id: 'quicksort-golang',
@@ -38,6 +48,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2018/09/implementacion-del-metodo-de-ordenacion_77.html',
     readingTime: '8 min',
     featured: false,
+    category: 'data_structures',
   },
   {
     id: 'insertion-sort-golang',
@@ -50,6 +61,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2018/09/implementacion-del-metodo-de-ordenacion_20.html',
     readingTime: '6 min',
     featured: false,
+    category: 'data_structures',
   },
   {
     id: 'bubble-sort-golang',
@@ -62,6 +74,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2018/09/implementacion-del-metodo-de-ordenacion.html',
     readingTime: '6 min',
     featured: false,
+    category: 'data_structures',
   },
   {
     id: 'pattern-recognition-neural-networks',
@@ -74,6 +87,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2016/08/reconocimiento-de-patrones-mediante.html',
     readingTime: '15 min',
     featured: true,
+    category: 'ai',
   },
   {
     id: 'sorting-methods-python',
@@ -86,6 +100,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2016/01/implementacion-de-los-metodos-de.html',
     readingTime: '10 min',
     featured: false,
+    category: 'data_structures',
   },
   {
     id: 'rsa-encryption',
@@ -98,6 +113,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2015/08/cifrado-rsa.html',
     readingTime: '12 min',
     featured: false,
+    category: 'cryptography',
   },
   {
     id: 'rabin-encryption',
@@ -110,6 +126,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2015/07/cifrado-de-rabin.html',
     readingTime: '10 min',
     featured: false,
+    category: 'cryptography',
   },
   {
     id: 'hill-cipher',
@@ -122,6 +139,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2015/07/cifrado-de-hill.html',
     readingTime: '10 min',
     featured: false,
+    category: 'cryptography',
   },
   {
     id: 'sorting-methods-complexity',
@@ -134,6 +152,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2015/07/analisis-de-la-complejidad-de-metodos.html',
     readingTime: '12 min',
     featured: true,
+    category: 'data_structures',
   },
   {
     id: 'playfair-cipher',
@@ -146,6 +165,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2015/07/cifrado-de-playfair.html',
     readingTime: '8 min',
     featured: false,
+    category: 'cryptography',
   },
   {
     id: 'vernam-cipher',
@@ -158,6 +178,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2015/07/cifrado-de-vernam.html',
     readingTime: '8 min',
     featured: false,
+    category: 'cryptography',
   },
   {
     id: 'vigenere-cipher',
@@ -170,6 +191,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2015/07/cifrado-de-vigenere.html',
     readingTime: '8 min',
     featured: false,
+    category: 'cryptography',
   },
   {
     id: 'affine-cipher',
@@ -182,6 +204,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2015/07/cifrado-afin.html',
     readingTime: '7 min',
     featured: false,
+    category: 'cryptography',
   },
   {
     id: 'caesar-cipher',
@@ -194,6 +217,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2015/07/cifrado-de-cesar.html',
     readingTime: '6 min',
     featured: false,
+    category: 'cryptography',
   },
   {
     id: 'analisis-diseno-algoritmos',
@@ -206,6 +230,7 @@ export const posts: BlogPost[] = [
     mediumUrl: 'https://www.makingcode.dev/2015/06/analisis-y-diseno-de-algoritmos.html',
     readingTime: '8 min',
     featured: true,
+    category: 'algorithms',
   },
 ];
 
