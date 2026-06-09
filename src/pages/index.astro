@@ -1,13 +1,17 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import Hero from '../components/sections/Hero.astro';
 import About from '../components/sections/About.astro';
+import FeaturedProjects from '../components/sections/FeaturedProjects.astro';
 import Resume from '../components/sections/Resume.astro';
 import Certifications from '../components/sections/Certifications.astro';
 import Footer from '../components/Footer.astro';
 ---
 
 <MainLayout currentPage="home">
+  <Hero />
   <About />
+  <FeaturedProjects />
   <Resume />
   <Certifications />
   <Footer />

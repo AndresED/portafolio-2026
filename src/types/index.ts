@@ -26,6 +26,9 @@ export interface Project {
   tags: string[];
   featured: boolean;
   category: ProjectCategory;
+  role?: LocalizedText;
+  problem?: LocalizedText;
+  impact?: LocalizedText;
 }
 
 /** Bilingual copy toggled via `html[lang]` (see global.css `.locale-en` / `.locale-es`). */

@@ -13,13 +13,21 @@ interface Props {
 
 const { currentPage = 'home', title, description } = Astro.props;
 
-const navItems = [
+type NavItem = {
+  id: Props['currentPage'];
+  label: string;
+  href: string;
+  icon: string;
+  emphasis?: boolean;
+};
+
+const navItems: NavItem[] = [
+  { id: 'portfolio', label: 'Portfolio', href: '/portfolio', icon: 'folder', emphasis: true },
+  { id: 'contact', label: 'Contact', href: '/contact', icon: 'mail', emphasis: true },
   { id: 'about', label: 'About', href: '/#about', icon: 'user' },
   { id: 'resume', label: 'Resume', href: '/#resume', icon: 'briefcase' },
   { id: 'certifications', label: 'Certifications', href: '/#certifications', icon: 'badge' },
-  { id: 'portfolio', label: 'Portfolio', href: '/portfolio', icon: 'folder' },
   { id: 'blog', label: 'Publications', href: '/blog', icon: 'edit' },
-  { id: 'contact', label: 'Contact', href: '/contact', icon: 'mail' },
 ];
 
 const iconPaths: Record<string, string> = {
@@ -41,6 +49,14 @@ const socialIconPaths: Record<string, string> = {
   twitter: iconPaths.twitter,
   medium: iconPaths.medium,
 };
+
+function navClasses(item: NavItem, isActive: boolean) {
+  return [
+    'nav-item flex items-center gap-3 rounded-r-lg py-2.5 pr-3 text-sm transition-colors duration-200',
+    item.emphasis ? 'nav-item-emphasis' : 'font-medium',
+    isActive ? 'nav-item-active bg-white/[0.03]' : 'text-ink-muted hover:bg-white/[0.02] hover:text-ink',
+  ];
+}
 ---
 
 <BaseLayout title={title} description={description}>
@@ -48,176 +64,171 @@ const socialIconPaths: Record<string, string> = {
   <button
     type="button"
     id="back-to-top"
-    class="pointer-events-none invisible fixed bottom-6 right-4 z-[90] flex h-12 w-12 translate-y-4 items-center justify-center rounded-xl border border-white/10 bg-dark-800/95 text-gray-300 opacity-0 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-accent-500/40 hover:text-accent-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40 lg:right-8"
+    class="pointer-events-none invisible fixed bottom-6 right-4 z-[90] flex size-11 translate-y-2 items-center justify-center rounded-lg border border-white/10 bg-dark-800 text-ink-muted opacity-0 transition-[opacity,transform] duration-200 hover:border-accent-500/40 hover:text-accent-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40 lg:right-8"
     aria-label="Back to top"
     data-i18n-aria="layout.backToTop"
   >
-    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
     </svg>
   </button>
-  <div class="min-h-screen flex">
-    <!-- Sidebar - Fixed Left -->
-    <aside class="hidden lg:flex lg:flex-col lg:w-80 lg:sticky lg:top-0 lg:h-screen p-6 bg-dark-800/50 border-r border-white/[0.06]">
-      <!-- Profile (flush with sidebar — no nested glass card) -->
-      <div class="mb-6 flex shrink-0 flex-col animate-fade-in">
-        <!-- Profile Image -->
+
+  <div class="flex min-h-dvh">
+    <!-- Sidebar -->
+    <aside class="hidden border-r border-white/[0.06] bg-dark-800 lg:sticky lg:top-0 lg:flex lg:h-dvh lg:w-72 lg:shrink-0 lg:flex-col lg:p-6 xl:w-80">
+      <div class="mb-6 flex shrink-0 flex-col">
         <div class="mb-4">
-          <div class="mx-auto h-32 w-32 overflow-hidden rounded-2xl bg-gradient-to-br from-accent-500/20 to-purple-500/20 ring-1 ring-white/10">
+          <div class="mx-auto size-28 overflow-hidden rounded-xl border border-white/[0.08] bg-dark-700">
             <Image
               src={profileAvatar}
               alt={profile.name}
-              width={128}
-              height={128}
+              width={112}
+              height={112}
               densities={[1, 2]}
-              class="h-full w-full object-cover"
+              class="size-full object-cover"
               loading="eager"
               decoding="async"
             />
           </div>
         </div>
 
-        <!-- Name & Title -->
-        <div class="mb-4 text-center">
-          <a href="/" class="group inline-block">
-            <h1 class="mb-1 text-2xl font-bold text-white transition-colors group-hover:text-accent-400">{profile.name}</h1>
+        <div class="mb-3 text-center">
+          <a href="/" class="group inline-block rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40">
+            <p class="text-lg font-bold text-ink transition-colors group-hover:text-accent-400">{profile.name}</p>
           </a>
-          <p class="text-sm font-medium text-accent-400">{profile.title}</p>
+          <p class="mt-1 font-mono text-xs text-meta-500">{profile.title}</p>
         </div>
 
-        <!-- Tagline -->
-        <p class="text-gray-400 text-sm text-center mb-4 leading-relaxed">
+        <p class="mb-5 text-center text-sm leading-relaxed text-ink-muted">
           <span data-i18n="profile.tagline">{profile.tagline}</span>
         </p>
 
-        <!-- Social Links -->
-        <div class="flex justify-center gap-3 mb-6">
-          {profile.socials.map((social) => (
-            <a
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-10 h-10 rounded-xl bg-dark-700 hover:bg-dark-600 flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300 hover:-translate-y-1"
-              aria-label={social.name}
-            >
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d={socialIconPaths[social.icon] || social.icon} />
-              </svg>
-            </a>
-          ))}
+        <div class="mb-5 flex justify-center gap-2">
+          {
+            profile.socials.map((social) => (
+              <a
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex size-9 items-center justify-center rounded-lg border border-white/[0.08] bg-dark-700 text-ink-muted transition-colors duration-200 hover:border-white/15 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40"
+                aria-label={social.name}
+              >
+                <svg class="size-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d={socialIconPaths[social.icon] || social.icon} />
+                </svg>
+              </a>
+            ))
+          }
         </div>
 
-        <!-- CV Download -->
         <a
           href={profile.cvUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-primary w-full flex items-center justify-center gap-2"
+          class="btn-primary w-full"
         >
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
           <span data-i18n="layout.downloadCv">Download CV</span>
         </a>
       </div>
 
-      <!-- Navigation -->
-      <nav class="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto border-t border-white/[0.06] pt-4">
-        {navItems.map((item, index) => (
-          <a
-            href={item.href}
-            class={`nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-              currentPage === item.id
-                ? 'bg-accent-500/10 text-accent-400'
-                : 'text-gray-400 hover:text-white hover:bg-white/[0.03]'
-            }`}
-            data-section={item.id}
-            style={`animation-delay: ${index * 50}ms`}
-          >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPaths[item.icon]} />
-            </svg>
-            <span data-i18n={`nav.${item.id}`}>{item.label}</span>
-          </a>
-        ))}
+      <nav class="flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto border-t border-white/[0.06] pt-4" aria-label="Main">
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              class={navClasses(item, currentPage === item.id)}
+              data-section={item.id}
+              data-nav-emphasis={item.emphasis ? 'true' : undefined}
+            >
+              <svg class="size-[18px] shrink-0 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPaths[item.icon]} />
+              </svg>
+              <span data-i18n={`nav.${item.id}`}>{item.label}</span>
+            </a>
+          ))
+        }
       </nav>
 
-      <!-- Footer -->
-      <div class="mt-4 text-center text-xs text-gray-400">
-        <p>&copy; {new Date().getFullYear()} {profile.name}</p>
+      <div class="mt-4 text-center font-mono text-[11px] text-ink-muted">
+        <p>&copy; {new Date().getFullYear()}</p>
       </div>
     </aside>
 
     <!-- Mobile Header -->
-    <header class="lg:hidden fixed top-0 left-0 right-0 z-50 glass border-b border-white/[0.06]">
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-white/[0.06] bg-dark-800/95 lg:hidden">
       <div class="flex items-center justify-between px-4 py-3">
-        <div class="flex items-center gap-3">
-          <a href="/" class="flex items-center gap-3">
-            <div class="h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-accent-500/20 to-purple-500/20 ring-1 ring-white/10">
-              <Image
-                src={profileAvatar}
-                alt={profile.name}
-                width={80}
-                height={80}
-                densities={[1, 2]}
-                class="h-full w-full object-cover"
-                loading="eager"
-                decoding="async"
-              />
-            </div>
-            <div>
-              <p class="text-sm font-semibold text-white">{profile.name}</p>
-              <p class="text-xs text-accent-400">{profile.title}</p>
-            </div>
-          </a>
-        </div>
+        <a href="/" class="flex items-center gap-3 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40">
+          <div class="size-10 shrink-0 overflow-hidden rounded-lg border border-white/[0.08] bg-dark-700">
+            <Image
+              src={profileAvatar}
+              alt={profile.name}
+              width={80}
+              height={80}
+              densities={[1, 2]}
+              class="size-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-ink">{profile.name}</p>
+            <p class="font-mono text-[11px] text-meta-500">{profile.title}</p>
+          </div>
+        </a>
         <button
           type="button"
           id="menu-toggle"
-          class="rounded-lg p-2 transition-colors hover:bg-white/5"
+          class="rounded-lg p-2 transition-colors hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40"
           aria-label="Open navigation menu"
           aria-expanded="false"
           aria-controls="mobile-menu"
         >
-          <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="size-6 text-ink-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
       </div>
     </header>
 
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="lg:hidden fixed inset-0 z-40 hidden" role="dialog" aria-modal="true" aria-label="Site navigation">
-      <div class="absolute inset-0 bg-dark-900/95 backdrop-blur-xl"></div>
-      <div class="relative h-full flex flex-col p-6">
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 hidden lg:hidden" role="dialog" aria-modal="true" aria-label="Site navigation">
+      <div class="absolute inset-0 bg-dark-900/98"></div>
+      <div class="relative flex h-full flex-col p-6">
         <button
           type="button"
           id="menu-close"
-          class="mb-8 self-end rounded-lg p-2 transition-colors hover:bg-white/5"
+          class="mb-8 self-end rounded-lg p-2 transition-colors hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40"
           aria-label="Close navigation menu"
         >
-          <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="size-6 text-ink-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        <nav class="space-y-2">
-          {navItems.map((item) => (
-            <a
-              href={item.href}
-              class={`mobile-nav-item block rounded-xl px-4 py-4 text-lg font-medium transition-all ${
-                currentPage === item.id
-                  ? 'bg-accent-500/10 text-accent-400'
-                  : 'text-gray-300 hover:bg-white/[0.03] hover:text-white'
-              }`}
-              data-section={item.id}
-            >
-              <span data-i18n={`nav.${item.id}`}>{item.label}</span>
-            </a>
-          ))}
+        <nav class="space-y-1" aria-label="Main">
+          {
+            navItems.map((item) => (
+              <a
+                href={item.href}
+                class:list={[
+                  'mobile-nav-item block rounded-lg border-l-2 py-3.5 pl-4 pr-3 text-base transition-colors duration-200',
+                  item.emphasis ? 'font-semibold' : 'font-medium',
+                  currentPage === item.id
+                    ? 'border-accent-500 bg-white/[0.03] text-accent-400'
+                    : 'border-transparent text-ink-muted hover:bg-white/[0.02] hover:text-ink',
+                ]}
+                data-section={item.id}
+              >
+                <span data-i18n={`nav.${item.id}`}>{item.label}</span>
+              </a>
+            ))
+          }
         </nav>
         <div class="mt-auto pt-8">
-          <a href={profile.cvUrl} target="_blank" rel="noopener noreferrer" class="btn-primary w-full flex items-center justify-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <a href={profile.cvUrl} target="_blank" rel="noopener noreferrer" class="btn-primary flex w-full">
+            <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
             <span data-i18n="layout.downloadCv">Download CV</span>
@@ -226,16 +237,15 @@ const socialIconPaths: Record<string, string> = {
       </div>
     </div>
 
-    <!-- Main Content -->
-    <main class="flex-1 lg:ml-0 pt-16 lg:pt-0">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <!-- Main -->
+    <main class="min-w-0 flex-1 pt-[4.25rem] lg:pt-0">
+      <div class="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-10 lg:py-12 xl:max-w-4xl">
         <slot />
       </div>
     </main>
   </div>
 
   <script define:vars={{ currentPage }}>
-    // Mobile menu toggle
     const menuToggle = document.getElementById('menu-toggle');
     const menuClose = document.getElementById('menu-close');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -252,7 +262,6 @@ const socialIconPaths: Record<string, string> = {
       menuToggle?.setAttribute('aria-expanded', 'false');
     });
 
-    // Close menu on nav item click
     document.querySelectorAll('.mobile-nav-item').forEach((item) => {
       item.addEventListener('click', () => {
         mobileMenu?.classList.add('hidden');
@@ -268,32 +277,26 @@ const socialIconPaths: Record<string, string> = {
       if (!backToTop) return;
       const show = window.scrollY > scrollThreshold;
       backToTop.classList.toggle('opacity-0', !show);
-      backToTop.classList.toggle('translate-y-4', !show);
+      backToTop.classList.toggle('translate-y-2', !show);
       backToTop.classList.toggle('pointer-events-none', !show);
       backToTop.classList.toggle('invisible', !show);
     }
 
-    window.addEventListener(
-      'scroll',
-      () => {
-        syncBackToTopVisibility();
-      },
-      { passive: true }
-    );
-
+    window.addEventListener('scroll', syncBackToTopVisibility, { passive: true });
     syncBackToTopVisibility();
 
     backToTop?.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Scroll-spy only on home page (anchor sections)
     if (currentPage === 'home') {
       const navOffset = () => (window.innerWidth >= 1024 ? 120 : 160);
 
       function updateActiveNav() {
         const scrollPos = window.scrollY + navOffset();
-        const sections = Array.from(document.querySelectorAll('main section[id]'));
+        const sections = Array.from(document.querySelectorAll('main section[id]')).filter(
+          (section) => section.id !== 'hero',
+        );
         let activeId = sections[0]?.id ?? '';
 
         for (const section of sections) {
@@ -313,15 +316,27 @@ const socialIconPaths: Record<string, string> = {
         document.querySelectorAll('.nav-item, .mobile-nav-item').forEach((item) => {
           const sectionId = item.getAttribute('data-section');
           const isHashNav = (item.getAttribute('href') ?? '').includes('#');
+          const isEmphasis = item.getAttribute('data-nav-emphasis') === 'true';
 
-          item.classList.remove('bg-accent-500/10', 'text-accent-400', 'text-gray-300', 'text-gray-400');
+          item.classList.remove(
+            'nav-item-active',
+            'border-accent-500',
+            'bg-white/[0.03]',
+            'text-accent-400',
+            'text-ink-muted',
+            'border-transparent',
+          );
 
           if (isHashNav && sectionId === activeId) {
-            item.classList.add('bg-accent-500/10', 'text-accent-400');
+            item.classList.add('nav-item-active', 'border-accent-500', 'bg-white/[0.03]', 'text-accent-400');
+            if (item.classList.contains('mobile-nav-item')) {
+              item.classList.add('border-accent-500', 'bg-white/[0.03]', 'text-accent-400');
+            }
           } else if (item.classList.contains('nav-item')) {
-            item.classList.add('text-gray-400');
+            item.classList.add('text-ink-muted');
           } else {
-            item.classList.add('text-gray-300');
+            item.classList.add('border-transparent', 'text-ink-muted');
+            if (isEmphasis) item.classList.add('font-semibold');
           }
         });
       }

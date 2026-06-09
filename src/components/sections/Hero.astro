@@ -1,0 +1,56 @@
+---
+import { profile } from '../../data/profile';
+import { certifications } from '../../data/resume';
+
+const featuredCert = certifications[0];
+---
+
+<section id="hero" class="reveal mb-16 border-b border-white/[0.06] pb-14 lg:mb-20 lg:pb-16" aria-labelledby="hero-heading">
+  <p class="section-label mb-4" data-i18n="hero.eyebrow">
+    Senior Backend Engineer · Perú
+  </p>
+
+  <h1 id="hero-heading" class="text-balance text-4xl font-bold tracking-tight text-ink md:text-5xl lg:text-[3.25rem] lg:leading-tight">
+    {profile.name}
+  </h1>
+
+  <p class="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-ink-muted md:text-xl" data-i18n="hero.thesis">
+    I design and ship backend systems with clear boundaries — hexagonal architecture, event-driven microservices, and AWS-native delivery.
+  </p>
+
+  {
+    featuredCert && (
+      <a
+        href="/#certifications"
+        class="mt-5 inline-flex items-center gap-2 rounded-md border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 font-mono text-xs text-amber-400 transition-colors duration-200 hover:border-amber-400/50 hover:bg-amber-500/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/40"
+      >
+        <span class="size-1.5 rounded-full bg-current" aria-hidden="true" />
+        <span>
+          {featuredCert.code} · <span data-i18n="certs.status.inProgress">In progress</span> · {featuredCert.issuerShort}
+        </span>
+      </a>
+    )
+  }
+
+  <p class="mt-5 font-mono text-sm tabular-nums text-meta-500" data-i18n="hero.evidence">
+    NESTJS · AWS DVA-C02 · HEXAGONAL · KAFKA · POSTGRESQL
+  </p>
+
+  <div class="mt-8 flex flex-wrap items-center gap-3">
+    <a href="/portfolio" class="btn-primary" data-i18n="hero.ctaPortfolio">
+      View portfolio
+    </a>
+    <a href="/contact" class="btn-secondary" data-i18n="hero.ctaContact">
+      Get in touch
+    </a>
+    <a
+      href={profile.cvUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-ghost"
+      data-i18n="hero.ctaCv"
+    >
+      CV ↗
+    </a>
+  </div>
+</section>

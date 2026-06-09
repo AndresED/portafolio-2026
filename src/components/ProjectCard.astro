@@ -1,0 +1,119 @@
+---
+import { Image } from 'astro:assets';
+import type { Project } from '../../types';
+import LocalePair from './LocalePair.astro';
+
+interface Props {
+  project: Project;
+  imgSrc?: ImageMetadata;
+  class?: string;
+  style?: string;
+}
+
+const { project, imgSrc, class: className, style } = Astro.props;
+
+const hasContext = project.role && project.problem && project.impact;
+---
+
+<article
+  class:list={['project-card group glass-card overflow-hidden transition-colors duration-200 hover:border-accent-500/25', className]}
+  data-category={project.category}
+  style={style}
+>
+  {
+    imgSrc && (
+      <div class="relative h-40 overflow-hidden border-b border-white/[0.06] bg-dark-700">
+        <Image
+          src={imgSrc}
+          alt=""
+          width={400}
+          height={225}
+          class="h-full w-full object-cover opacity-80 transition-opacity duration-200 group-hover:opacity-95"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    )
+  }
+
+  <div class="p-5 sm:p-6">
+    <div class="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+      <h3 class="text-lg font-semibold text-ink transition-colors duration-200 group-hover:text-accent-400">
+        {project.title}
+      </h3>
+      {
+        project.featured && (
+          <span class="font-mono text-[10px] uppercase tracking-wide text-accent-400" data-i18n="portfolio.featuredBadge">
+            Featured
+          </span>
+        )
+      }
+    </div>
+
+    <p class="mb-4 font-mono text-xs text-meta-500">
+      {project.techStack.join(' · ')}
+    </p>
+
+    {
+      hasContext ? (
+        <dl class="mb-4 space-y-2.5 border-y border-white/[0.06] py-4">
+          <div class="stack-row">
+            <dt class="stack-row__label" data-i18n="portfolio.meta.role">Role</dt>
+            <dd class="stack-row__value text-pretty">
+              <LocalePair text={project.role!} />
+            </dd>
+          </div>
+          <div class="stack-row">
+            <dt class="stack-row__label" data-i18n="portfolio.meta.problem">Problem</dt>
+            <dd class="stack-row__value text-pretty">
+              <LocalePair text={project.problem!} />
+            </dd>
+          </div>
+          <div class="stack-row">
+            <dt class="stack-row__label" data-i18n="portfolio.meta.impact">Impact</dt>
+            <dd class="stack-row__value text-pretty">
+              <LocalePair text={project.impact!} />
+            </dd>
+          </div>
+        </dl>
+      ) : (
+        <p class="mb-4 text-pretty text-sm leading-relaxed text-ink-muted">{project.description}</p>
+      )
+    }
+
+    {
+      hasContext && (
+        <p class="mb-4 text-pretty text-sm leading-relaxed text-ink-muted">{project.description}</p>
+      )
+    }
+
+    <div class="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/[0.06] pt-4">
+      {
+        project.githubUrl && (
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 font-mono text-xs text-meta-400 transition-colors duration-200 hover:text-accent-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40"
+          >
+            <span data-i18n="portfolio.link.github">GitHub</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        )
+      }
+      {
+        project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 font-mono text-xs text-meta-400 transition-colors duration-200 hover:text-accent-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40"
+          >
+            <span data-i18n="portfolio.link.live">Live</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>

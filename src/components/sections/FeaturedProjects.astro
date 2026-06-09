@@ -1,0 +1,50 @@
+---
+import { getHomeFeaturedProjects } from '../../data/projects';
+import ProjectCard from '../ProjectCard.astro';
+
+const featured = getHomeFeaturedProjects();
+
+const imageModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/projects/*.png', {
+  eager: true,
+});
+
+const projectImages: Record<string, ImageMetadata> = {};
+for (const [path, mod] of Object.entries(imageModules)) {
+  const filename = path.split('/').pop()!;
+  projectImages[filename] = mod.default;
+}
+---
+
+<section id="featured-projects" class="mb-20 border-b border-white/[0.06] pb-16">
+  <div class="reveal mb-10">
+    <p class="section-label mb-3" data-i18n="home.featured.eyebrow">Selected work</p>
+    <h2 class="section-title mb-3" data-i18n="home.featured.title">Featured projects</h2>
+    <p class="max-w-xl text-pretty text-sm leading-relaxed text-ink-muted" data-i18n="home.featured.lead">
+      Backend systems and reference architectures — role, problem, and what shipped.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    {
+      featured.map((project, index) => {
+        const filename = project.thumbnail.split('/').pop()!;
+        const imgSrc = projectImages[filename];
+
+        return (
+          <ProjectCard
+            project={project}
+            imgSrc={imgSrc}
+            class="portfolio-card reveal"
+            style={`animation-delay: ${index * 80}ms`}
+          />
+        );
+      })
+    }
+  </div>
+
+  <div class="reveal mt-8">
+    <a href="/portfolio" class="btn-secondary" data-i18n="home.featured.viewAll">
+      View full portfolio
+    </a>
+  </div>
+</section>

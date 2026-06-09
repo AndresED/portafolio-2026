@@ -20,7 +20,7 @@ const hasMorePosts = allPosts.length > blogBatchSize;
 <section id="blog" class="mb-16 lg:mb-24">
   <div class="reveal mb-12 text-center">
     <h1 class="section-title mb-4" data-i18n="blog.title">Publications</h1>
-    <p class="mx-auto max-w-2xl text-base leading-relaxed text-gray-400 md:text-lg" data-i18n="blog.lead">
+    <p class="mx-auto max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg" data-i18n="blog.lead">
       Technical articles on algorithms, data structures, cryptography, and software design from Making Code, my technical blog.
     </p>
   </div>
@@ -35,10 +35,8 @@ const hasMorePosts = allPosts.length > blogBatchSize;
         <button
           type="button"
           class:list={[
-            'blog-filter px-1 py-2 text-sm font-medium transition-colors',
-            filter.id === 'all'
-              ? 'border-b-2 border-accent-400 text-accent-400'
-              : 'border-b-2 border-transparent text-gray-400 hover:text-gray-200',
+            'blog-filter filter-tab',
+            filter.id === 'all' ? 'filter-tab-active' : 'filter-tab-inactive',
           ]}
           data-filter={filter.id}
           role="tab"
@@ -64,7 +62,7 @@ const hasMorePosts = allPosts.length > blogBatchSize;
             target="_blank"
             rel="noopener noreferrer"
             class:list={[
-              'blog-post group glass-card overflow-hidden hover:border-accent-500/20 transition-all duration-500 reveal',
+              'blog-post group glass-card overflow-hidden transition-colors duration-200 hover:border-accent-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/30 reveal',
               isScrollHidden && 'blog-post--scroll-hidden',
             ]}
             data-index={index}
@@ -87,14 +85,14 @@ const hasMorePosts = allPosts.length > blogBatchSize;
                 )
               }
               <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/30 to-transparent"></div>
-              <div class="absolute top-3 right-3 w-8 h-8 rounded-lg bg-dark-900/60 backdrop-blur-sm flex items-center justify-center text-gray-400 group-hover:text-accent-400 transition-colors">
+              <div class="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.08] bg-dark-900/80 text-ink-muted transition-colors group-hover:text-accent-400">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </div>
             </div>
             <div class="p-5">
-              <h3 class="text-base font-bold text-white mb-3 group-hover:text-accent-400 transition-colors line-clamp-2 uppercase tracking-wide">
+              <h3 class="mb-3 line-clamp-2 text-base font-bold uppercase tracking-wide text-ink transition-colors group-hover:text-accent-400">
                 {post.title}
               </h3>
               <div class="flex flex-wrap gap-2 mb-3">
@@ -102,7 +100,7 @@ const hasMorePosts = allPosts.length > blogBatchSize;
                   <span class="tag text-xs">{tag}</span>
                 ))}
               </div>
-              <p class="text-gray-400 text-sm line-clamp-3 leading-relaxed">{post.description}</p>
+              <p class="line-clamp-3 text-sm leading-relaxed text-ink-muted">{post.description}</p>
             </div>
           </a>
         );
@@ -110,14 +108,14 @@ const hasMorePosts = allPosts.length > blogBatchSize;
     }
   </div>
 
-  <p id="blog-empty" class="hidden py-16 text-center text-gray-500" data-i18n="blog.empty">
+  <p id="blog-empty" class="hidden py-16 text-center text-ink-muted" data-i18n="blog.empty">
     No articles in this category yet.
   </p>
 
   {
     hasMorePosts && (
       <div id="blog-sentinel" class="mt-8 flex justify-center py-4" aria-hidden="true">
-        <span class="text-sm text-gray-500" data-i18n="blog.loading">Loading more articles…</span>
+        <span class="text-sm text-ink-muted" data-i18n="blog.loading">Loading more articles…</span>
       </div>
     )
   }
@@ -149,10 +147,11 @@ const hasMorePosts = allPosts.length > blogBatchSize;
     filterButtons.forEach((button) => {
       const isActive = button === active;
       button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      button.classList.toggle('filter-tab-active', isActive);
+      button.classList.toggle('filter-tab-inactive', !isActive);
       button.classList.toggle('border-accent-400', isActive);
       button.classList.toggle('text-accent-400', isActive);
       button.classList.toggle('border-transparent', !isActive);
-      button.classList.toggle('text-gray-400', !isActive);
     });
   }
 
