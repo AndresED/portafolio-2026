@@ -13,7 +13,7 @@ const focusAreas = [
   <div class="mb-16 reveal">
     <h2 class="section-title mb-6" data-i18n="about.summaryTitle">Professional Summary</h2>
 
-    <div class="max-w-2xl space-y-4 text-pretty leading-relaxed text-ink-muted">
+    <div class="max-w-2xl space-y-4 text-pretty text-base leading-7 text-ink-body">
       <p data-i18n="about.summaryBody">
         Senior backend engineer with 5+ years building production APIs, microservices, and cloud-native systems. I work from explicit boundaries — ports and adapters, bounded contexts, and contracts you can test — not from framework magic.
       </p>
@@ -43,7 +43,7 @@ const focusAreas = [
 
   <div class="reveal">
     <h2 class="section-title mb-2" data-i18n="about.techTitle">Technologies</h2>
-    <p class="mb-8 max-w-xl text-sm text-pretty text-ink-muted" data-i18n="about.techLead">
+    <p class="mb-8 max-w-xl text-pretty text-base leading-7 text-ink-muted" data-i18n="about.techLead">
       Stack I use day to day across backend, cloud, and delivery — grouped by domain.
     </p>
 
@@ -54,7 +54,7 @@ const focusAreas = [
             <dt class="stack-row__label" data-i18n={`skills.label.${skillKey}`}>
               {category.label}
             </dt>
-            <dd class="stack-row__value font-mono text-sm leading-relaxed text-ink-muted">
+            <dd class="stack-row__value text-base leading-7">
               {category.skills.join(' · ')}
             </dd>
           </div>

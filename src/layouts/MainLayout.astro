@@ -52,7 +52,7 @@ const socialIconPaths: Record<string, string> = {
 
 function navClasses(item: NavItem, isActive: boolean) {
   return [
-    'nav-item flex items-center gap-3 rounded-r-lg py-2.5 pr-3 text-sm transition-colors duration-200',
+    'nav-item flex items-center gap-3 rounded-r-lg py-2.5 pr-3 text-base transition-colors duration-200',
     item.emphasis ? 'nav-item-emphasis' : 'font-medium',
     isActive ? 'nav-item-active bg-white/[0.03]' : 'text-ink-muted hover:bg-white/[0.02] hover:text-ink',
   ];
@@ -94,12 +94,12 @@ function navClasses(item: NavItem, isActive: boolean) {
 
         <div class="mb-3 text-center">
           <a href="/" class="group inline-block rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40">
-            <p class="text-lg font-bold text-ink transition-colors group-hover:text-accent-400">{profile.name}</p>
+            <p class="text-lg font-bold text-ink transition-colors group-hover:text-accent-400 font-display">{profile.name}</p>
           </a>
           <p class="mt-1 font-mono text-xs text-meta-500">{profile.title}</p>
         </div>
 
-        <p class="mb-5 text-center text-sm leading-relaxed text-ink-muted">
+        <p class="mb-5 text-center text-base leading-7 text-ink-muted">
           <span data-i18n="profile.tagline">{profile.tagline}</span>
         </p>
 
@@ -152,7 +152,7 @@ function navClasses(item: NavItem, isActive: boolean) {
         }
       </nav>
 
-      <div class="mt-4 text-center font-mono text-[11px] text-ink-muted">
+      <div class="mt-4 text-center font-mono text-xs text-ink-muted">
         <p>&copy; {new Date().getFullYear()}</p>
       </div>
     </aside>
@@ -174,8 +174,8 @@ function navClasses(item: NavItem, isActive: boolean) {
             />
           </div>
           <div>
-            <p class="text-sm font-semibold text-ink">{profile.name}</p>
-            <p class="font-mono text-[11px] text-meta-500">{profile.title}</p>
+            <p class="text-base font-semibold text-ink">{profile.name}</p>
+            <p class="font-mono text-xs text-meta-500">{profile.title}</p>
           </div>
         </a>
         <button

@@ -77,13 +77,13 @@ const hasContext = project.role && project.problem && project.impact;
           </div>
         </dl>
       ) : (
-        <p class="mb-4 text-pretty text-sm leading-relaxed text-ink-muted">{project.description}</p>
+        <p class="mb-4 text-pretty text-base leading-7 text-ink-body">{project.description}</p>
       )
     }
 
     {
       hasContext && (
-        <p class="mb-4 text-pretty text-sm leading-relaxed text-ink-muted">{project.description}</p>
+        <p class="mb-4 text-pretty text-base leading-7 text-ink-body">{project.description}</p>
       )
     }
 

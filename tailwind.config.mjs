@@ -21,12 +21,15 @@ export default {
           500: '#5b8fa8',
         },
         ink: '#e8eaed',
-        'ink-muted': '#9399a8',
+        'ink-body': '#d6dae1',
+        'ink-muted': '#aeb3bd',
         surface: '#15171c',
         'surface-raised': '#1c1f26',
       },
       fontFamily: {
-        sans: ['Hubot Sans', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Hubot Sans', 'system-ui', '-apple-system', 'sans-serif'],
+        body: ['Source Sans 3', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Source Sans 3', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'Cascadia Code', 'monospace'],
       },
       animation: {
@@ -41,5 +44,5 @@ export default {
     },
   },
   plugins: [],
-  safelist: ['text-ink', 'text-ink-muted', 'bg-surface', 'bg-surface-raised', 'hover:text-ink'],
+  safelist: ['text-ink', 'text-ink-body', 'text-ink-muted', 'bg-surface', 'bg-surface-raised', 'hover:text-ink', 'font-body', 'font-display'],
 };

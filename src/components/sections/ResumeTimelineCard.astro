@@ -40,12 +40,12 @@ const { item, compactHeader = false, wide = false } = Astro.props;
             <LocalePair text={item.data.period} />
           </span>
         </div>
-        <p class="mb-4 text-sm text-ink-muted">
+        <p class="mb-4 text-base leading-7 text-ink-body">
           <LocalePair text={item.data.description} display="block" />
         </p>
         <ul class="space-y-2">
           {item.data.highlights.map((highlight) => (
-            <li class="flex items-start gap-2 text-sm text-ink-muted">
+            <li class="flex items-start gap-2 text-base leading-7 text-ink-body">
               <svg class="mt-0.5 h-4 w-4 shrink-0 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
@@ -75,7 +75,7 @@ const { item, compactHeader = false, wide = false } = Astro.props;
           </span>
         </div>
         {item.data.description && (
-          <p class="text-sm text-ink-muted">
+          <p class="text-base leading-7 text-ink-body">
             <LocalePair text={item.data.description} display="block" />
           </p>
         )}

@@ -57,11 +57,11 @@ const statusStyles = {
           <h3 class="mb-2 text-base font-bold leading-snug text-ink transition-colors group-hover:text-accent-400">
             <LocalePair text={cert.name} />
           </h3>
-          <p class="mb-5 font-mono text-[11px] uppercase tracking-wide text-meta-500">
+          <p class="mb-5 font-mono text-xs uppercase tracking-normal text-meta-500">
             {cert.code} · {cert.issuerShort}
           </p>
 
-          <dl class="mb-5 space-y-2 text-sm">
+          <dl class="mb-5 space-y-2 text-base">
             <div class="flex items-baseline justify-between gap-3">
               <dt class="text-meta-500" data-i18n="certs.issued">Issued</dt>
               <dd class="text-right font-medium text-ink-muted">

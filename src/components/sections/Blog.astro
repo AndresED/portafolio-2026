@@ -20,7 +20,7 @@ const hasMorePosts = allPosts.length > blogBatchSize;
 <section id="blog" class="mb-16 lg:mb-24">
   <div class="reveal mb-12 text-center">
     <h1 class="section-title mb-4" data-i18n="blog.title">Publications</h1>
-    <p class="mx-auto max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg" data-i18n="blog.lead">
+    <p class="mx-auto max-w-2xl text-base leading-7 text-ink-muted md:text-lg" data-i18n="blog.lead">
       Technical articles on algorithms, data structures, cryptography, and software design from Making Code, my technical blog.
     </p>
   </div>
@@ -49,7 +49,7 @@ const hasMorePosts = allPosts.length > blogBatchSize;
     }
   </div>
 
-  <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div id="blog-grid" class="grid grid-cols-1 gap-6 md:grid-cols-2">
     {
       allPosts.map((post, index) => {
         const filename = post.coverImage.split('/').pop()!;
@@ -100,7 +100,7 @@ const hasMorePosts = allPosts.length > blogBatchSize;
                   <span class="tag text-xs">{tag}</span>
                 ))}
               </div>
-              <p class="line-clamp-3 text-sm leading-relaxed text-ink-muted">{post.description}</p>
+              <p class="line-clamp-3 text-base leading-7 text-ink-body">{post.description}</p>
             </div>
           </a>
         );
@@ -115,7 +115,7 @@ const hasMorePosts = allPosts.length > blogBatchSize;
   {
     hasMorePosts && (
       <div id="blog-sentinel" class="mt-8 flex justify-center py-4" aria-hidden="true">
-        <span class="text-sm text-ink-muted" data-i18n="blog.loading">Loading more articles…</span>
+        <span class="text-base text-ink-muted" data-i18n="blog.loading">Loading more articles…</span>
       </div>
     )
   }
