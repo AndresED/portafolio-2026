@@ -15,7 +15,7 @@ const { item, compactHeader = false, wide = false } = Astro.props;
 
 <div
   class:list={[
-    'glass-card group p-6 transition-all duration-300 hover:border-accent-500/20',
+    'glass-card group p-6 transition-colors duration-200 hover:border-accent-500/25',
     compactHeader ? '' : wide ? 'w-full' : 'w-full max-w-lg',
   ]}
 >
@@ -29,23 +29,23 @@ const { item, compactHeader = false, wide = false } = Astro.props;
           ]}
         >
           <div>
-            <h3 class="text-lg font-semibold text-white transition-colors group-hover:text-accent-400">
+            <h3 class="text-lg font-semibold text-ink transition-colors group-hover:text-accent-400">
               {item.data.company}
             </h3>
             <p class="text-sm font-medium text-accent-400">
               <LocalePair text={item.data.role} />
             </p>
           </div>
-          <span class="w-fit shrink-0 rounded-full bg-dark-700 px-3 py-1 text-xs text-gray-400">
+          <span class="w-fit shrink-0 rounded-full border border-white/[0.06] bg-surface-raised px-3 py-1 font-mono text-xs text-meta-500">
             <LocalePair text={item.data.period} />
           </span>
         </div>
-        <p class="mb-4 text-sm text-gray-400">
+        <p class="mb-4 text-base leading-7 text-ink-body">
           <LocalePair text={item.data.description} display="block" />
         </p>
         <ul class="space-y-2">
           {item.data.highlights.map((highlight) => (
-            <li class="flex items-start gap-2 text-sm text-gray-300">
+            <li class="flex items-start gap-2 text-base leading-7 text-ink-body">
               <svg class="mt-0.5 h-4 w-4 shrink-0 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
@@ -63,19 +63,19 @@ const { item, compactHeader = false, wide = false } = Astro.props;
           ]}
         >
           <div>
-            <h3 class="text-lg font-semibold text-white transition-colors group-hover:text-accent-400">
+            <h3 class="text-lg font-semibold text-ink transition-colors group-hover:text-accent-400">
               {item.data.institution}
             </h3>
             <p class="text-sm font-medium text-accent-400">
               <LocalePair text={item.data.degree} />
             </p>
           </div>
-          <span class="w-fit shrink-0 rounded-full bg-dark-700 px-3 py-1 text-xs text-gray-400">
+          <span class="w-fit shrink-0 rounded-full border border-white/[0.06] bg-surface-raised px-3 py-1 font-mono text-xs text-meta-500">
             <LocalePair text={item.data.period} />
           </span>
         </div>
         {item.data.description && (
-          <p class="text-sm text-gray-400">
+          <p class="text-base leading-7 text-ink-body">
             <LocalePair text={item.data.description} display="block" />
           </p>
         )}

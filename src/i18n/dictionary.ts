@@ -15,13 +15,34 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'layout.downloadCv': 'Download CV',
     'layout.backToTop': 'Back to top',
     'layout.builtWithFooter': 'Built with',
-    'profile.tagline': 'Building scalable cloud architectures & distributed systems',
+    'profile.tagline': 'Backend systems · cloud-native · distributed architecture',
+    'hero.eyebrow': 'Senior Backend Engineer · Peru',
+    'hero.thesis':
+      'I design and ship backend systems with clear boundaries — hexagonal architecture, event-driven microservices, and AWS-native delivery.',
+    'hero.evidence': 'NESTJS · AWS DVA-C02 · HEXAGONAL · KAFKA · POSTGRESQL',
+    'hero.ctaPortfolio': 'View portfolio',
+    'hero.ctaContact': 'Get in touch',
+    'hero.ctaCv': 'CV ↗',
     'about.heroGreeting': "Hello, I'm",
     'about.heroSubtitle':
       'Senior Backend Engineer | AWS Developer Associate',
     'about.lead':
       'With 5+ years of experience building scalable backend systems and cloud-native architectures, I specialize in designing distributed systems that handle millions of requests. From microservices to serverless, I am passionate about creating robust, maintainable solutions.',
     'about.summaryTitle': 'Professional Summary',
+    'about.summaryBody':
+      'Senior backend engineer with 5+ years building production APIs, microservices, and cloud-native systems. I work from explicit boundaries — ports and adapters, bounded contexts, and contracts you can test — not from framework magic.',
+    'about.summaryBody2':
+      'Recent work spans multitenant NestJS services on AWS, event-driven architectures with Kafka, and integrations across compliance and logistics domains. I also mentor teams on testing, CI/CD, and maintainable delivery.',
+    'about.focusTitle': 'Focus areas',
+    'about.focus.arch':
+      'Microservices with Clean Architecture, hexagonal patterns, and CQRS where the domain requires it.',
+    'about.focus.cloud':
+      'AWS in production — Lambda, ECS, API Gateway, DynamoDB, CI/CD pipelines; DVA-C02 certification in progress.',
+    'about.focus.dist':
+      'Resilient messaging with Kafka, gRPC, and idempotent consumers for high-availability workloads.',
+    'about.focus.perf':
+      'Latency and cost tuning through caching, query design, and observability-driven iteration.',
+    'about.techLead': 'Stack I use day to day across backend, cloud, and delivery — grouped by domain.',
     'certs.badge': 'Credentials',
     'certs.title': 'Certifications',
     'certs.status.valid': 'Valid',
@@ -63,8 +84,19 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'resume.certifications': 'Certifications',
     'resume.skillsTitle': 'Technical Proficiency',
     'portfolio.title': 'Portfolio',
+    'portfolio.eyebrow': 'Open source & reference builds',
     'portfolio.lead':
-      'A selection of backend systems, microservices, and open-source projects I have built and contributed to.',
+      'Backend systems, microservices, and architectures I designed and shipped — with context on role, problem, and impact.',
+    'portfolio.meta.role': 'Role',
+    'portfolio.meta.problem': 'Problem',
+    'portfolio.meta.impact': 'Impact',
+    'portfolio.link.github': 'GitHub',
+    'portfolio.link.live': 'Live',
+    'home.featured.eyebrow': 'Selected work',
+    'home.featured.title': 'Featured projects',
+    'home.featured.lead':
+      'Backend systems and reference architectures — role, problem, and what shipped.',
+    'home.featured.viewAll': 'View full portfolio',
     'portfolio.hireMe': 'Hire Me',
     'portfolio.clientLabel': 'Client',
     'portfolio.viewLive': 'Live',
@@ -91,6 +123,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'blog.loading': 'Loading more articles…',
     'blog.seeMore': 'See more publications',
     'contact.title': 'Get In Touch',
+    'contact.eyebrow': 'Direct line',
     'contact.connectTitle': "Let's Connect",
     'contact.connectLead':
       "I'm always open to discussing new opportunities, interesting projects, or just having a friendly conversation about technology. Feel free to reach out!",
@@ -108,6 +141,8 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'contact.btn.sending': 'Sending...',
     'contact.success': "Message sent successfully! I'll get back to you soon.",
     'contact.error': 'Something went wrong. Please try again or email me directly.',
+    'contact.validation.required': 'This field is required.',
+    'contact.validation.email': 'Enter a valid email address.',
     'contact.privacyNote': 'Your information is secure and will never be shared.',
     'footer.rights': 'All rights reserved.',
   },
@@ -122,13 +157,34 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'layout.downloadCv': 'Descargar CV',
     'layout.backToTop': 'Volver arriba',
     'layout.builtWithFooter': 'Hecho con',
-    'profile.tagline': 'Arquitecturas cloud escalables y sistemas distribuidos',
+    'profile.tagline': 'Sistemas backend · cloud-native · arquitectura distribuida',
+    'hero.eyebrow': 'Senior Backend Engineer · Perú',
+    'hero.thesis':
+      'Diseño y entrego sistemas backend con límites claros — arquitectura hexagonal, microservicios orientados a eventos y despliegue nativo en AWS.',
+    'hero.evidence': 'NESTJS · AWS DVA-C02 · HEXAGONAL · KAFKA · POSTGRESQL',
+    'hero.ctaPortfolio': 'Ver portafolio',
+    'hero.ctaContact': 'Contacto',
+    'hero.ctaCv': 'CV ↗',
     'about.heroGreeting': 'Hola, soy',
     'about.heroSubtitle':
       'Senior Backend Engineer | AWS Developer Associate',
     'about.lead':
       'Con más de 5 años de experiencia construyendo backends escalables y arquitecturas cloud-native, me especializo en sistemas distribuidos que soportan millones de peticiones. De microservicios a serverless, me apasionan soluciones robustas y mantenibles.',
     'about.summaryTitle': 'Resumen profesional',
+    'about.summaryBody':
+      'Backend senior con más de 5 años construyendo APIs, microservicios y sistemas cloud-native en producción. Trabajo con límites explícitos — puertos y adaptadores, bounded contexts y contratos testeables — no con magia de frameworks.',
+    'about.summaryBody2':
+      'Trabajo reciente: servicios NestJS multitenant en AWS, arquitecturas orientadas a eventos con Kafka e integraciones de cumplimiento y logística. También mentoreo equipos en pruebas, CI/CD y entrega mantenible.',
+    'about.focusTitle': 'Áreas de enfoque',
+    'about.focus.arch':
+      'Microservicios con Clean Architecture, patrones hexagonales y CQRS cuando el dominio lo exige.',
+    'about.focus.cloud':
+      'AWS en producción — Lambda, ECS, API Gateway, DynamoDB, pipelines CI/CD; certificación DVA-C02 en curso.',
+    'about.focus.dist':
+      'Mensajería resiliente con Kafka, gRPC y consumidores idempotentes para cargas de alta disponibilidad.',
+    'about.focus.perf':
+      'Afinamiento de latencia y coste con caché, diseño de consultas e iteración guiada por observabilidad.',
+    'about.techLead': 'Stack que uso a diario en backend, cloud y entrega — agrupado por dominio.',
     'certs.badge': 'Credenciales',
     'certs.title': 'Certificaciones',
     'certs.status.valid': 'Válida',
@@ -170,8 +226,19 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'resume.certifications': 'Certificaciones',
     'resume.skillsTitle': 'Competencias técnicas',
     'portfolio.title': 'Portafolio',
+    'portfolio.eyebrow': 'Open source y builds de referencia',
     'portfolio.lead':
-      'Una selección de sistemas backend, microservicios y proyectos open source que he construido y al que he contribuido.',
+      'Sistemas backend, microservicios y arquitecturas que diseñé y entregué — con contexto de rol, problema e impacto.',
+    'portfolio.meta.role': 'Rol',
+    'portfolio.meta.problem': 'Problema',
+    'portfolio.meta.impact': 'Impacto',
+    'portfolio.link.github': 'GitHub',
+    'portfolio.link.live': 'Sitio',
+    'home.featured.eyebrow': 'Trabajo seleccionado',
+    'home.featured.title': 'Proyectos destacados',
+    'home.featured.lead':
+      'Sistemas backend y arquitecturas de referencia — rol, problema y qué se entregó.',
+    'home.featured.viewAll': 'Ver portafolio completo',
     'portfolio.hireMe': 'Contrátame',
     'portfolio.clientLabel': 'Cliente',
     'portfolio.viewLive': 'Ver sitio',
@@ -198,6 +265,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'blog.loading': 'Cargando más artículos…',
     'blog.seeMore': 'Ver más publicaciones',
     'contact.title': 'Contacto',
+    'contact.eyebrow': 'Línea directa',
     'contact.connectTitle': 'Conversemos',
     'contact.connectLead':
       'Abierto a nuevas oportunidades, proyectos interesantes o una charla sobre tecnología. ¡Escríbeme!',
@@ -215,6 +283,8 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'contact.btn.sending': 'Enviando...',
     'contact.success': '¡Mensaje enviado! Te responderé pronto.',
     'contact.error': 'Algo salió mal. Intenta de nuevo o escríbeme por correo.',
+    'contact.validation.required': 'Este campo es obligatorio.',
+    'contact.validation.email': 'Introduce un correo válido.',
     'contact.privacyNote': 'Tu información es confidencial y no se comparte con terceros.',
     'footer.rights': 'Todos los derechos reservados.',
   },

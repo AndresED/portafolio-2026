@@ -1,8 +1,10 @@
 ---
-import { Image } from 'astro:assets';
 import { projects, portfolioFilters } from '../../data/projects';
+import ProjectCard from '../ProjectCard.astro';
 
-const imageModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/projects/*.png', { eager: true });
+const imageModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/projects/*.png', {
+  eager: true,
+});
 
 const projectImages: Record<string, ImageMetadata> = {};
 for (const [path, mod] of Object.entries(imageModules)) {
@@ -12,25 +14,26 @@ for (const [path, mod] of Object.entries(imageModules)) {
 ---
 
 <section id="portfolio" class="mb-16 lg:mb-24">
-  <!-- Header -->
-  <div class="reveal mb-12 text-center">
-    <h1 class="section-title mb-4" data-i18n="portfolio.title">Portfolio</h1>
-    <p class="mx-auto max-w-2xl text-base leading-relaxed text-gray-400 md:text-lg" data-i18n="portfolio.lead">
-      A selection of backend systems, microservices, and open-source projects I have built and contributed to.
+  <div class="reveal mb-12">
+    <p class="section-label mb-3" data-i18n="portfolio.eyebrow">Open source & reference builds</p>
+    <h1 class="section-title mb-3" data-i18n="portfolio.title">Portfolio</h1>
+    <p class="max-w-2xl text-pretty text-base leading-7 text-ink-muted md:text-lg" data-i18n="portfolio.lead">
+      Backend systems, microservices, and architectures I designed and shipped — with context on role, problem, and impact.
     </p>
   </div>
 
-  <!-- Filters -->
-  <div class="reveal mb-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-b border-white/[0.06] pb-4" role="tablist" aria-label="Project categories">
+  <div
+    class="reveal mb-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-b border-white/[0.06] pb-4"
+    role="tablist"
+    aria-label="Project categories"
+  >
     {
       portfolioFilters.map((filter) => (
         <button
           type="button"
           class:list={[
-            'portfolio-filter px-1 py-2 text-sm font-medium transition-colors',
-            filter.id === 'all'
-              ? 'border-b-2 border-accent-400 text-accent-400'
-              : 'border-b-2 border-transparent text-gray-400 hover:text-gray-200',
+            'portfolio-filter filter-tab',
+            filter.id === 'all' ? 'filter-tab-active' : 'filter-tab-inactive',
           ]}
           data-filter={filter.id}
           role="tab"
@@ -43,7 +46,6 @@ for (const [path, mod] of Object.entries(imageModules)) {
     }
   </div>
 
-  <!-- Grid -->
   <div id="portfolio-grid" class="grid grid-cols-1 gap-6 md:grid-cols-2">
     {
       projects.map((project, index) => {
@@ -51,115 +53,18 @@ for (const [path, mod] of Object.entries(imageModules)) {
         const imgSrc = projectImages[filename];
 
         return (
-          <article
-            class="portfolio-card group glass-card reveal overflow-hidden transition-all duration-500 hover:border-accent-500/20"
-            data-category={project.category}
-            style={`animation-delay: ${index * 100}ms`}
-          >
-            <div class="relative h-48 overflow-hidden bg-gradient-to-br from-dark-600 to-dark-800">
-              {
-                imgSrc ? (
-                  <Image
-                    src={imgSrc}
-                    alt={project.title}
-                    width={400}
-                    height={225}
-                    class="h-full w-full object-cover opacity-70 transition-opacity group-hover:opacity-90"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : (
-                  <div class="absolute inset-0 flex items-center justify-center">
-                    <svg class="h-16 w-16 text-white/10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                  </div>
-                )
-              }
-              <div class="absolute inset-0 flex items-center justify-center gap-4 bg-dark-900/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                {
-                  project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="flex h-12 w-12 translate-y-4 items-center justify-center rounded-xl bg-dark-700 text-gray-400 transition-all duration-300 hover:bg-dark-600 hover:text-white group-hover:translate-y-0"
-                      aria-label={`${project.title} — GitHub repository`}
-                    >
-                      <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.387 2.865 8.107 6.839 9.421.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.125 22 16.404 22 12.021 22 6.484 17.522 2 12 2z" />
-                      </svg>
-                    </a>
-                  )
-                }
-                {
-                  project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="flex h-12 w-12 translate-y-4 items-center justify-center rounded-xl bg-accent-500 text-white transition-all duration-300 hover:bg-accent-600 group-hover:translate-y-0"
-                      aria-label={`${project.title} — live demo`}
-                    >
-                      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </a>
-                  )
-                }
-              </div>
-              {
-                project.featured && (
-                  <div class="absolute right-4 top-4">
-                    <span class="rounded-full border border-accent-500/30 bg-accent-500/20 px-3 py-1 text-xs font-medium text-accent-400" data-i18n="portfolio.featuredBadge">
-                      Featured
-                    </span>
-                  </div>
-                )
-              }
-            </div>
-
-            <div class="p-6">
-              <h3 class="mb-2 text-xl font-semibold text-white transition-colors group-hover:text-accent-400">
-                {project.title}
-              </h3>
-              <p class="mb-4 text-sm leading-relaxed text-gray-400">{project.description}</p>
-
-              <div class="mb-4 flex flex-wrap gap-2">
-                {
-                  project.techStack.map((tech) => {
-                    const nestTechs = ['NestJS'];
-                    const dbTechs = ['PostgreSQL', 'MongoDB', 'Redis', 'TypeORM'];
-                    const infraTechs = ['Kubernetes', 'Docker', 'BullMQ', 'KafkaJS', 'RabbitMQ'];
-                    const blockchainTechs = ['Algorand'];
-                    const aiTechs = ['AI Agents', 'AI', 'LLM'];
-                    const langTechs = ['TypeScript', 'Shell', 'Markdown'];
-
-                    let colorClass = 'bg-dark-600 text-gray-400 border-white/5';
-                    if (tech.includes('AWS')) colorClass = 'bg-orange-500/10 text-orange-400 border-orange-500/20';
-                    else if (nestTechs.includes(tech)) colorClass = 'bg-red-500/10 text-red-400 border-red-500/20';
-                    else if (dbTechs.includes(tech)) colorClass = 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20';
-                    else if (infraTechs.includes(tech)) colorClass = 'bg-blue-500/10 text-blue-400 border-blue-500/20';
-                    else if (blockchainTechs.includes(tech)) colorClass = 'bg-teal-500/10 text-teal-400 border-teal-500/20';
-                    else if (aiTechs.includes(tech)) colorClass = 'bg-purple-500/10 text-purple-400 border-purple-500/20';
-                    else if (langTechs.includes(tech)) colorClass = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
-
-                    return <span class={`rounded-lg border px-2.5 py-1 text-xs ${colorClass}`}>{tech}</span>;
-                  })
-                }
-              </div>
-
-              <div class="flex flex-wrap gap-2">
-                {project.tags.map((tag) => <span class="tag text-xs">{tag}</span>)}
-              </div>
-            </div>
-          </article>
+          <ProjectCard
+            project={project}
+            imgSrc={imgSrc}
+            class="portfolio-card reveal"
+            style={`animation-delay: ${Math.min(index, 4) * 80}ms`}
+          />
         );
       })
     }
   </div>
 
-  <p id="portfolio-empty" class="hidden py-16 text-center text-gray-500" data-i18n="portfolio.empty">
+  <p id="portfolio-empty" class="hidden py-16 text-center text-ink-muted" data-i18n="portfolio.empty">
     No projects in this category yet.
   </p>
 </section>
@@ -173,10 +78,11 @@ for (const [path, mod] of Object.entries(imageModules)) {
     filterButtons.forEach((button) => {
       const isActive = button === active;
       button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      button.classList.toggle('filter-tab-active', isActive);
+      button.classList.toggle('filter-tab-inactive', !isActive);
       button.classList.toggle('border-accent-400', isActive);
       button.classList.toggle('text-accent-400', isActive);
       button.classList.toggle('border-transparent', !isActive);
-      button.classList.toggle('text-gray-400', !isActive);
     });
   }
 
