@@ -1,8 +1,11 @@
 ---
 import { Image } from 'astro:assets';
-import { posts } from '../../data/blog';
+import { posts, blogBatchSize } from '../../data/blog';
 
-const imageModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/blog/*.{png,jpg}', { eager: true });
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/blog/*.{png,jpg,jpeg,svg}',
+  { eager: true },
+);
 
 const blogImages: Record<string, ImageMetadata> = {};
 for (const [path, mod] of Object.entries(imageModules)) {
@@ -11,77 +14,131 @@ for (const [path, mod] of Object.entries(imageModules)) {
 }
 
 const allPosts = posts;
+const hasMorePosts = allPosts.length > blogBatchSize;
 ---
 
 <section id="blog" class="mb-16 lg:mb-24">
-  <div class="flex items-center gap-3 mb-8 reveal">
-    <svg class="w-7 h-7 text-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-    </svg>
-    <h2 class="section-title !mb-0" data-i18n="blog.title">Publications</h2>
+  <div class="reveal mb-12 text-center">
+    <h1 class="section-title mb-4" data-i18n="blog.title">Publications</h1>
+    <p class="mx-auto max-w-2xl text-base leading-relaxed text-gray-400 md:text-lg" data-i18n="blog.lead">
+      Technical articles on algorithms, data structures, cryptography, and software design from Making Code, my technical blog.
+    </p>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {allPosts.map((post: any, index: number) => (
-      <a
-        href={post.mediumUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="blog-post group glass-card overflow-hidden hover:border-accent-500/20 transition-all duration-500 reveal"
-        data-tags={JSON.stringify(post.tags)}
-        style={`animation-delay: ${index * 100}ms`}
-        aria-label={`${post.title} — opens on Making Code`}
+  <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {
+      allPosts.map((post, index) => {
+        const filename = post.coverImage.split('/').pop()!;
+        const localImg = blogImages[filename];
+        const isHidden = index >= blogBatchSize;
+
+        return (
+          <a
+            href={post.mediumUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class:list={[
+              'blog-post group glass-card overflow-hidden hover:border-accent-500/20 transition-all duration-500 reveal',
+              isHidden && 'blog-post--hidden',
+            ]}
+            data-index={index}
+            data-tags={JSON.stringify(post.tags)}
+            style={`animation-delay: ${Math.min(index, blogBatchSize - 1) * 100}ms`}
+            aria-label={`${post.title} — opens on Making Code`}
+          >
+            <div class="relative h-44 bg-gradient-to-br from-dark-600 to-dark-800 overflow-hidden">
+              {
+                localImg && (
+                  <Image
+                    src={localImg}
+                    alt=""
+                    width={400}
+                    height={225}
+                    class="h-full w-full object-cover opacity-80 transition-opacity group-hover:opacity-95"
+                    loading={index < blogBatchSize ? 'eager' : 'lazy'}
+                    decoding="async"
+                  />
+                )
+              }
+              <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/30 to-transparent"></div>
+              <div class="absolute top-3 right-3 w-8 h-8 rounded-lg bg-dark-900/60 backdrop-blur-sm flex items-center justify-center text-gray-400 group-hover:text-accent-400 transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-base font-bold text-white mb-3 group-hover:text-accent-400 transition-colors line-clamp-2 uppercase tracking-wide">
+                {post.title}
+              </h3>
+              <div class="flex flex-wrap gap-2 mb-3">
+                {post.tags.map((tag) => (
+                  <span class="tag text-xs">{tag}</span>
+                ))}
+              </div>
+              <p class="text-gray-400 text-sm line-clamp-3 leading-relaxed">{post.description}</p>
+            </div>
+          </a>
+        );
+      })
+    }
+  </div>
+
+  {
+    hasMorePosts && (
+      <div
+        id="blog-sentinel"
+        class="mt-8 flex justify-center py-4"
+        aria-hidden="true"
       >
-        <div class="relative h-44 bg-gradient-to-br from-dark-600 to-dark-800 overflow-hidden">
-          {(() => {
-            const filename = post.coverImage.split('/').pop()!;
-            const localImg = blogImages[filename];
-            return localImg && (
-              <Image
-                src={localImg}
-                alt={post.title}
-                width={400}
-                height={225}
-                class="h-full w-full object-cover opacity-60 transition-opacity group-hover:opacity-80"
-                loading="lazy"
-                decoding="async"
-              />
-            );
-          })()}
-          <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent"></div>
-          <div class="absolute top-3 right-3 w-8 h-8 rounded-lg bg-dark-900/60 backdrop-blur-sm flex items-center justify-center text-gray-400 group-hover:text-accent-400 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </div>
-        </div>
-        <div class="p-5">
-          <h3 class="text-base font-bold text-white mb-3 group-hover:text-accent-400 transition-colors line-clamp-2 uppercase tracking-wide">
-            {post.title}
-          </h3>
-          <div class="flex flex-wrap gap-2 mb-3">
-            {post.tags.map((tag: string) => (
-              <span class="tag text-xs">{tag}</span>
-            ))}
-          </div>
-          <p class="text-gray-400 text-sm line-clamp-3 leading-relaxed">{post.description}</p>
-        </div>
-      </a>
-    ))}
-  </div>
-
-  <!-- See more publications -->
-  <div class="mt-8 text-center reveal">
-    <a
-      href="https://www.makingcode.dev/"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 text-accent-400 hover:text-accent-300 font-medium transition-colors group/link"
-    >
-      <span data-i18n="blog.seeMore">See more publications</span>
-      <svg class="w-4 h-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
-      </svg>
-    </a>
-  </div>
+        <span class="text-sm text-gray-500" data-i18n="blog.loading">Loading more articles…</span>
+      </div>
+    )
+  }
 </section>
+
+<style>
+  .blog-post--hidden {
+    display: none;
+  }
+</style>
+
+<script define:vars={{ blogBatchSize, totalPosts: allPosts.length }}>
+  const grid = document.getElementById('blog-grid');
+  const sentinel = document.getElementById('blog-sentinel');
+  if (!grid || !sentinel || totalPosts <= blogBatchSize) {
+    sentinel?.remove();
+  } else {
+    const posts = [...grid.querySelectorAll('.blog-post--hidden')];
+    let loading = false;
+
+    const revealBatch = () => {
+      if (loading || posts.length === 0) return;
+      loading = true;
+
+      const batch = posts.splice(0, blogBatchSize);
+      batch.forEach((post, i) => {
+        post.classList.remove('blog-post--hidden');
+        post.style.animationDelay = `${i * 80}ms`;
+      });
+
+      loading = false;
+
+      if (posts.length === 0) {
+        observer.disconnect();
+        sentinel.remove();
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          revealBatch();
+        }
+      },
+      { rootMargin: '240px 0px' },
+    );
+
+    observer.observe(sentinel);
+  }
+</script>

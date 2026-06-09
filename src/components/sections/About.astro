@@ -115,17 +115,26 @@ import { skillCategories } from '../../data/resume';
   <!-- Technologies -->
   <div class="reveal">
     <h2 class="section-title mb-8" data-i18n="about.techTitle">Technologies</h2>
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
       {
-        Object.entries(skillCategories).map(([key, category], index) => (
-          <div class="glass-card reveal p-6" style={`animation-delay: ${(index + 1) * 100}ms`}>
-            <h3 class="mb-4 flex items-center gap-2 font-semibold text-white">
-              <span class="h-2 w-2 rounded-full bg-accent-400"></span>
-              <span data-i18n={`skills.label.${key}`}>{category.label}</span>
+        Object.entries(skillCategories).map(([skillKey, category]) => (
+          <div class="glass-card p-6">
+            <h3
+              class="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-400"
+              data-i18n={`skills.label.${skillKey}`}
+            >
+              {category.label}
             </h3>
             <div class="flex flex-wrap gap-2">
               {category.skills.map((skill) => (
-                <span class="tag">{skill}</span>
+                <span
+                  class:list={[
+                    'cursor-default rounded-lg border border-white/5 bg-dark-600 px-3 py-1.5 text-sm text-gray-300 transition-all hover:border-accent-500/30 hover:text-accent-400',
+                    skill === 'AWS' ? 'border-orange-500/20 text-orange-400' : '',
+                  ]}
+                >
+                  {skill}
+                </span>
               ))}
             </div>
           </div>

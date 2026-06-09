@@ -175,9 +175,14 @@ export const education: Education[] = [
 export const certifications: Certification[] = [
   {
     name: loc('AWS Certified Developer – Associate', 'AWS Certified Developer – Associate'),
+    code: 'DVA-C02',
     issuer: loc('Amazon Web Services', 'Amazon Web Services'),
-    date: loc('In progress — exam scheduled', 'En curso — examen programado'),
-    url: 'https://aws.amazon.com/certification/certified-developer-associate/',
+    issuerShort: 'AWS',
+    status: 'in_progress',
+    issuedAt: loc('Exam scheduled', 'Examen programado'),
+    expiresAt: loc('Upon passing', 'Al aprobar'),
+    verifyUrl: 'https://aws.amazon.com/certification/certified-developer-associate/',
+    icon: 'aws',
   },
 ];
 
@@ -205,6 +210,10 @@ export const skillCategories = {
   aiAssisted: {
     label: 'AI-Assisted Development',
     skills: ['Claude Code', 'Cursor', 'Codex'],
+  },
+  aiLlm: {
+    label: 'AI & LLM',
+    skills: ['LangChain', 'LangGraph'],
   },
   methodologies: {
     label: 'Methodologies',

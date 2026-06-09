@@ -10,6 +10,8 @@ export interface BlogPost {
   featured: boolean;
 }
 
+export type ProjectCategory = 'microservices' | 'architecture' | 'blockchain' | 'content';
+
 export interface Project {
   id: string;
   title: string;
@@ -20,6 +22,7 @@ export interface Project {
   liveUrl?: string;
   tags: string[];
   featured: boolean;
+  category: ProjectCategory;
 }
 
 /** Bilingual copy toggled via `html[lang]` (see global.css `.locale-en` / `.locale-es`). */
@@ -49,11 +52,19 @@ export interface Skill {
   category: string;
 }
 
+export type CertificationStatus = 'valid' | 'in_progress';
+
 export interface Certification {
   name: LocalizedText;
+  code: string;
   issuer: LocalizedText;
-  date: LocalizedText;
-  url?: string;
+  issuerShort: string;
+  status: CertificationStatus;
+  issuedAt: LocalizedText;
+  expiresAt?: LocalizedText;
+  expiresNever?: boolean;
+  verifyUrl?: string;
+  icon?: 'aws';
 }
 
 export interface SocialLink {

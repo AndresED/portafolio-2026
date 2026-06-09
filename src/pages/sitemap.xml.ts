@@ -4,7 +4,7 @@ import { posts } from '../data/blog';
 export const GET: APIRoute = async () => {
   const baseUrl = 'https://yourportfolio.dev';
 
-  const staticPages = ['', 'about', 'resume', 'portfolio', 'blog', 'contact'].map(path => ({
+  const staticPages = ['', 'portfolio', 'blog', 'contact'].map((path) => ({
     url: `${baseUrl}/${path}`.replace(/\/$/, ''),
     lastmod: new Date().toISOString().split('T')[0],
     priority: path === '' ? '1.0' : '0.8',
