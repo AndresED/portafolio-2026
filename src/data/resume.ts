@@ -184,11 +184,11 @@ export const certifications: Certification[] = [
 export const skillCategories = {
   backend: {
     label: 'Backend',
-    skills: ['Node.js', 'TypeScript', 'NestJS', 'Python', 'FastAPI', 'PHP', 'Laravel', 'Go'],
+    skills: ['Node.js', 'TypeScript', 'NestJS', 'Python', 'FastAPI', 'PHP', 'Laravel'],
   },
   frontend: {
     label: 'Frontend',
-    skills: ['React', 'React Native', 'Angular', 'Vue.js', 'Next.js', 'Ionic'],
+    skills: ['React', 'React Native', 'Angular', 'Next.js', 'Ionic'],
   },
   databases: {
     label: 'Databases',
@@ -201,5 +201,13 @@ export const skillCategories = {
   messaging: {
     label: 'Messaging',
     skills: ['Kafka', 'RabbitMQ', 'BullMQ', 'NATS', 'MQTT', 'gRPC', 'SQS'],
+  },
+  aiAssisted: {
+    label: 'AI-Assisted Development',
+    skills: ['Claude Code', 'Cursor', 'Codex'],
+  },
+  methodologies: {
+    label: 'Methodologies',
+    skills: ['Agile', 'Scrum', 'Spec-Driven Development', 'ADR'],
   },
 };
