@@ -1,4 +1,5 @@
 import type { Certification, Education, Experience, LocalizedText } from '../types';
+import { showInProgressCertifications } from '../config/features';
 
 const loc = (en: string, es: string): LocalizedText => ({ en, es });
 
@@ -196,8 +197,14 @@ export const certifications: Certification[] = [
   },
 ];
 
-/** Only earned credentials — in-progress items stay in data but are hidden from the site. */
-export const visibleCertifications = certifications.filter((cert) => cert.status === 'valid');
+/** Credentials shown on the site — earned always; in-progress only when PUBLIC_SHOW_IN_PROGRESS_CERTIFICATIONS=true. */
+export const visibleCertifications = certifications.filter(
+  (cert) => cert.status === 'valid' || (cert.status === 'in_progress' && showInProgressCertifications),
+);
+
+/** Section copy: all visible items are still in progress → "Upcoming credentials". */
+export const certificationsAreUpcomingOnly =
+  visibleCertifications.length > 0 && visibleCertifications.every((cert) => cert.status === 'in_progress');
 
 export const skillCategories = {
   backend: {

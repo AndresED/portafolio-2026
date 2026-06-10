@@ -1,5 +1,5 @@
 ---
-import { visibleCertifications } from '../../data/resume';
+import { visibleCertifications, certificationsAreUpcomingOnly } from '../../data/resume';
 import LocalePair from '../LocalePair.astro';
 
 const statusStyles = {
@@ -15,7 +15,12 @@ const certifications = visibleCertifications;
     <section id="certifications" class="mb-16 lg:mb-24">
       <div class="mb-10 reveal">
         <p class="section-label mb-3" data-i18n="certs.badge">Credentials</p>
-        <h2 class="section-title !mb-0" data-i18n="certs.title">Certifications</h2>
+        <h2
+          class="section-title !mb-0"
+          data-i18n={certificationsAreUpcomingOnly ? 'certs.upcomingTitle' : 'certs.title'}
+        >
+          {certificationsAreUpcomingOnly ? 'Upcoming credentials' : 'Certifications'}
+        </h2>
       </div>
 
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">

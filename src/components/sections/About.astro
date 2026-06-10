@@ -27,20 +27,20 @@ const en = dictionary.en;
 
     <div class="mt-10 border-t border-white/[0.06] pt-8">
       <p class="section-label mb-5" data-i18n="about.focusTitle">Focus areas</p>
-      <ul class="space-y-3" role="list">
+      <dl class="divide-y divide-white/[0.06] border-y border-white/[0.06]">
         {
           focusAreas.map(({ titleKey, valueKey }) => (
-            <li class="stack-row">
-              <span class="stack-row__label" data-i18n={titleKey}>
+            <div class="stack-row py-4">
+              <dt class="stack-row__label" data-i18n={titleKey}>
                 {en[titleKey]}
-              </span>
-              <span class="stack-row__value text-pretty" data-i18n={valueKey}>
+              </dt>
+              <dd class="stack-row__value text-pretty" data-i18n={valueKey}>
                 {en[valueKey]}
-              </span>
-            </li>
+              </dd>
+            </div>
           ))
         }
-      </ul>
+      </dl>
     </div>
   </div>
 
