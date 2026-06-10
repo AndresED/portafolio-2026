@@ -1,5 +1,6 @@
 ---
 import { getHomeFeaturedProjects } from '../../data/projects';
+import { profile } from '../../data/profile';
 import ProjectCard from '../ProjectCard.astro';
 
 const featured = getHomeFeaturedProjects();
@@ -43,9 +44,18 @@ for (const [path, mod] of Object.entries(imageModules)) {
     }
   </div>
 
-  <div class="reveal mt-8">
+  <div class="reveal mt-8 flex flex-wrap gap-3">
     <a href="/portfolio" class="btn-secondary" data-i18n="home.featured.viewAll">
       View full portfolio
+    </a>
+    <a
+      href={profile.makingCodeUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-secondary"
+      data-i18n="home.featured.makingCode"
+    >
+      Making Code — 17+ articles ↗
     </a>
   </div>
 </section>

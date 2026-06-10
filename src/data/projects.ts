@@ -177,7 +177,7 @@ export const projects: Project[] = [
 ];
 
 /** Shown on the home page — backend-focused featured work. */
-export const homeFeaturedProjectIds = ['arkano-banking-challenge', 'nestjs-enterprise-starter'] as const;
+export const homeFeaturedProjectIds = ['arkano-banking-challenge', 'nestjs-enterprise-starter', 'multitenant-api'] as const;
 
 export function getHomeFeaturedProjects(): Project[] {
   return homeFeaturedProjectIds

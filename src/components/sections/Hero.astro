@@ -1,8 +1,6 @@
 ---
 import { profile } from '../../data/profile';
-import { certifications } from '../../data/resume';
 
-const featuredCert = certifications[0];
 const linkedIn = profile.socials.find((s) => s.icon === 'linkedin');
 ---
 
@@ -31,21 +29,8 @@ const linkedIn = profile.socials.find((s) => s.icon === 'linkedin');
     )
   }
 
-  {
-    featuredCert && (
-      <a
-        href="/#certifications"
-        class="mt-4 inline-flex items-center rounded-md border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 font-mono text-xs text-amber-400 transition-colors duration-200 hover:border-amber-400/50 hover:bg-amber-500/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/40"
-      >
-        <span>
-          {featuredCert.code} · <span data-i18n="certs.status.inProgress">In progress</span> · {featuredCert.issuerShort}
-        </span>
-      </a>
-    )
-  }
-
   <p class="mt-5 font-mono text-sm tabular-nums text-meta-500" data-i18n="hero.evidence">
-    NESTJS · AWS DVA-C02 · HEXAGONAL · KAFKA · POSTGRESQL
+    NESTJS · AWS · HEXAGONAL · KAFKA · POSTGRESQL
   </p>
 
   <div class="mt-8 flex flex-wrap items-center gap-3">

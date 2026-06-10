@@ -8,18 +8,21 @@ export const experiences: Experience[] = [
     company: 'Wost Creative Solutions',
     role: loc('Senior Backend Developer', 'Desarrollador backend senior'),
     period: loc('Jan 2026 - Present', 'Ene 2026 - Actualidad'),
+    engagement: 'full_time',
     description: loc(
       'Full-time remote delivery for web and mobile products, multitenant APIs, and integrations with regional compliance and logistics services.',
       'Entrega remota a tiempo completo para productos web y móviles, APIs multitenant e integraciones con cumplimiento regional y servicios logísticos.'
     ),
     highlights: [
+      loc(
+        'Multitenant NestJS APIs with per-client data isolation for logistics and customs workflows across Peru',
+        'APIs NestJS multitenant con aislamiento de datos por cliente para flujos logísticos y aduaneros en Perú'
+      ),
       loc('Web apps in React; mobile apps in React Native', 'Aplicaciones web en React; apps móviles en React Native'),
-      loc('Multitenant REST services and microservices with Node.js (NestJS)', 'Servicios REST multitenant y microservicios con Node.js (NestJS)'),
       loc(
         'PostgreSQL modeling and operations; integrations (Sunat, customs, e-invoicing, Nubefact, SeaRates)',
         'Modelado y operación con PostgreSQL; integraciones (Sunat, aduanas, facturación electrónica, Nubefact, SeaRates)'
       ),
-      loc('Unit tests with Jest', 'Pruebas unitarias con Jest'),
       loc(
         'DevOps on AWS: CloudFront, S3, EC2, Amplify, DynamoDB, API Gateway, CodePipeline, CodeBuild, Lambda',
         'DevOps en AWS: CloudFront, S3, EC2, Amplify, DynamoDB, API Gateway, CodePipeline, CodeBuild, Lambda'
@@ -30,18 +33,19 @@ export const experiences: Experience[] = [
     company: 'Tres Astronautas',
     role: loc('Lead Backend Developer / Senior Backend Developer', 'Líder backend / Desarrollador backend senior'),
     period: loc('Mar 2021 - Jan 2026', 'Mar 2021 - Ene 2026'),
+    engagement: 'full_time',
     description: loc(
       'Remote full-time roles in Colombia: progressed from senior backend (product and mentoring) to technical lead, owning architecture, quality, and delivery across distributed systems.',
       'Roles remotos a tiempo completo en Colombia: evolución de backend senior (producto y mentoría) a líder técnico, a cargo de arquitectura, calidad y entrega en sistemas distribuidos.'
     ),
     highlights: [
       loc(
-        'Technical leadership and mentoring; promoted standards and sustainable practices in shared codebases',
-        'Liderazgo técnico y mentoría; estándares y prácticas sostenibles en bases de código compartidas'
+        'Owned backend architecture for product teams shipping microservices with hexagonal boundaries and external provider integrations',
+        'Arquitectura backend para equipos de producto con microservicios, límites hexagonales e integraciones con proveedores externos'
       ),
       loc(
-        'Hexagonal architecture, microservices, and integration modules for external providers',
-        'Arquitectura hexagonal, microservicios y módulos de integración con proveedores externos'
+        'Technical leadership and mentoring; promoted standards and sustainable practices in shared codebases',
+        'Liderazgo técnico y mentoría; estándares y prácticas sostenibles en bases de código compartidas'
       ),
       loc(
         'DevOps and cloud on Google Cloud, AWS, and Azure DevOps with automated delivery pipelines',
@@ -57,9 +61,10 @@ export const experiences: Experience[] = [
     company: 'Think In',
     role: loc('Full Stack Engineer', 'Ingeniero full stack'),
     period: loc('Feb 2019 - Feb 2024', 'Feb 2019 - Feb 2024'),
+    engagement: 'freelance',
     description: loc(
-      'Freelance, project-based work from Colombia (remote): APIs, mobile, payments, cloud, IoT, and applied ML.',
-      'Trabajo freelance por proyectos desde Colombia (remoto): APIs, móvil, pagos, nube, IoT y ML aplicado.'
+      'Freelance, project-based work from Colombia (remote): APIs, mobile, payments, cloud, IoT, and applied ML — concurrent with other engagements where schedules allowed.',
+      'Trabajo freelance por proyectos desde Colombia (remoto): APIs, móvil, pagos, nube, IoT y ML aplicado — concurrente con otros compromisos cuando el calendario lo permitía.'
     ),
     highlights: [
       loc(
@@ -82,9 +87,10 @@ export const experiences: Experience[] = [
     company: 'Company JEF',
     role: loc('Full Stack Developer', 'Desarrollador full stack'),
     period: loc('Jul 2021 - Jul 2022', 'Jul 2021 - Jul 2022'),
+    engagement: 'freelance',
     description: loc(
-      'Objective-based independent work from La Libertad, Peru: product delivery across backend, frontend, and edge-style workloads.',
-      'Trabajo independiente por objetivos desde La Libertad, Perú: entrega de producto en backend, frontend y cargas tipo edge.'
+      'Independent, objective-based work from La Libertad, Peru — concurrent with other remote engagements; backend, frontend, and edge-style workloads.',
+      'Trabajo independiente por objetivos desde La Libertad, Perú — concurrente con otros compromisos remotos; backend, frontend y cargas tipo edge.'
     ),
     highlights: [
       loc('Microservices with NestJS and NATS', 'Microservicios con NestJS y NATS'),
@@ -97,9 +103,10 @@ export const experiences: Experience[] = [
     company: 'Wost Creative Solutions',
     role: loc('Full Stack Engineer', 'Ingeniero full stack'),
     period: loc('Feb 2020 - Jan 2022', 'Feb 2020 - Ene 2022'),
+    engagement: 'freelance',
     description: loc(
-      'Freelance, objective-based projects across data, APIs, multi-tenant systems, mobile, and e-commerce.',
-      'Proyectos freelance por objetivos en datos, APIs, sistemas multitenant, móvil y comercio electrónico.'
+      'Freelance, objective-based projects across data, APIs, multi-tenant systems, mobile, and e-commerce — overlapping with other client work in 2020–2021.',
+      'Proyectos freelance por objetivos en datos, APIs, sistemas multitenant, móvil y e-commerce — solapados con otros clientes en 2020–2021.'
     ),
     highlights: [
       loc(
@@ -116,9 +123,10 @@ export const experiences: Experience[] = [
     company: 'Coordinadora Mercantil',
     role: loc('Full Stack Developer', 'Desarrollador full stack'),
     period: loc('Mar 2021 - Oct 2021', 'Mar 2021 - Oct 2021'),
+    engagement: 'contract',
     description: loc(
-      'Short project-based engagement from Colombia (home office) for a logistics network platform.',
-      'Colaboración corta por proyectos desde Colombia (home office) para una plataforma de red logística.'
+      'Short contract from Colombia (home office) for a logistics network platform — ran in parallel with other remote roles.',
+      'Contrato corto desde Colombia (home office) para una plataforma de red logística — en paralelo con otros roles remotos.'
     ),
     highlights: [
       loc('Deployments on Google Cloud (App Engine and Kubernetes)', 'Despliegues en Google Cloud (App Engine y Kubernetes)'),
@@ -131,6 +139,7 @@ export const experiences: Experience[] = [
     company: 'Comodin Empresas',
     role: loc('Co-Founder | Programmer Analyst', 'Cofundador | Analista programador'),
     period: loc('Aug 2017 - Jul 2020', 'Ago 2017 - Jul 2020'),
+    engagement: 'co_founder',
     description: loc(
       'Objective-based home office work on a services marketplace connecting users with trusted specialists in Peru.',
       'Trabajo por objetivos en home office en un marketplace de servicios que conecta usuarios con especialistas de confianza en Perú.'
@@ -146,6 +155,7 @@ export const experiences: Experience[] = [
     company: 'Izaro',
     role: loc('Programmer Analyst', 'Analista programador'),
     period: loc('Aug 2017 - Oct 2018', 'Ago 2017 - Oct 2018'),
+    engagement: 'full_time',
     description: loc(
       'Full-time role in Trujillo building internal and client systems for an incubator-style corporation.',
       'Rol a tiempo completo en Trujillo construyendo sistemas internos y de clientes para una corporación tipo incubadora.'
@@ -185,6 +195,9 @@ export const certifications: Certification[] = [
     icon: 'aws',
   },
 ];
+
+/** Only earned credentials — in-progress items stay in data but are hidden from the site. */
+export const visibleCertifications = certifications.filter((cert) => cert.status === 'valid');
 
 export const skillCategories = {
   backend: {

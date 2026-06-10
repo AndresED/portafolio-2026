@@ -37,12 +37,15 @@ export interface LocalizedText {
   es: string;
 }
 
+export type EngagementType = 'full_time' | 'freelance' | 'contract' | 'part_time' | 'co_founder';
+
 export interface Experience {
   company: string;
   role: LocalizedText;
   period: LocalizedText;
   description: LocalizedText;
   highlights: LocalizedText[];
+  engagement?: EngagementType;
 }
 
 export interface Education {
@@ -86,6 +89,7 @@ export interface ProfileData {
   email: string;
   location: string;
   cvUrl: string;
+  makingCodeUrl: string;
   socials: SocialLink[];
   status: {
     available: boolean;

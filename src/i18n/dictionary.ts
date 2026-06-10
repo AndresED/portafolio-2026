@@ -11,17 +11,18 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'nav.certifications': 'Certifications',
     'nav.portfolio': 'Portfolio',
     'nav.blog': 'Publications',
+    'nav.makingcode': 'Making Code',
     'nav.contact': 'Contact',
     'layout.downloadCv': 'Download CV',
     'layout.backToTop': 'Back to top',
     'layout.builtWithFooter': 'Built with',
     'profile.tagline': 'Backend systems · cloud-native · distributed architecture',
-    'profile.openToWork': 'Open to opportunities',
+    'profile.openToWork': 'Open to opportunities · remote · full-time or contract',
     'hero.eyebrow': 'Senior Backend Engineer · Peru',
     'hero.thesis':
       'Senior backend engineer (5+ years) shipping NestJS microservices on AWS for logistics and compliance products — event-driven, multitenant, production-first.',
     'hero.fit': 'Remote · Peru (UTC-5) · Backend & platform roles · English & Spanish',
-    'hero.evidence': 'NESTJS · AWS DVA-C02 · HEXAGONAL · KAFKA · POSTGRESQL',
+    'hero.evidence': 'NESTJS · AWS · HEXAGONAL · KAFKA · POSTGRESQL',
     'hero.ctaPortfolio': 'View portfolio',
     'hero.ctaContact': 'Get in touch',
     'hero.ctaLinkedin': 'LinkedIn',
@@ -40,7 +41,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'about.focus.arch':
       'Microservices with Clean Architecture, hexagonal patterns, and CQRS where the domain requires it.',
     'about.focus.cloud':
-      'AWS in production — Lambda, ECS, API Gateway, DynamoDB, CI/CD pipelines; DVA-C02 certification in progress.',
+      'AWS in production — Lambda, ECS, API Gateway, DynamoDB, and CI/CD pipelines for multitenant delivery.',
     'about.focus.dist':
       'Resilient messaging with Kafka, gRPC, and idempotent consumers for high-availability workloads.',
     'about.focus.perf':
@@ -84,12 +85,19 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'resume.sectionTitle': 'Experience & Education',
     'resume.educationHeading': 'Education',
     'resume.workExperienceTitle': 'Work experience',
+    'resume.concurrentNote':
+      'Some dates overlap by design: concurrent freelance and contract work alongside full-time roles, common in remote delivery across LATAM.',
+    'resume.engagement.full_time': 'Full-time',
+    'resume.engagement.freelance': 'Freelance',
+    'resume.engagement.contract': 'Contract',
+    'resume.engagement.part_time': 'Part-time',
+    'resume.engagement.co_founder': 'Co-founder',
     'resume.certifications': 'Certifications',
     'resume.skillsTitle': 'Technical Proficiency',
     'portfolio.title': 'Portfolio',
     'portfolio.eyebrow': 'Open source & reference builds',
     'portfolio.lead':
-      'Backend systems, microservices, and architectures I designed and shipped — with context on role, problem, and impact.',
+      'Open-source and reference architectures — not client case studies. Each entry documents role, problem, and technical impact.',
     'portfolio.meta.role': 'Role',
     'portfolio.meta.problem': 'Problem',
     'portfolio.meta.impact': 'Impact',
@@ -98,8 +106,9 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'home.featured.eyebrow': 'Selected work',
     'home.featured.title': 'Featured projects',
     'home.featured.lead':
-      'Backend systems and reference architectures — role, problem, and what shipped.',
+      'Three reference builds from a nine-project portfolio — architecture, problem context, and what shipped.',
     'home.featured.viewAll': 'View full portfolio',
+    'home.featured.makingCode': 'Making Code — 17+ articles ↗',
     'portfolio.hireMe': 'Hire Me',
     'portfolio.clientLabel': 'Client',
     'portfolio.viewLive': 'Live',
@@ -112,7 +121,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'portfolio.featuredBadge': 'Featured',
     'blog.title': 'Publications',
     'blog.lead':
-      'Technical articles on algorithms, data structures, cryptography, and software design from Making Code, my technical blog.',
+      'Curated archive of 17+ articles (2015–2018) on algorithms and cryptography from Making Code — foundational CS writing, not current backend focus.',
     'blog.empty': 'No articles in this category yet.',
     'blog.filter.all': 'All',
     'blog.filter.dataStructures': 'Data Structures',
@@ -160,17 +169,18 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'nav.certifications': 'Certificaciones',
     'nav.portfolio': 'Portafolio',
     'nav.blog': 'Publicaciones',
+    'nav.makingcode': 'Making Code',
     'nav.contact': 'Contacto',
     'layout.downloadCv': 'Descargar CV',
     'layout.backToTop': 'Volver arriba',
     'layout.builtWithFooter': 'Hecho con',
     'profile.tagline': 'Sistemas backend · cloud-native · arquitectura distribuida',
-    'profile.openToWork': 'Abierto a oportunidades',
+    'profile.openToWork': 'Abierto a oportunidades · remoto · tiempo completo o contrato',
     'hero.eyebrow': 'Senior Backend Engineer · Perú',
     'hero.thesis':
       'Backend senior (5+ años) entregando microservicios NestJS en AWS para logística y cumplimiento — orientado a eventos, multitenant y producción.',
     'hero.fit': 'Remoto · Perú (UTC-5) · Roles backend y plataforma · Inglés y español',
-    'hero.evidence': 'NESTJS · AWS DVA-C02 · HEXAGONAL · KAFKA · POSTGRESQL',
+    'hero.evidence': 'NESTJS · AWS · HEXAGONAL · KAFKA · POSTGRESQL',
     'hero.ctaPortfolio': 'Ver portafolio',
     'hero.ctaContact': 'Contacto',
     'hero.ctaLinkedin': 'LinkedIn',
@@ -189,7 +199,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'about.focus.arch':
       'Microservicios con Clean Architecture, patrones hexagonales y CQRS cuando el dominio lo exige.',
     'about.focus.cloud':
-      'AWS en producción — Lambda, ECS, API Gateway, DynamoDB, pipelines CI/CD; certificación DVA-C02 en curso.',
+      'AWS en producción — Lambda, ECS, API Gateway, DynamoDB y pipelines CI/CD para entrega multitenant.',
     'about.focus.dist':
       'Mensajería resiliente con Kafka, gRPC y consumidores idempotentes para cargas de alta disponibilidad.',
     'about.focus.perf':
@@ -233,12 +243,19 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'resume.sectionTitle': 'Experiencia y educación',
     'resume.educationHeading': 'Educación',
     'resume.workExperienceTitle': 'Experiencia laboral',
+    'resume.concurrentNote':
+      'Algunas fechas se solapan a propósito: trabajo freelance y por contrato en paralelo con roles a tiempo completo, habitual en entrega remota en LATAM.',
+    'resume.engagement.full_time': 'Tiempo completo',
+    'resume.engagement.freelance': 'Freelance',
+    'resume.engagement.contract': 'Contrato',
+    'resume.engagement.part_time': 'Medio tiempo',
+    'resume.engagement.co_founder': 'Cofundador',
     'resume.certifications': 'Certificaciones',
     'resume.skillsTitle': 'Competencias técnicas',
     'portfolio.title': 'Portafolio',
     'portfolio.eyebrow': 'Open source y builds de referencia',
     'portfolio.lead':
-      'Sistemas backend, microservicios y arquitecturas que diseñé y entregué — con contexto de rol, problema e impacto.',
+      'Arquitecturas open source y de referencia — no casos de clientes. Cada entrada documenta rol, problema e impacto técnico.',
     'portfolio.meta.role': 'Rol',
     'portfolio.meta.problem': 'Problema',
     'portfolio.meta.impact': 'Impacto',
@@ -247,8 +264,9 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'home.featured.eyebrow': 'Trabajo seleccionado',
     'home.featured.title': 'Proyectos destacados',
     'home.featured.lead':
-      'Sistemas backend y arquitecturas de referencia — rol, problema y qué se entregó.',
+      'Tres builds de referencia de un portafolio de nueve proyectos — arquitectura, contexto del problema y qué se entregó.',
     'home.featured.viewAll': 'Ver portafolio completo',
+    'home.featured.makingCode': 'Making Code — 17+ artículos ↗',
     'portfolio.hireMe': 'Contrátame',
     'portfolio.clientLabel': 'Cliente',
     'portfolio.viewLive': 'Ver sitio',
@@ -261,7 +279,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'portfolio.featuredBadge': 'Destacado',
     'blog.title': 'Publicaciones',
     'blog.lead':
-      'Artículos técnicos sobre algoritmos, estructuras de datos, criptografía y diseño de software publicados en Making Code, mi blog técnico.',
+      'Archivo curado de 17+ artículos (2015–2018) sobre algoritmos y criptografía en Making Code — escritura de CS clásica, no el foco backend actual.',
     'blog.empty': 'Aún no hay artículos en esta categoría.',
     'blog.filter.all': 'Todos',
     'blog.filter.dataStructures': 'Estructuras de datos',

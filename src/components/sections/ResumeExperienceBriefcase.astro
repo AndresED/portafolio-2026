@@ -33,6 +33,10 @@ const { experiences, education } = Astro.props;
     </div>
 
     <div class="relative">
+      <p class="mb-8 max-w-2xl text-pretty text-base leading-7 text-ink-muted" data-i18n="resume.concurrentNote">
+        Some dates overlap by design: concurrent freelance and contract work alongside full-time roles, common in remote delivery across LATAM.
+      </p>
+
       <div
         class="pointer-events-none absolute left-[19px] top-3 bottom-3 w-px bg-gradient-to-b from-accent-500/45 via-accent-500/20 to-neutral-700/25 md:left-[21px]"
         aria-hidden="true"
@@ -57,6 +61,15 @@ const { experiences, education } = Astro.props;
                       <LocalePair text={exp.role} />
                     </h3>
                     <p class="font-semibold text-ink">{exp.company}</p>
+                    {
+                      exp.engagement && (
+                        <p class="inline-flex w-fit rounded-md border border-white/[0.08] bg-surface-raised px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-meta-500">
+                          <span data-i18n={`resume.engagement.${exp.engagement}`}>
+                            {exp.engagement.replace('_', ' ')}
+                          </span>
+                        </p>
+                      )
+                    }
                     <p class="text-base text-ink-muted">
                       <LocalePair text={exp.period} />
                     </p>

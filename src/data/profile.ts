@@ -4,12 +4,13 @@ export const profile: ProfileData = {
   name: 'Andrés Esquivel',
   title: 'Senior Backend Engineer',
   tagline: 'Building scalable cloud architectures & distributed systems',
-  email: 'andres30xed@gmail.com',
+  email: 'andres@andresed.dev',
   location: 'Perú',
-  cvUrl: 'https://www.dropbox.com/scl/fi/5gh8zuwrp22k2kwvwp3i0/Estuardo-Andr-s-Esquivel-D-az-CV_6.pdf?rlkey=0jodo28vhhhg45zbbn0fooheo&dl=0',
+  cvUrl: '/cv.pdf',
+  makingCodeUrl: 'https://www.makingcode.dev',
   status: {
     available: true,
-    text: 'Open to opportunities',
+    text: 'Open to opportunities · remote · full-time or contract',
   },
   socials: [
     { name: 'GitHub', url: 'https://github.com/AndresED', icon: 'github' },

@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { profile } from '../data/profile';
+import { visibleCertifications } from '../data/resume';
 import profileAvatar from '../assets/profile-avatar.jpg';
 import BaseLayout from './BaseLayout.astro';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
@@ -14,19 +15,29 @@ interface Props {
 const { currentPage = 'home', title, description } = Astro.props;
 
 type NavItem = {
-  id: Props['currentPage'];
+  id: Props['currentPage'] | 'makingcode';
   label: string;
   href: string;
   icon: string;
   emphasis?: boolean;
+  external?: boolean;
 };
 
 const navItems: NavItem[] = [
   { id: 'about', label: 'About', href: '/#about', icon: 'user' },
   { id: 'resume', label: 'Resume', href: '/#resume', icon: 'briefcase' },
-  { id: 'certifications', label: 'Certifications', href: '/#certifications', icon: 'badge' },
+  ...(visibleCertifications.length > 0
+    ? [{ id: 'certifications' as const, label: 'Certifications', href: '/#certifications', icon: 'badge' }]
+    : []),
   { id: 'portfolio', label: 'Portfolio', href: '/portfolio', icon: 'folder', emphasis: true },
   { id: 'blog', label: 'Publications', href: '/blog', icon: 'edit' },
+  {
+    id: 'makingcode',
+    label: 'Making Code',
+    href: profile.makingCodeUrl,
+    icon: 'edit',
+    external: true,
+  },
   { id: 'contact', label: 'Contact', href: '/contact', icon: 'mail', emphasis: true },
 ];
 
@@ -149,6 +160,8 @@ function navClasses(item: NavItem, isActive: boolean) {
               class={navClasses(item, currentPage === item.id)}
               data-section={item.id}
               data-nav-emphasis={item.emphasis ? 'true' : undefined}
+              target={item.external ? '_blank' : undefined}
+              rel={item.external ? 'noopener noreferrer' : undefined}
             >
               <svg class="size-[18px] shrink-0 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPaths[item.icon]} />
@@ -227,6 +240,8 @@ function navClasses(item: NavItem, isActive: boolean) {
                     : 'border-transparent text-ink-muted hover:bg-white/[0.02] hover:text-ink',
                 ]}
                 data-section={item.id}
+                target={item.external ? '_blank' : undefined}
+                rel={item.external ? 'noopener noreferrer' : undefined}
               >
                 <span data-i18n={`nav.${item.id}`}>{item.label}</span>
               </a>

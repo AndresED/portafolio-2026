@@ -1,4 +1,5 @@
 ---
+import { dictionary } from '../../i18n/dictionary';
 import { skillCategories } from '../../data/resume';
 
 const focusAreas = [
@@ -7,6 +8,8 @@ const focusAreas = [
   { titleKey: 'about.sum.distTitle', valueKey: 'about.focus.dist' },
   { titleKey: 'about.sum.perfTitle', valueKey: 'about.focus.perf' },
 ] as const;
+
+const en = dictionary.en;
 ---
 
 <section id="about" class="mb-20">
@@ -29,10 +32,10 @@ const focusAreas = [
           focusAreas.map(({ titleKey, valueKey }) => (
             <li class="stack-row">
               <span class="stack-row__label" data-i18n={titleKey}>
-                Architecture
+                {en[titleKey]}
               </span>
               <span class="stack-row__value text-pretty" data-i18n={valueKey}>
-                —
+                {en[valueKey]}
               </span>
             </li>
           ))
