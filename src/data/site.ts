@@ -13,8 +13,13 @@ export const siteConfig = {
     medium: 'https://medium.com/@username',
   },
   seo: {
-    ogImage: '/images/og-image.png',
+    ogImage: '/images/og-image.jpg',
+    ogImageAlt: 'Estuardo Andrés Esquivel Díaz — Senior Backend Developer',
     twitterHandle: '@username',
     keywords: ['Backend Engineer', 'AWS', 'NestJS', 'Microservices', 'Cloud Architecture', 'TypeScript'],
   },
 };
+
+export function absoluteUrl(path: string): string {
+  return new URL(path, siteUrl).href;
+}
