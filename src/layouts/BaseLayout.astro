@@ -1,5 +1,6 @@
 ---
 import { profile } from '../data/profile';
+import { siteUrl } from '../data/site';
 import '../styles/global.css';
 
 interface Props {
@@ -11,6 +12,9 @@ const {
   title = `${profile.name} | ${profile.title}`,
   description = 'Senior Backend Engineer with hands-on AWS and cloud-native experience; AWS Developer – Associate certification in progress. NestJS, distributed systems.',
 } = Astro.props;
+
+const fontsUrl =
+  'https://fonts.googleapis.com/css2?family=Hubot+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap';
 ---
 
 <!doctype html>
@@ -25,15 +29,15 @@ const {
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Hubot+Sans:ital,wght@0,200..900;1,200..900&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    />
+    <link rel="stylesheet" href={fontsUrl} media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href={fontsUrl} />
+    </noscript>
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yourportfolio.dev" />
+    <meta property="og:url" content={siteUrl} />
     <meta property="og:image" content="/images/og-image.png" />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />

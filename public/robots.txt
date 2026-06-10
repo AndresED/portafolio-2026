@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yourportfolio.dev/sitemap.xml
+Sitemap: https://www.andresed.dev/sitemap.xml

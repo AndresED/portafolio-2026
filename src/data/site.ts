@@ -1,7 +1,9 @@
+export const siteUrl = 'https://www.andresed.dev';
+
 export const siteConfig = {
   title: 'Andrés Felipe - Senior Backend Engineer',
   description: 'Senior Backend Engineer with hands-on AWS and cloud-native experience; AWS Developer – Associate certification in progress. NestJS, distributed systems, scalable microservices.',
-  url: 'https://yourportfolio.dev',
+  url: siteUrl,
   author: 'Andrés Felipe',
   authorEmail: 'andres.felipe.dev@email.com',
   social: {

@@ -1,8 +1,9 @@
 import type { APIRoute } from 'astro';
 import { posts } from '../data/blog';
+import { siteUrl } from '../data/site';
 
 export const GET: APIRoute = async () => {
-  const baseUrl = 'https://yourportfolio.dev';
+  const baseUrl = siteUrl;
 
   const staticPages = ['', 'portfolio', 'blog', 'contact'].map((path) => ({
     url: `${baseUrl}/${path}`.replace(/\/$/, ''),

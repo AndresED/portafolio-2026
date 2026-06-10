@@ -7,5 +7,5 @@ export default defineConfig({
       configFile: './tailwind.config.mjs',
     }),
   ],
-  site: 'https://yourportfolio.dev',
+  site: 'https://www.andresed.dev',
 });

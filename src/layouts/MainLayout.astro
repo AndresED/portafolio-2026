@@ -84,9 +84,10 @@ function navClasses(item: NavItem, isActive: boolean) {
               alt={profile.name}
               width={112}
               height={112}
-              densities={[1, 2]}
+              densities={[1]}
               class="size-full object-cover"
               loading="eager"
+              fetchpriority="high"
               decoding="async"
             />
           </div>
@@ -167,7 +168,7 @@ function navClasses(item: NavItem, isActive: boolean) {
               alt={profile.name}
               width={80}
               height={80}
-              densities={[1, 2]}
+              densities={[1]}
               class="size-full object-cover"
               loading="eager"
               decoding="async"
