@@ -1,3 +1,5 @@
+@import './fonts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -143,6 +145,45 @@
   .tag {
     @apply cursor-default rounded-md border border-white/[0.08] bg-dark-700 px-2.5 py-1 text-xs font-medium;
     color: var(--color-ink-muted);
+  }
+
+  .media-card {
+    @apply flex flex-col overflow-hidden sm:flex-row;
+  }
+
+  .media-card__media {
+    @apply relative shrink-0 overflow-hidden bg-dark-700;
+    @apply aspect-[16/10] sm:aspect-auto sm:w-[42%] sm:min-h-[12.5rem];
+  }
+
+  .media-card__body {
+    @apply flex flex-1 flex-col p-5 sm:p-6;
+  }
+
+  .media-card__title {
+    @apply mb-3 text-balance text-xl font-bold leading-snug;
+    color: var(--color-ink);
+  }
+
+  .media-card__excerpt {
+    @apply mb-4 line-clamp-4 text-pretty text-base leading-7;
+    color: var(--color-ink-body);
+  }
+
+  .media-card__tags {
+    @apply mb-4 flex flex-wrap gap-2;
+  }
+
+  .media-card__footer {
+    @apply mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-white/[0.06] pt-4 font-mono text-xs text-meta-500;
+  }
+
+  .media-card-list {
+    @apply flex flex-col gap-6;
+  }
+
+  .group:hover .media-card__title {
+    color: theme('colors.accent.400');
   }
 
   .nav-item {

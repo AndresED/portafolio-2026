@@ -13,8 +13,6 @@ const {
   description = 'Senior Backend Engineer with hands-on AWS and cloud-native experience; AWS Developer – Associate certification in progress. NestJS, distributed systems.',
 } = Astro.props;
 
-const fontsUrl =
-  'https://fonts.googleapis.com/css2?family=Hubot+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap';
 ---
 
 <!doctype html>
@@ -27,12 +25,13 @@ const fontsUrl =
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href={fontsUrl} media="print" onload="this.media='all'" />
-    <noscript>
-      <link rel="stylesheet" href={fontsUrl} />
-    </noscript>
+    <link
+      rel="preload"
+      href="/fonts/hubot-sans-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

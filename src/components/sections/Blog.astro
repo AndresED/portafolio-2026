@@ -15,6 +15,10 @@ for (const [path, mod] of Object.entries(imageModules)) {
 
 const allPosts = posts;
 const hasMorePosts = allPosts.length > blogBatchSize;
+
+function formatPostDate(iso: string): string {
+  return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+}
 ---
 
 <section id="blog" class="mb-16 lg:mb-24">
@@ -49,7 +53,7 @@ const hasMorePosts = allPosts.length > blogBatchSize;
     }
   </div>
 
-  <div id="blog-grid" class="grid grid-cols-1 gap-6 md:grid-cols-2">
+  <div id="blog-grid" class="media-card-list">
     {
       allPosts.map((post, index) => {
         const filename = post.coverImage.split('/').pop()!;
@@ -62,7 +66,7 @@ const hasMorePosts = allPosts.length > blogBatchSize;
             target="_blank"
             rel="noopener noreferrer"
             class:list={[
-              'blog-post group glass-card overflow-hidden transition-colors duration-200 hover:border-accent-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/30 reveal',
+              'blog-post group glass-card media-card transition-colors duration-200 hover:border-accent-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/30 reveal',
               isScrollHidden && 'blog-post--scroll-hidden',
             ]}
             data-index={index}
@@ -70,37 +74,36 @@ const hasMorePosts = allPosts.length > blogBatchSize;
             style={`animation-delay: ${Math.min(index, blogBatchSize - 1) * 100}ms`}
             aria-label={`${post.title} — opens on Making Code`}
           >
-            <div class="relative h-44 bg-gradient-to-br from-dark-600 to-dark-800 overflow-hidden">
+            <div class="media-card__media">
               {
                 localImg && (
                   <Image
                     src={localImg}
                     alt=""
-                    width={400}
-                    height={225}
-                    class="h-full w-full object-cover opacity-80 transition-opacity group-hover:opacity-95"
+                    width={640}
+                    height={360}
+                    class="size-full object-cover opacity-90 transition-opacity duration-200 group-hover:opacity-100"
                     loading={index < blogBatchSize ? 'eager' : 'lazy'}
                     decoding="async"
                   />
                 )
               }
-              <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/30 to-transparent"></div>
-              <div class="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.08] bg-dark-900/80 text-ink-muted transition-colors group-hover:text-accent-400">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </div>
             </div>
-            <div class="p-5">
-              <h3 class="mb-3 line-clamp-2 text-base font-bold uppercase tracking-wide text-ink transition-colors group-hover:text-accent-400">
-                {post.title}
-              </h3>
-              <div class="flex flex-wrap gap-2 mb-3">
+            <div class="media-card__body">
+              <h3 class="media-card__title">{post.title}</h3>
+              <p class="media-card__excerpt">{post.description}</p>
+              <div class="media-card__tags">
                 {post.tags.map((tag) => (
-                  <span class="tag text-xs">{tag}</span>
+                  <span class="tag">{tag}</span>
                 ))}
               </div>
-              <p class="line-clamp-3 text-base leading-7 text-ink-body">{post.description}</p>
+              <div class="media-card__footer">
+                <time datetime={post.publishedAt}>{formatPostDate(post.publishedAt)}</time>
+                <span class="inline-flex items-center gap-1.5">
+                  {post.readingTime}
+                  <span aria-hidden="true">↗</span>
+                </span>
+              </div>
             </div>
           </a>
         );
