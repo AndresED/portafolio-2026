@@ -6,7 +6,7 @@ export const profile: ProfileData = {
   tagline: 'Building scalable cloud architectures & distributed systems',
   email: 'andres30xed@gmail.com',
   location: 'Perú',
-  cvUrl: 'https://www.dropbox.com/scl/fi/gy70ga0116mpbk3tie95x/cv-version-9.pdf?rlkey=jp7xg3ij9iocu774i1hp17t6p&st=6o0ufzj3&dl=0',
+  cvUrl: 'https://www.dropbox.com/scl/fi/5gh8zuwrp22k2kwvwp3i0/Estuardo-Andr-s-Esquivel-D-az-CV_6.pdf?rlkey=0jodo28vhhhg45zbbn0fooheo&dl=0',
   status: {
     available: true,
     text: 'Open to opportunities',
