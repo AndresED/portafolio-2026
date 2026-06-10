@@ -3,6 +3,7 @@ import { profile } from '../../data/profile';
 import { certifications } from '../../data/resume';
 
 const featuredCert = certifications[0];
+const linkedIn = profile.socials.find((s) => s.icon === 'linkedin');
 ---
 
 <section id="hero" class="reveal mb-16 border-b border-white/[0.06] pb-14 lg:mb-20 lg:pb-16" aria-labelledby="hero-heading">
@@ -15,14 +16,27 @@ const featuredCert = certifications[0];
   </h1>
 
   <p class="mt-5 max-w-2xl text-pretty text-lg leading-7 text-ink-body md:text-xl" data-i18n="hero.thesis">
-    I design and ship backend systems with clear boundaries — hexagonal architecture, event-driven microservices, and AWS-native delivery.
+    Senior backend engineer (5+ years) shipping NestJS microservices on AWS for logistics and compliance products — event-driven, multitenant, production-first.
   </p>
+
+  <p class="mt-4 font-mono text-sm text-meta-500" data-i18n="hero.fit">
+    Remote · Peru (UTC-5) · Backend & platform roles · English & Spanish
+  </p>
+
+  {
+    profile.status.available && (
+      <p class="mt-4 inline-flex items-center gap-2 rounded-md border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 font-mono text-xs text-emerald-400">
+        <span class="size-1.5 rounded-full bg-current" aria-hidden="true" />
+        <span data-i18n="profile.openToWork">{profile.status.text}</span>
+      </p>
+    )
+  }
 
   {
     featuredCert && (
       <a
         href="/#certifications"
-        class="mt-5 inline-flex items-center gap-2 rounded-md border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 font-mono text-xs text-amber-400 transition-colors duration-200 hover:border-amber-400/50 hover:bg-amber-500/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/40"
+        class="mt-4 inline-flex items-center gap-2 rounded-md border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 font-mono text-xs text-amber-400 transition-colors duration-200 hover:border-amber-400/50 hover:bg-amber-500/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/40"
       >
         <span class="size-1.5 rounded-full bg-current" aria-hidden="true" />
         <span>
@@ -43,6 +57,19 @@ const featuredCert = certifications[0];
     <a href="/contact" class="btn-secondary" data-i18n="hero.ctaContact">
       Get in touch
     </a>
+    {
+      linkedIn && (
+        <a
+          href={linkedIn.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-secondary"
+          data-i18n="hero.ctaLinkedin"
+        >
+          LinkedIn ↗
+        </a>
+      )
+    }
     <a
       href={profile.cvUrl}
       target="_blank"

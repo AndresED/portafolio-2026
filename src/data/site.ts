@@ -1,28 +1,29 @@
+import { profile } from './profile';
+
 export const siteUrl = 'https://www.andresed.dev';
 
-/** Card copy — ASCII-only, distinct from title, under 200 chars for X/LinkedIn. */
+/** Card copy — ASCII-friendly, distinct from title, under 200 chars for X/LinkedIn. */
 export const siteDescription =
-  'NestJS microservices, event-driven architectures and AWS cloud delivery. 5+ years building production APIs, multitenant SaaS and Kafka integrations.';
+  'Senior backend engineer (5+ years) shipping NestJS microservices on AWS for logistics and compliance products — event-driven, multitenant, production-first.';
 
-/** Shorter title for social cards (avoids redundancy with description). */
-export const socialShareTitle = 'Andres Esquivel - Senior Backend Engineer';
+/** Title for social cards and default SEO. */
+export const socialShareTitle = `${profile.name} - Senior Backend Engineer`;
 
 export const siteConfig = {
-  title: 'Andrés Felipe - Senior Backend Engineer',
+  title: socialShareTitle,
   description: siteDescription,
   url: siteUrl,
-  author: 'Andrés Felipe',
-  authorEmail: 'andres.felipe.dev@email.com',
+  author: profile.name,
+  authorEmail: profile.email,
   social: {
-    github: 'https://github.com/username',
-    linkedin: 'https://linkedin.com/in/username',
-    twitter: 'https://twitter.com/username',
-    medium: 'https://medium.com/@username',
+    github: 'https://github.com/AndresED',
+    linkedin: 'https://www.linkedin.com/in/andresedev/',
+    medium: 'https://medium.com/@andres30xed',
   },
   seo: {
     ogImage: '/images/og-image.jpg',
-    ogImageAlt: 'Andres Esquivel - Senior Backend Developer portfolio banner',
-    twitterHandle: '@username',
+    ogImageAlt: `${profile.name} - Senior Backend Engineer portfolio`,
+    twitterHandle: '',
     keywords: ['Backend Engineer', 'AWS', 'NestJS', 'Microservices', 'Cloud Architecture', 'TypeScript'],
   },
 };

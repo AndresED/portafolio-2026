@@ -166,8 +166,12 @@
   }
 
   .media-card__excerpt {
-    @apply mb-4 line-clamp-4 text-pretty text-base leading-7;
+    @apply mb-4 line-clamp-3 text-pretty text-base leading-7;
     color: var(--color-ink-body);
+  }
+
+  .media-card__impact {
+    @apply mb-4 line-clamp-3;
   }
 
   .media-card__tags {

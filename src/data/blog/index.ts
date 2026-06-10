@@ -235,3 +235,6 @@ export const posts: BlogPost[] = [
 ];
 
 export const blogBatchSize = 6;
+
+/** Cards in the first batch that may appear above the fold on /blog (horizontal layout). */
+export const blogAboveFoldEagerCount = 6;

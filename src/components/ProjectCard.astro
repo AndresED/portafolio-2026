@@ -1,15 +1,18 @@
 ---
 import { Image } from 'astro:assets';
 import type { Project } from '../../types';
+import LocalePair from './LocalePair.astro';
 
 interface Props {
   project: Project;
   imgSrc?: ImageMetadata;
   class?: string;
   style?: string;
+  /** First above-the-fold card — eager load + fetchpriority for LCP. */
+  priority?: boolean;
 }
 
-const { project, imgSrc, class: className, style } = Astro.props;
+const { project, imgSrc, class: className, style, priority = false } = Astro.props;
 ---
 
 <article
@@ -26,8 +29,9 @@ const { project, imgSrc, class: className, style } = Astro.props;
           width={640}
           height={360}
           class="size-full object-cover opacity-90 transition-opacity duration-200 group-hover:opacity-100"
-          loading="lazy"
+          loading={priority ? 'eager' : 'lazy'}
           decoding="async"
+          fetchpriority={priority ? 'high' : undefined}
         />
       </div>
     )
@@ -46,6 +50,15 @@ const { project, imgSrc, class: className, style } = Astro.props;
     </div>
 
     <p class="media-card__excerpt">{project.description}</p>
+
+    {
+      project.impact && (
+        <p class="media-card__impact">
+          <span class="mb-1 block font-mono text-xs text-meta-500" data-i18n="portfolio.meta.impact">Impact</span>
+          <LocalePair text={project.impact} display="block" class="text-sm leading-6 text-ink-body" />
+        </p>
+      )
+    }
 
     <div class="media-card__tags">
       {project.tags.map((tag) => (

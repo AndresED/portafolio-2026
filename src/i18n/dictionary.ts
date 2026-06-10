@@ -16,12 +16,15 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'layout.backToTop': 'Back to top',
     'layout.builtWithFooter': 'Built with',
     'profile.tagline': 'Backend systems · cloud-native · distributed architecture',
+    'profile.openToWork': 'Open to opportunities',
     'hero.eyebrow': 'Senior Backend Engineer · Peru',
     'hero.thesis':
-      'I design and ship backend systems with clear boundaries — hexagonal architecture, event-driven microservices, and AWS-native delivery.',
+      'Senior backend engineer (5+ years) shipping NestJS microservices on AWS for logistics and compliance products — event-driven, multitenant, production-first.',
+    'hero.fit': 'Remote · Peru (UTC-5) · Backend & platform roles · English & Spanish',
     'hero.evidence': 'NESTJS · AWS DVA-C02 · HEXAGONAL · KAFKA · POSTGRESQL',
     'hero.ctaPortfolio': 'View portfolio',
     'hero.ctaContact': 'Get in touch',
+    'hero.ctaLinkedin': 'LinkedIn',
     'hero.ctaCv': 'CV ↗',
     'about.heroGreeting': "Hello, I'm",
     'about.heroSubtitle':
@@ -162,12 +165,15 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'layout.backToTop': 'Volver arriba',
     'layout.builtWithFooter': 'Hecho con',
     'profile.tagline': 'Sistemas backend · cloud-native · arquitectura distribuida',
+    'profile.openToWork': 'Abierto a oportunidades',
     'hero.eyebrow': 'Senior Backend Engineer · Perú',
     'hero.thesis':
-      'Diseño y entrego sistemas backend con límites claros — arquitectura hexagonal, microservicios orientados a eventos y despliegue nativo en AWS.',
+      'Backend senior (5+ años) entregando microservicios NestJS en AWS para logística y cumplimiento — orientado a eventos, multitenant y producción.',
+    'hero.fit': 'Remoto · Perú (UTC-5) · Roles backend y plataforma · Inglés y español',
     'hero.evidence': 'NESTJS · AWS DVA-C02 · HEXAGONAL · KAFKA · POSTGRESQL',
     'hero.ctaPortfolio': 'Ver portafolio',
     'hero.ctaContact': 'Contacto',
+    'hero.ctaLinkedin': 'LinkedIn',
     'hero.ctaCv': 'CV ↗',
     'about.heroGreeting': 'Hola, soy',
     'about.heroSubtitle':

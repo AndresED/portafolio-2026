@@ -97,6 +97,14 @@ function navClasses(item: NavItem, isActive: boolean) {
             <p class="text-lg font-bold text-ink transition-colors group-hover:text-accent-400 font-display">{profile.name}</p>
           </a>
           <p class="mt-1 font-mono text-xs text-meta-500">{profile.title}</p>
+          {
+            profile.status.available && (
+              <p class="mt-2 inline-flex items-center gap-1.5 rounded-md border border-emerald-500/25 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-emerald-400">
+                <span class="size-1.5 rounded-full bg-current" aria-hidden="true" />
+                <span data-i18n="profile.openToWork">{profile.status.text}</span>
+              </p>
+            )
+          }
         </div>
 
         <p class="mb-5 text-center text-base leading-7 text-ink-muted">
