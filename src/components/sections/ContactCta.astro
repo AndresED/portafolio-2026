@@ -1,0 +1,32 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<section
+  class:list={['reveal mb-16 lg:mb-24', className]}
+  aria-labelledby="contact-cta-heading"
+>
+  <div class="surface-panel mx-auto max-w-3xl px-6 py-10 text-center sm:px-10 sm:py-12">
+    <h2 id="contact-cta-heading" class="mb-4 text-balance text-2xl font-bold text-ink md:text-3xl" data-i18n="cta.title">
+      Need a senior backend engineer?
+    </h2>
+    <p
+      class="mx-auto mb-8 max-w-xl text-pretty text-base leading-7 text-ink-muted md:text-lg"
+      data-i18n="cta.lead"
+    >
+      Available for backend architecture, microservices, and AWS delivery — from design reviews to production rollouts.
+    </p>
+    <a
+      href="/contact"
+      class="btn-primary inline-flex rounded-full px-8 py-3"
+      data-i18n="cta.button"
+    >
+      Get in touch
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>

@@ -122,6 +122,10 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'blog.loadMore': 'Load More Articles',
     'blog.loading': 'Loading more articles…',
     'blog.seeMore': 'See more publications',
+    'cta.title': 'Need a senior backend engineer?',
+    'cta.lead':
+      'Available for backend architecture, microservices, and AWS delivery — from design reviews to production rollouts.',
+    'cta.button': 'Get in touch',
     'contact.title': 'Get In Touch',
     'contact.eyebrow': 'Direct line',
     'contact.connectTitle': "Let's Connect",
@@ -264,6 +268,10 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'blog.loadMore': 'Cargar más artículos',
     'blog.loading': 'Cargando más artículos…',
     'blog.seeMore': 'Ver más publicaciones',
+    'cta.title': '¿Necesitas un backend senior?',
+    'cta.lead':
+      'Disponible para arquitectura backend, microservicios y despliegue en AWS — desde revisiones de diseño hasta producción.',
+    'cta.button': 'Contacto',
     'contact.title': 'Contacto',
     'contact.eyebrow': 'Línea directa',
     'contact.connectTitle': 'Conversemos',
