@@ -1,6 +1,12 @@
 ---
 import { profile } from '../data/profile';
-import { absoluteUrl, siteConfig, siteUrl } from '../data/site';
+import {
+  absoluteUrl,
+  homepageUrl,
+  siteConfig,
+  siteDescription,
+  socialShareTitle,
+} from '../data/site';
 import '../styles/global.css';
 
 interface Props {
@@ -10,11 +16,40 @@ interface Props {
 
 const {
   title = `${profile.name} | ${profile.title}`,
-  description = 'Senior Backend Engineer with hands-on AWS and cloud-native experience; AWS Developer – Associate certification in progress. NestJS, distributed systems.',
+  description = siteDescription,
 } = Astro.props;
 
+const canonicalUrl =
+  Astro.url.pathname === '/' || Astro.url.pathname === ''
+    ? homepageUrl()
+    : absoluteUrl(Astro.url.pathname);
+
+const shareTitle = socialShareTitle;
+const shareDescription = description;
 const ogImage = absoluteUrl(siteConfig.seo.ogImage);
 const ogImageAlt = siteConfig.seo.ogImageAlt;
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${homepageUrl()}#website`,
+      url: homepageUrl(),
+      name: profile.name,
+      description: shareDescription,
+      inLanguage: 'en',
+    },
+    {
+      '@type': 'Person',
+      '@id': `${homepageUrl()}#person`,
+      name: profile.name,
+      jobTitle: profile.title,
+      url: homepageUrl(),
+      description: shareDescription,
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -22,7 +57,29 @@ const ogImageAlt = siteConfig.seo.ogImageAlt;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <title>{title}</title>
+    <meta name="description" content={shareDescription} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={shareTitle} />
+    <meta property="og:description" content={shareDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={profile.name} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={shareTitle} />
+    <meta name="twitter:description" content={shareDescription} />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <meta name="author" content={profile.name} />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -32,7 +89,6 @@ const ogImageAlt = siteConfig.seo.ogImageAlt;
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#0e0f12" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
     <link
       rel="preload"
       href="/fonts/hubot-sans-latin.woff2"
@@ -40,25 +96,6 @@ const ogImageAlt = siteConfig.seo.ogImageAlt;
       type="font/woff2"
       crossorigin
     />
-    <!-- Open Graph -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={siteUrl} />
-    <meta property="og:site_name" content={profile.name} />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:image:secure_url" content={ogImage} />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={ogImageAlt} />
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content={ogImageAlt} />
   </head>
   <body class="min-h-dvh bg-dark-900">
     <slot />
