@@ -1,4 +1,4 @@
-export type BlogCategory = 'data_structures' | 'cryptography' | 'algorithms' | 'ai';
+export type BlogCategory = 'data_structures' | 'cryptography' | 'algorithms' | 'ai' | 'architecture';
 
 export interface BlogPost {
   id: string;
