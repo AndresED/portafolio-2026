@@ -24,7 +24,7 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  { id: 'about', label: 'About', href: '/#about', icon: 'user' },
+  { id: 'about', label: 'About', href: '/#hero', icon: 'user' },
   { id: 'resume', label: 'Resume', href: '/#resume', icon: 'briefcase' },
   ...(visibleCertifications.length > 0
     ? [{ id: 'certifications' as const, label: 'Certifications', href: '/#certifications', icon: 'badge' }]
@@ -318,8 +318,11 @@ function mobileNavClasses(item: NavItem, isActive: boolean) {
         const href = item.getAttribute('href') ?? '';
         const isHashNav = href.includes('#');
         const isRouteNav = !isHashNav && !href.startsWith('http');
+        const isHomeSectionActive =
+          sectionId === activeSectionId ||
+          (sectionId === 'about' && (activeSectionId === 'hero' || activeSectionId === 'about'));
         const isActive =
-          (currentPage === 'home' && isHashNav && sectionId === activeSectionId) ||
+          (currentPage === 'home' && isHashNav && isHomeSectionActive) ||
           (currentPage !== 'home' && isRouteNav && sectionId === currentPage);
 
         item.classList.remove('nav-item--active', 'nav-item--idle', 'font-semibold', 'font-medium');
@@ -340,9 +343,7 @@ function mobileNavClasses(item: NavItem, isActive: boolean) {
 
       function updateActiveNav() {
         const scrollPos = window.scrollY + navOffset();
-        const sections = Array.from(document.querySelectorAll('main section[id]')).filter(
-          (section) => section.id !== 'hero',
-        );
+        const sections = Array.from(document.querySelectorAll('main section[id]'));
         let activeId = sections[0]?.id ?? '';
 
         for (const section of sections) {
