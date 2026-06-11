@@ -4,7 +4,7 @@ export const profile: ProfileData = {
   name: 'Andrés Esquivel',
   title: 'Senior Backend Engineer',
   tagline: 'Building scalable cloud architectures & distributed systems',
-  email: 'andres@andresed.dev',
+  email: 'andres30xed@gmail.com',
   location: 'Perú',
   cvUrl: '/cv.pdf',
   makingCodeUrl: 'https://www.makingcode.dev',

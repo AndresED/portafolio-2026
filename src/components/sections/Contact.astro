@@ -174,7 +174,7 @@ import { profile } from '../../data/profile';
   </div>
 </section>
 
-<script>
+<script define:vars={{ contactEmail: profile.email }}>
   type PortfolioI18n = { t: (key: string) => string };
 
   const FIELD_IDS = ['name', 'email', 'subject', 'message'] as const;
@@ -313,6 +313,7 @@ import { profile } from '../../data/profile';
           serviceId,
           templateId,
           {
+            to_email: contactEmail,
             from_name: (form.querySelector('#name') as HTMLInputElement).value,
             from_email: (form.querySelector('#email') as HTMLInputElement).value,
             subject: (form.querySelector('#subject') as HTMLInputElement).value,

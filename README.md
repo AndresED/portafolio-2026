@@ -85,6 +85,8 @@ PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
+In the EmailJS template **Settings**, set **To Email** to `{{to_email}}` (the form sends the address from `src/data/profile.ts`). Set **Reply To** to `{{from_email}}`.
+
 ## Deployment
 
 Static output compatible with Vercel, Netlify, and Cloudflare Pages.
