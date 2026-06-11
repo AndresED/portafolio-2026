@@ -199,8 +199,16 @@
   }
 
   .nav-item {
-    @apply border-l-2 border-transparent pl-3;
+    @apply border-l-2 pl-3;
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/30;
+  }
+
+  .nav-item--active {
+    @apply border-accent-500 bg-white/[0.03] text-accent-400;
+  }
+
+  .nav-item--idle {
+    @apply border-transparent text-ink-muted hover:bg-white/[0.02] hover:text-ink;
   }
 
   .nav-item-active {
