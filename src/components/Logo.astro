@@ -1,0 +1,34 @@
+---
+interface Props {
+  variant?: 'mark' | 'full';
+  class?: string;
+  markClass?: string;
+}
+
+const { variant = 'mark', class: className = '', markClass = 'size-10' } = Astro.props;
+
+const markSrc = '/brand/logo-mark.svg';
+const fullSrc = '/brand/logo.svg';
+---
+
+{
+  variant === 'full' ? (
+    <img
+      src={fullSrc}
+      alt="andresed.dev"
+      width={200}
+      height={40}
+      class:list={['h-8 w-auto', className]}
+      decoding="async"
+    />
+  ) : (
+    <img
+      src={markSrc}
+      alt="andresed.dev"
+      width={40}
+      height={40}
+      class:list={[markClass, className]}
+      decoding="async"
+    />
+  )
+}

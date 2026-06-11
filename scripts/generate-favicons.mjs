@@ -6,7 +6,7 @@ import sharp from 'sharp';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
 const publicDir = join(root, 'public');
-const source = join(publicDir, 'images', 'favicon-example.png');
+const source = join(publicDir, 'brand', 'logo-mark.svg');
 
 const pngSizes = [
   { name: 'favicon-16x16.png', size: 16 },
@@ -38,7 +38,7 @@ async function resizeIcon(size, outputName) {
   await sharp(source)
     .resize(size, size, {
       fit: 'contain',
-      background: { r: 0, g: 0, b: 0, alpha: 1 },
+      background: { r: 14, g: 15, b: 18, alpha: 1 },
     })
     .png({ compressionLevel: 9 })
     .toFile(outputPath);
@@ -55,16 +55,9 @@ const favicon32 = readFileSync(join(publicDir, 'favicon-32x32.png'));
 writeFileSync(join(publicDir, 'favicon.ico'), pngToIco(favicon32, 32));
 console.log('✓ favicon.ico');
 
-const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Andrés Esquivel">
-  <image width="512" height="512" href="/android-chrome-512x512.png"/>
-</svg>
-`;
-writeFileSync(join(publicDir, 'favicon.svg'), faviconSvg);
-console.log('✓ favicon.svg');
-
 const manifest = {
   name: 'Andrés Esquivel — Senior Backend Engineer',
-  short_name: 'Andrés Esquivel',
+  short_name: 'andresed.dev',
   icons: [
     { src: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
     { src: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
