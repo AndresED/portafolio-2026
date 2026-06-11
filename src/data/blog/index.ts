@@ -17,7 +17,7 @@ export const posts: BlogPost[] = [
     title: 'How to Build a Multi-Tenant SaaS Application in NestJS Without Duplicating Your Code',
     description:
       'If onboarding a new customer requires deploying a new application or duplicating an entire database, your SaaS architecture probably is not ready to scale. Multi-tenancy in NestJS, done cleanly.',
-    coverImage: cover('multi-tenant-nestjs-saas'),
+    coverImage: 'multitenant.webp',
     publishedAt: '2026-06-11',
     tags: ['NestJS', 'Architecture', 'SaaS', 'Multi-tenant'],
     mediumUrl:
@@ -31,7 +31,7 @@ export const posts: BlogPost[] = [
     title: "Your API Doesn't Need More Services, It Needs Events",
     description:
       'If every new feature forces you to modify five different services, you probably have a coupling problem. Event-Driven Architecture to decouple NestJS modules.',
-    coverImage: cover('nestjs-event-driven-api'),
+    coverImage: 'event-drive.webp',
     publishedAt: '2026-06-11',
     tags: ['NestJS', 'Architecture', 'Event-Driven', 'CQRS'],
     mediumUrl: 'https://makingcode.dev/blog/your-api-doesn-t-need-more-services-it-needs-events',
@@ -44,7 +44,7 @@ export const posts: BlogPost[] = [
     title: 'CQRS in NestJS: Stop Mixing Reads and Writes in the Same Service',
     description:
       'When your UserService handles POST and GET, optimizations on one side break the other. Commands, queries, and handlers with @nestjs/cqrs.',
-    coverImage: cover('cqrs-nestjs-reads-writes'),
+    coverImage: 'cqrs.webp',
     publishedAt: '2026-06-11',
     tags: ['NestJS', 'Architecture', 'CQRS'],
     mediumUrl: 'https://makingcode.dev/blog/cqrs-in-nestjs-stop-mixing-reads-and-writes-in-the-same-service',
@@ -57,7 +57,7 @@ export const posts: BlogPost[] = [
     title: 'Why Your NestJS Service Becomes a Mess (and How Hexagonal Architecture Fixes It)',
     description:
       'Controllers that know too much, entities full of ORM decorators, and tests that need a database. A practical guide to ports and adapters in NestJS.',
-    coverImage: cover('hexagonal-architecture-nestjs'),
+    coverImage: 'hexagonal.webp',
     publishedAt: '2026-06-11',
     tags: ['NestJS', 'Architecture', 'Hexagonal', 'Clean Architecture'],
     mediumUrl:

@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import { posts, blogBatchSize, blogAboveFoldEagerCount, blogFilters } from '../../data/blog';
 
 const imageModules = import.meta.glob<{ default: ImageMetadata }>(
-  '../../assets/blog/*.{png,jpg,jpeg,svg}',
+  '../../assets/blog/*.{png,jpg,jpeg,svg,webp}',
   { eager: true },
 );
 
