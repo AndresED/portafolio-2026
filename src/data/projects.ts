@@ -13,7 +13,7 @@ export const projects: Project[] = [
     liveUrl: 'https://www.makingcode.dev/',
     tags: ['Blog', 'Next.js', 'MDX'],
     featured: true,
-    category: 'content',
+    category: 'frontend',
     role: loc('Author & maintainer', 'Autor y mantenedor'),
     problem: loc(
       'Document deep technical topics without losing clarity for practitioners.',
@@ -35,7 +35,7 @@ export const projects: Project[] = [
     liveUrl: 'https://www.andresed.dev/',
     tags: ['Portfolio', 'Astro', 'Static Site'],
     featured: true,
-    category: 'content',
+    category: 'frontend',
     role: loc('Author & maintainer', 'Autor y mantenedor'),
     problem: loc(
       'Present backend experience, projects, and publications in a fast, credible site recruiters can scan in minutes.',
@@ -212,5 +212,5 @@ export const portfolioFilters = [
   { id: 'microservices', label: 'Microservices', i18nKey: 'portfolio.filter.microservices' },
   { id: 'architecture', label: 'Architecture & Patterns', i18nKey: 'portfolio.filter.architecture' },
   { id: 'blockchain', label: 'Blockchain', i18nKey: 'portfolio.filter.blockchain' },
-  { id: 'content', label: 'Content', i18nKey: 'portfolio.filter.content' },
+  { id: 'frontend', label: 'Frontend', i18nKey: 'portfolio.filter.frontend' },
 ] as const;

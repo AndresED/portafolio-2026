@@ -118,7 +118,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'portfolio.filter.microservices': 'Microservices',
     'portfolio.filter.architecture': 'Architecture & Patterns',
     'portfolio.filter.blockchain': 'Blockchain',
-    'portfolio.filter.content': 'Content',
+    'portfolio.filter.frontend': 'Frontend',
     'portfolio.featuredBadge': 'Featured',
     'blog.title': 'Publications',
     'blog.lead':
@@ -277,7 +277,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'portfolio.filter.microservices': 'Microservicios',
     'portfolio.filter.architecture': 'Arquitectura y patrones',
     'portfolio.filter.blockchain': 'Blockchain',
-    'portfolio.filter.content': 'Contenido',
+    'portfolio.filter.frontend': 'Frontend',
     'portfolio.featuredBadge': 'Destacado',
     'blog.title': 'Publicaciones',
     'blog.lead':

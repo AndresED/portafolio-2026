@@ -13,7 +13,7 @@ export interface BlogPost {
   category: BlogCategory;
 }
 
-export type ProjectCategory = 'microservices' | 'architecture' | 'blockchain' | 'content';
+export type ProjectCategory = 'microservices' | 'architecture' | 'blockchain' | 'frontend';
 
 export interface Project {
   id: string;
