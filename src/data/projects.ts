@@ -25,6 +25,28 @@ export const projects: Project[] = [
     ),
   },
   {
+    id: 'portafolio-2026',
+    title: 'Personal Portfolio (andresed.dev)',
+    description:
+      'Bilingual static portfolio for a Senior Backend Engineer — Astro, TypeScript, Tailwind, EmailJS contact, and recruiter-focused sections.',
+    thumbnail: '/images/projects/portfolio.png',
+    techStack: ['Astro', 'TypeScript', 'Tailwind CSS', 'EmailJS'],
+    githubUrl: 'https://github.com/AndresED/portafolio-2026',
+    liveUrl: 'https://www.andresed.dev/',
+    tags: ['Portfolio', 'Astro', 'Static Site'],
+    featured: true,
+    category: 'content',
+    role: loc('Author & maintainer', 'Autor y mantenedor'),
+    problem: loc(
+      'Present backend experience, projects, and publications in a fast, credible site recruiters can scan in minutes.',
+      'Presentar experiencia backend, proyectos y publicaciones en un sitio rápido y creíble que un reclutador revise en minutos.',
+    ),
+    impact: loc(
+      'Open-source blueprint with EN/ES i18n, PageSpeed-focused assets, and contact flow — live at andresed.dev.',
+      'Blueprint open source con i18n EN/ES, assets optimizados para PageSpeed y flujo de contacto — en vivo en andresed.dev.',
+    ),
+  },
+  {
     id: 'arkano-banking-challenge',
     title: 'Banking Platform (Microservices + Events)',
     description:
