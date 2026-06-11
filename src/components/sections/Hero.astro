@@ -29,8 +29,8 @@ const linkedIn = profile.socials.find((s) => s.icon === 'linkedin');
     )
   }
 
-  <p class="mt-5 font-mono text-sm tabular-nums text-meta-500" data-i18n="hero.evidence">
-    NESTJS · AWS · HEXAGONAL · KAFKA · POSTGRESQL
+  <p class="mt-5 max-w-3xl text-pretty font-mono text-sm tabular-nums text-meta-500">
+    {profile.stackKeywords.map((keyword) => keyword.toUpperCase()).join(' · ')}
   </p>
 
   <div class="mt-8 flex flex-wrap items-center gap-3">

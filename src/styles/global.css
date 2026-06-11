@@ -113,6 +113,14 @@
     @apply surface-panel;
   }
 
+  .mobile-menu {
+    @apply fixed inset-0 z-[110] bg-dark-900 lg:hidden;
+  }
+
+  .mobile-menu__panel {
+    @apply relative flex h-full min-h-dvh flex-col bg-dark-900 p-6;
+  }
+
   .section-title {
     @apply text-balance text-3xl font-bold md:text-4xl;
     font-family: theme('fontFamily.sans');

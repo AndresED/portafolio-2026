@@ -12,6 +12,19 @@ export const profile: ProfileData = {
     available: true,
     text: 'Open to opportunities · remote · full-time or contract',
   },
+  /** Scannable stack line in the hero — aligned with CV / skillCategories. */
+  stackKeywords: [
+    'NestJS',
+    'Python',
+    'TypeScript',
+    'AWS',
+    'Kafka',
+    'PostgreSQL',
+    'Docker',
+    'RabbitMQ',
+    'MongoDB',
+    'Redis',
+  ],
   socials: [
     { name: 'GitHub', url: 'https://github.com/AndresED', icon: 'github' },
     { name: 'LinkedIn', url: 'https://www.linkedin.com/in/andresedev/', icon: 'linkedin' },

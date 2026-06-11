@@ -95,4 +95,5 @@ export interface ProfileData {
     available: boolean;
     text: string;
   };
+  stackKeywords: readonly string[];
 }

@@ -15,7 +15,7 @@ interface Props {
 const { currentPage = 'home', title, description } = Astro.props;
 
 type NavItem = {
-  id: Props['currentPage'] | 'makingcode';
+  id: Props['currentPage'];
   label: string;
   href: string;
   icon: string;
@@ -31,13 +31,6 @@ const navItems: NavItem[] = [
     : []),
   { id: 'portfolio', label: 'Portfolio', href: '/portfolio', icon: 'folder', emphasis: true },
   { id: 'blog', label: 'Publications', href: '/blog', icon: 'edit' },
-  {
-    id: 'makingcode',
-    label: 'Making Code',
-    href: profile.makingCodeUrl,
-    icon: 'edit',
-    external: true,
-  },
   { id: 'contact', label: 'Contact', href: '/contact', icon: 'mail', emphasis: true },
 ];
 
@@ -110,7 +103,7 @@ function navClasses(item: NavItem, isActive: boolean) {
           <p class="mt-1 font-mono text-xs text-meta-500">{profile.title}</p>
           {
             profile.status.available && (
-              <p class="mt-2 inline-flex items-center rounded-md border border-emerald-500/25 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-emerald-400">
+              <p class="mt-2 text-center font-mono text-[10px] uppercase leading-snug tracking-wide text-emerald-400">
                 <span data-i18n="profile.openToWork">{profile.status.text}</span>
               </p>
             )
@@ -214,9 +207,14 @@ function navClasses(item: NavItem, isActive: boolean) {
     </header>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-0 z-40 hidden lg:hidden" role="dialog" aria-modal="true" aria-label="Site navigation">
-      <div class="absolute inset-0 bg-dark-900/98"></div>
-      <div class="relative flex h-full flex-col p-6">
+    <div
+      id="mobile-menu"
+      class="mobile-menu hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Site navigation"
+    >
+      <div class="mobile-menu__panel">
         <button
           type="button"
           id="menu-close"
@@ -227,7 +225,7 @@ function navClasses(item: NavItem, isActive: boolean) {
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        <nav class="space-y-1" aria-label="Main">
+        <nav class="space-y-1 rounded-xl border border-white/[0.06] bg-dark-800 p-2" aria-label="Main">
           {
             navItems.map((item) => (
               <a
@@ -274,20 +272,20 @@ function navClasses(item: NavItem, isActive: boolean) {
 
     menuToggle?.addEventListener('click', () => {
       mobileMenu?.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('overflow-hidden');
       menuToggle?.setAttribute('aria-expanded', 'true');
     });
 
     menuClose?.addEventListener('click', () => {
       mobileMenu?.classList.add('hidden');
-      document.body.style.overflow = '';
+      document.body.classList.remove('overflow-hidden');
       menuToggle?.setAttribute('aria-expanded', 'false');
     });
 
     document.querySelectorAll('.mobile-nav-item').forEach((item) => {
       item.addEventListener('click', () => {
         mobileMenu?.classList.add('hidden');
-        document.body.style.overflow = '';
+        document.body.classList.remove('overflow-hidden');
         menuToggle?.setAttribute('aria-expanded', 'false');
       });
     });
