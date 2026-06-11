@@ -71,7 +71,12 @@ import { profile } from '../../data/profile';
     </div>
 
     <div class="reveal" style="animation-delay: 100ms">
-      <form id="contact-form" class="glass-card space-y-6 p-6" novalidate>
+      <form
+        id="contact-form"
+        class="glass-card space-y-6 p-6"
+        data-contact-email={profile.email}
+        novalidate
+      >
         <input type="text" name="honeypot" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -174,7 +179,7 @@ import { profile } from '../../data/profile';
   </div>
 </section>
 
-<script define:vars={{ contactEmail: profile.email }}>
+<script>
   type PortfolioI18n = { t: (key: string) => string };
 
   const FIELD_IDS = ['name', 'email', 'subject', 'message'] as const;
@@ -264,8 +269,9 @@ import { profile } from '../../data/profile';
     });
   }
 
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const contactEmail = form?.dataset.contactEmail ?? '';
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
   const btnText = document.getElementById('btn-text');
   const btnIcon = document.getElementById('btn-icon');
   const btnSpinner = document.getElementById('btn-spinner');
@@ -286,6 +292,8 @@ import { profile } from '../../data/profile';
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    if (!form || !submitBtn) return;
+
     if (successMessage) successMessage.classList.add('hidden');
     if (errorMessage) errorMessage.classList.add('hidden');
 
@@ -300,30 +308,30 @@ import { profile } from '../../data/profile';
     submitBtn.disabled = true;
 
     try {
-      const serviceId = (import.meta as ImportMeta & { env?: Record<string, string> }).env?.PUBLIC_EMAILJS_SERVICE_ID;
-      const templateId = (import.meta as ImportMeta & { env?: Record<string, string> }).env?.PUBLIC_EMAILJS_TEMPLATE_ID;
-      const publicKey = (import.meta as ImportMeta & { env?: Record<string, string> }).env?.PUBLIC_EMAILJS_PUBLIC_KEY;
+      const serviceId = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
 
-      if (serviceId && templateId && publicKey) {
-        if (!(window as Window & { emailjs?: { send: (...args: unknown[]) => Promise<unknown> } }).emailjs) {
-          await loadScript('https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js');
-        }
-
-        await (window as Window & { emailjs: { send: (...args: unknown[]) => Promise<unknown> } }).emailjs.send(
-          serviceId,
-          templateId,
-          {
-            to_email: contactEmail,
-            from_name: (form.querySelector('#name') as HTMLInputElement).value,
-            from_email: (form.querySelector('#email') as HTMLInputElement).value,
-            subject: (form.querySelector('#subject') as HTMLInputElement).value,
-            message: (form.querySelector('#message') as HTMLTextAreaElement).value,
-          },
-          publicKey,
-        );
-      } else {
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS is not configured');
       }
+
+      if (!(window as Window & { emailjs?: { send: (...args: unknown[]) => Promise<unknown> } }).emailjs) {
+        await loadScript('https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js');
+      }
+
+      await (window as Window & { emailjs: { send: (...args: unknown[]) => Promise<unknown> } }).emailjs.send(
+        serviceId,
+        templateId,
+        {
+          to_email: contactEmail,
+          from_name: (form.querySelector('#name') as HTMLInputElement).value,
+          from_email: (form.querySelector('#email') as HTMLInputElement).value,
+          subject: (form.querySelector('#subject') as HTMLInputElement).value,
+          message: (form.querySelector('#message') as HTMLTextAreaElement).value,
+        },
+        publicKey,
+      );
 
       if (successMessage) successMessage.classList.remove('hidden');
       if (errorMessage) errorMessage.classList.add('hidden');
