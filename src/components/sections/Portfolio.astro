@@ -2,9 +2,10 @@
 import { projects, portfolioFilters } from '../../data/projects';
 import ProjectCard from '../ProjectCard.astro';
 
-const imageModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/projects/*.png', {
-  eager: true,
-});
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/projects/*.{png,svg,webp}',
+  { eager: true },
+);
 
 const projectImages: Record<string, ImageMetadata> = {};
 for (const [path, mod] of Object.entries(imageModules)) {

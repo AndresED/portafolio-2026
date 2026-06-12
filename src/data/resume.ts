@@ -94,6 +94,10 @@ export const experiences: Experience[] = [
       'Trabajo independiente por objetivos desde La Libertad, Perú — concurrente con otros compromisos remotos; backend, frontend y cargas tipo edge.'
     ),
     highlights: [
+      loc(
+        'SafeSense / SIMS Technology — full-stack IoT platform: NestJS API (MQTT, Socket.IO), Angular v1 and React v2 dashboards, Expo mobile, Arduino edge sensors',
+        'SafeSense / SIMS Technology — plataforma IoT full stack: API NestJS (MQTT, Socket.IO), dashboards Angular v1 y React v2, móvil Expo, sensores edge Arduino',
+      ),
       loc('Microservices with NestJS and NATS', 'Microservicios con NestJS y NATS'),
       loc('SPAs with Angular; installation and configuration of web hosting stacks', 'SPAs con Angular; instalación y configuración de stacks de hosting web'),
       loc('IoT with MQTT and Arduino', 'IoT con MQTT y Arduino'),

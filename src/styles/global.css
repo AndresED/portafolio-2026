@@ -305,4 +305,73 @@
   .reveal.active {
     @apply translate-y-0 opacity-100 transition-[opacity,transform] duration-300 ease-out;
   }
+
+  .project-modal {
+    @apply fixed inset-0 z-[120] m-0 max-h-none w-full max-w-none border-0 bg-transparent p-4 sm:p-6;
+  }
+
+  .project-modal::backdrop {
+    background: rgb(14 15 18 / 0.82);
+    backdrop-filter: blur(4px);
+  }
+
+  .project-modal__panel {
+    @apply mx-auto flex max-h-[min(90dvh,760px)] w-full max-w-2xl flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-dark-800 shadow-2xl;
+  }
+
+  .project-modal__header {
+    @apply flex shrink-0 items-start justify-between gap-4 border-b border-white/[0.06] px-5 py-4 sm:px-6;
+  }
+
+  .project-modal__title {
+    @apply text-balance text-xl font-bold text-ink sm:text-2xl;
+  }
+
+  .project-modal__close {
+    @apply shrink-0 rounded-lg p-2 text-ink-muted transition-colors hover:bg-white/[0.04] hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40;
+  }
+
+  .project-modal__body {
+    @apply min-h-0 flex-1 overflow-y-auto px-5 py-4 sm:px-6;
+  }
+
+  .project-modal__intro {
+    @apply mb-5 rounded-lg border border-white/[0.06] bg-dark-900/60 p-4;
+  }
+
+  .project-modal__layers {
+    @apply space-y-4;
+  }
+
+  .project-modal__layer {
+    @apply flex gap-4 rounded-lg border border-white/[0.06] bg-dark-900/40 p-4;
+  }
+
+  .project-modal__layer-index {
+    @apply shrink-0 font-mono text-sm font-semibold text-accent-400;
+  }
+
+  .project-modal__layer-title {
+    @apply mb-2 text-base font-semibold text-ink;
+  }
+
+  .project-modal__layer-summary {
+    @apply text-sm leading-6 text-ink-body;
+  }
+
+  .project-modal__highlights {
+    @apply mt-3 space-y-1.5 text-sm leading-6 text-ink-muted;
+  }
+
+  .project-modal__highlights li {
+    @apply relative pl-4 before:absolute before:left-0 before:text-accent-400 before:content-['•'];
+  }
+
+  .project-modal__footer {
+    @apply flex shrink-0 flex-wrap gap-3 border-t border-white/[0.06] px-5 py-4 sm:px-6;
+  }
+
+  body.project-modal-open {
+    overflow: hidden;
+  }
 }

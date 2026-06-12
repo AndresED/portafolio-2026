@@ -13,7 +13,16 @@ export interface BlogPost {
   category: BlogCategory;
 }
 
-export type ProjectCategory = 'microservices' | 'architecture' | 'blockchain' | 'frontend';
+export type ProjectCategory = 'microservices' | 'architecture' | 'blockchain' | 'frontend' | 'iot';
+
+/** Subsystem or layer shown inside a project detail modal. */
+export interface ProjectLayer {
+  id: string;
+  title: LocalizedText;
+  summary: LocalizedText;
+  techStack: string[];
+  highlights?: LocalizedText[];
+}
 
 export interface Project {
   id: string;
@@ -29,6 +38,8 @@ export interface Project {
   role?: LocalizedText;
   problem?: LocalizedText;
   impact?: LocalizedText;
+  /** Optional stack breakdown — opens in a modal from the project card. */
+  layers?: ProjectLayer[];
 }
 
 /** Bilingual copy toggled via `html[lang]` (see global.css `.locale-en` / `.locale-es`). */

@@ -5,9 +5,10 @@ import ProjectCard from '../ProjectCard.astro';
 
 const featured = getHomeFeaturedProjects();
 
-const imageModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/projects/*.png', {
-  eager: true,
-});
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/projects/*.{png,svg,webp}',
+  { eager: true },
+);
 
 const projectImages: Record<string, ImageMetadata> = {};
 for (const [path, mod] of Object.entries(imageModules)) {

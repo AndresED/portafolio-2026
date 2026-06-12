@@ -1,9 +1,39 @@
 import type { Project, LocalizedText } from '../types';
+import { layersFor } from './project-layers';
 
 const loc = (en: string, es: string): LocalizedText => ({ en, es });
 
+const withLayers = (project: Omit<Project, 'layers'>): Project => ({
+  ...project,
+  layers: layersFor(project.id) ?? [],
+});
+
 export const projects: Project[] = [
-  {
+  withLayers({
+    id: 'sims-technology-safesense',
+    title: 'SafeSense — SIMS Technology IoT Platform',
+    description:
+      'Production IoT platform for agroindustry and laboratories in Peru: portable sensors, real-time monitoring, automated alerts, and audit-ready dashboards — full stack from Arduino edge to web and mobile.',
+    thumbnail: '/images/projects/portada-sims.png',
+    techStack: ['NestJS', 'React', 'Angular', 'React Native', 'MQTT', 'Arduino', 'MySQL'],
+    liveUrl: 'https://sims-technology.com/',
+    tags: ['IoT', 'Multi-tenant', 'Real-time', 'Full stack'],
+    featured: true,
+    category: 'iot',
+    role: loc(
+      'Full-stack engineer — hardware edge, API architecture, Angular v1, React v2 migration, and Expo mobile',
+      'Ingeniero full stack — edge hardware, arquitectura API, Angular v1, migración React v2 y móvil Expo',
+    ),
+    problem: loc(
+      'Cold-chain and lab processes relied on manual readings and disconnected thermometers — failures were discovered after product loss, with weak traceability for HACCP/ISO audits.',
+      'La cadena de frío y procesos de laboratorio dependían de lecturas manuales y termómetros sin conectividad — las fallas se detectaban tras pérdida de producto, con trazabilidad débil para auditorías HACCP/ISO.',
+    ),
+    impact: loc(
+      'Live product at sims-technology.com — end-to-end SafeSense stack with multi-tenant operations, incident alerts (email, SMS, WhatsApp), and exportable compliance reports.',
+      'Producto en vivo en sims-technology.com — stack SafeSense de punta a punta con operación multitenant, alertas de incidencias (email, SMS, WhatsApp) y reportes exportables para cumplimiento.',
+    ),
+  }),
+  withLayers({
     id: 'making-code',
     title: 'Making Code',
     description:
@@ -23,8 +53,8 @@ export const projects: Project[] = [
       '17+ articles on algorithms, cryptography, and backend patterns; reference for peers and interviews.',
       '17+ artículos sobre algoritmos, criptografía y patrones backend; referencia para colegas y entrevistas.',
     ),
-  },
-  {
+  }),
+  withLayers({
     id: 'portafolio-2026',
     title: 'Personal Portfolio (andresed.dev)',
     description:
@@ -45,8 +75,8 @@ export const projects: Project[] = [
       'Open-source blueprint with EN/ES i18n, PageSpeed-focused assets, and contact flow — live at andresed.dev.',
       'Blueprint open source con i18n EN/ES, assets optimizados para PageSpeed y flujo de contacto — en vivo en andresed.dev.',
     ),
-  },
-  {
+  }),
+  withLayers({
     id: 'arkano-banking-challenge',
     title: 'Banking Platform (Microservices + Events)',
     description:
@@ -66,8 +96,8 @@ export const projects: Project[] = [
       'Outbox pattern, idempotent consumers, retry/DLQ policies, and isolated DB per service — production-grade event flow.',
       'Patrón outbox, consumidores idempotentes, reintentos/DLQ y BD aislada por servicio — flujo de eventos listo para producción.',
     ),
-  },
-  {
+  }),
+  withLayers({
     id: 'nestjs-enterprise-starter',
     title: 'NestJS Enterprise Starter',
     description:
@@ -87,8 +117,8 @@ export const projects: Project[] = [
       'Documented modules for CQRS, hexagonal boundaries, and deployment patterns — accelerates new service bootstrapping.',
       'Módulos documentados para CQRS, límites hexagonales y despliegue — acelera el arranque de nuevos servicios.',
     ),
-  },
-  {
+  }),
+  withLayers({
     id: 'notarizar-documentos-algorand',
     title: 'Document Notarization with Algorand',
     description:
@@ -108,8 +138,8 @@ export const projects: Project[] = [
       'Hash-based notarization API with NestJS — verifiable timestamps for compliance workflows.',
       'API de notarización por hash con NestJS — timestamps verificables para flujos de cumplimiento.',
     ),
-  },
-  {
+  }),
+  withLayers({
     id: 'spec-driven-development-framework',
     title: 'Spec-Driven Development Framework',
     description:
@@ -129,8 +159,8 @@ export const projects: Project[] = [
       'Repeatable spec templates and validation scripts — tighter human–AI loop for backend changes.',
       'Plantillas de specs y scripts de validación repetibles — ciclo humano–IA más controlado en backend.',
     ),
-  },
-  {
+  }),
+  withLayers({
     id: 'multitenant-api',
     title: 'Multi-Tenant API',
     description:
@@ -150,8 +180,8 @@ export const projects: Project[] = [
       'Connection pooling per tenant, middleware routing, and CQRS read/write separation.',
       'Pool de conexiones por tenant, middleware de enrutamiento y separación CQRS lectura/escritura.',
     ),
-  },
-  {
+  }),
+  withLayers({
     id: 'nestjs-microservices-transactions',
     title: 'Microservices Architecture',
     description:
@@ -171,8 +201,8 @@ export const projects: Project[] = [
       'Message-driven boundaries with RabbitMQ — reference for async inter-service communication.',
       'Límites orientados a mensajes con RabbitMQ — referencia de comunicación async entre servicios.',
     ),
-  },
-  {
+  }),
+  withLayers({
     id: 'nestjs-microservice-users',
     title: 'Users Microservice (RabbitMQ)',
     description:
@@ -183,8 +213,17 @@ export const projects: Project[] = [
     tags: ['Microservices', 'RabbitMQ', 'NestJS'],
     featured: false,
     category: 'microservices',
-  },
-  {
+    role: loc('Implementer', 'Implementador'),
+    problem: loc(
+      'User identity and profile data must stay isolated while other services consume auth events asynchronously.',
+      'Identidad y perfiles deben permanecer aislados mientras otros servicios consumen eventos de auth de forma async.',
+    ),
+    impact: loc(
+      'Message-only API via RabbitMQ — composable building block in the NestJS microservices demo suite.',
+      'API solo por mensajes vía RabbitMQ — bloque composable en el demo de microservicios NestJS.',
+    ),
+  }),
+  withLayers({
     id: 'nestjs-apigateway-rabbitmq',
     title: 'API Gateway (RabbitMQ)',
     description:
@@ -195,11 +234,24 @@ export const projects: Project[] = [
     tags: ['API Gateway', 'RabbitMQ', 'NestJS'],
     featured: false,
     category: 'microservices',
-  },
+    role: loc('Implementer', 'Implementador'),
+    problem: loc(
+      'External clients need REST while internal services should communicate only through the message bus.',
+      'Clientes externos necesitan REST mientras servicios internos deben comunicarse solo por el bus de mensajes.',
+    ),
+    impact: loc(
+      'Thin HTTP edge translating requests to RabbitMQ RPC — hides topology from API consumers.',
+      'Edge HTTP delgado traduciendo requests a RPC RabbitMQ — oculta topología a consumidores del API.',
+    ),
+  }),
 ];
 
-/** Shown on the home page — backend-focused featured work. */
-export const homeFeaturedProjectIds = ['arkano-banking-challenge', 'nestjs-enterprise-starter', 'multitenant-api'] as const;
+/** Shown on the home page — production and reference builds. */
+export const homeFeaturedProjectIds = [
+  'sims-technology-safesense',
+  'arkano-banking-challenge',
+  'nestjs-enterprise-starter',
+] as const;
 
 export function getHomeFeaturedProjects(): Project[] {
   return homeFeaturedProjectIds
@@ -209,6 +261,7 @@ export function getHomeFeaturedProjects(): Project[] {
 
 export const portfolioFilters = [
   { id: 'all', label: 'All', i18nKey: 'portfolio.filter.all' },
+  { id: 'iot', label: 'IoT & Edge', i18nKey: 'portfolio.filter.iot' },
   { id: 'microservices', label: 'Microservices', i18nKey: 'portfolio.filter.microservices' },
   { id: 'architecture', label: 'Architecture & Patterns', i18nKey: 'portfolio.filter.architecture' },
   { id: 'blockchain', label: 'Blockchain', i18nKey: 'portfolio.filter.blockchain' },

@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import type { Project } from '../../types';
 import LocalePair from './LocalePair.astro';
+import ProjectStackModal from './ProjectStackModal.astro';
 
 interface Props {
   project: Project;
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const { project, imgSrc, class: className, style, priority = false } = Astro.props;
+const hasLayers = (project.layers?.length ?? 0) > 0;
 ---
 
 <article
@@ -70,6 +72,18 @@ const { project, imgSrc, class: className, style, priority = false } = Astro.pro
       <span>{project.techStack.slice(0, 3).join(' · ')}</span>
       <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
         {
+          hasLayers && (
+            <button
+              type="button"
+              class="inline-flex items-center gap-1 text-meta-400 transition-colors duration-200 hover:text-accent-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40"
+              data-project-modal-open={project.id}
+            >
+              <span data-i18n="portfolio.link.stack">View stack</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          )
+        }
+        {
           project.githubUrl && (
             <a
               href={project.githubUrl}
@@ -99,3 +113,5 @@ const { project, imgSrc, class: className, style, priority = false } = Astro.pro
     </div>
   </div>
 </article>
+
+<ProjectStackModal project={project} />

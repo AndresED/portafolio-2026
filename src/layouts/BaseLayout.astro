@@ -125,6 +125,7 @@ const structuredData = {
       function boot() {
         initI18n();
         bootReveal();
+        import('../scripts/project-modals').then(({ initProjectModals }) => initProjectModals());
       }
 
       if (document.readyState === 'loading') {
