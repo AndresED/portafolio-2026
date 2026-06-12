@@ -529,6 +529,19 @@ export const projectLayers: Record<string, ProjectLayer[]> = {
       'https://github.com/AndresED/ai-engineer-academy',
     ),
     layer(
+      'architecture',
+      'Software Architecture Academy',
+      'Academia Arquitectura',
+      'Structured path through system design and backend architecture: hexagonal and clean architecture, DDD, microservices, event-driven patterns, and trade-offs for production systems.',
+      'Ruta estructurada de diseño de sistemas y arquitectura backend: hexagonal y clean architecture, DDD, microservicios, patrones event-driven y trade-offs para sistemas productivos.',
+      ['Hexagonal', 'DDD', 'Microservices', 'CQRS', 'Event-driven'],
+      [
+        loc('From layered monoliths to bounded contexts and integration patterns', 'De monolitos en capas a bounded contexts y patrones de integración'),
+        loc('Aligned with NestJS and cloud-native delivery on this portfolio', 'Alineada con NestJS y entrega cloud-native en este portafolio'),
+      ],
+      'https://github.com/AndresED/academia-arquitectura',
+    ),
+    layer(
       'java',
       'Java Academy',
       'Academia Java',

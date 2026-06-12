@@ -39,7 +39,7 @@ export const projects: Project[] = [
     description:
       'Open curriculum repositories for AWS certification prep, language deep dives, and applied AI engineering — structured labs and notes for self-paced learning.',
     thumbnail: '/images/projects/academy.png',
-    techStack: ['AWS', 'TypeScript', 'JavaScript', 'React', 'AI', 'Java', 'Go'],
+    techStack: ['AWS', 'TypeScript', 'JavaScript', 'React', 'Architecture', 'AI', 'Java', 'Go'],
     githubUrl: 'https://github.com/AndresED',
     tags: ['Academy', 'Open source', 'Learning'],
     featured: false,
@@ -50,8 +50,8 @@ export const projects: Project[] = [
       'Tutoriales dispersos rara vez construyen profundidad — hace falta rutas estructuradas en repos ligadas a certificación y skills productivos.',
     ),
     impact: loc(
-      'Seven public academies on GitHub covering AWS DVA, JS internals, TypeScript, React, AI engineering, Java, and Go — each repo is a modular learning track.',
-      'Siete academias públicas en GitHub: AWS DVA, JS internals, TypeScript, React, AI engineering, Java y Go — cada repo es un track modular de aprendizaje.',
+      'Eight public academies on GitHub covering AWS DVA, JS internals, TypeScript, React, AI engineering, software architecture, Java, and Go — each repo is a modular learning track.',
+      'Ocho academias públicas en GitHub: AWS DVA, JS internals, TypeScript, React, AI engineering, arquitectura de software, Java y Go — cada repo es un track modular de aprendizaje.',
     ),
   }),
   withLayers({
