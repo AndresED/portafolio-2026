@@ -509,6 +509,16 @@ export const projectLayers: Record<string, ProjectLayer[]> = {
       'https://github.com/AndresED/academia-typescript',
     ),
     layer(
+      'react',
+      'React Academy',
+      'Academia React',
+      'Progressive React curriculum: components, hooks, state patterns, performance, and testing — from SPA fundamentals to production-ready UI architecture.',
+      'Currículo progresivo de React: componentes, hooks, patrones de estado, rendimiento y testing — de fundamentos SPA a arquitectura UI lista para producción.',
+      ['React', 'Hooks', 'TypeScript', 'Testing Library'],
+      [loc('Exercises aligned with modern React 18+ and component-driven design', 'Ejercicios alineados con React 18+ y diseño orientado a componentes')],
+      'https://github.com/AndresED/academia-react',
+    ),
+    layer(
       'ai-engineer',
       'AI Engineer Academy',
       'Academia AI Engineer',
