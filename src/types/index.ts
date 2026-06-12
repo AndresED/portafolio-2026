@@ -13,7 +13,13 @@ export interface BlogPost {
   category: BlogCategory;
 }
 
-export type ProjectCategory = 'microservices' | 'architecture' | 'blockchain' | 'frontend' | 'iot';
+export type ProjectCategory =
+  | 'microservices'
+  | 'architecture'
+  | 'blockchain'
+  | 'frontend'
+  | 'iot'
+  | 'academy';
 
 /** Subsystem or layer shown inside a project detail modal. */
 export interface ProjectLayer {
@@ -22,6 +28,7 @@ export interface ProjectLayer {
   summary: LocalizedText;
   techStack: string[];
   highlights?: LocalizedText[];
+  githubUrl?: string;
 }
 
 export interface Project {

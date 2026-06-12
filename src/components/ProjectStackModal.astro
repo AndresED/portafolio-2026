@@ -75,11 +75,24 @@ const layers = project.layers ?? [];
                         </ul>
                       )
                     }
-                    <div class="mt-3 flex flex-wrap gap-1.5">
+                    <div class="mt-3 flex flex-wrap items-center gap-2">
                       {layer.techStack.map((tech) => (
                         <span class="tag">{tech}</span>
                       ))}
                     </div>
+                    {
+                      layer.githubUrl && (
+                        <a
+                          href={layer.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="mt-3 inline-flex items-center gap-1 text-sm text-meta-400 transition-colors hover:text-accent-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40"
+                        >
+                          <span data-i18n="portfolio.link.github">GitHub</span>
+                          <span aria-hidden="true">↗</span>
+                        </a>
+                      )
+                    }
                   </div>
                 </li>
               ))

@@ -34,6 +34,27 @@ export const projects: Project[] = [
     ),
   }),
   withLayers({
+    id: 'andres-ed-academy',
+    title: 'Technical Academy (GitHub)',
+    description:
+      'Open curriculum repositories for AWS certification prep, language deep dives, and applied AI engineering — structured labs and notes for self-paced learning.',
+    thumbnail: '/images/projects/academy.png',
+    techStack: ['AWS', 'TypeScript', 'JavaScript', 'AI', 'Java', 'Go'],
+    githubUrl: 'https://github.com/AndresED',
+    tags: ['Academy', 'Open source', 'Learning'],
+    featured: false,
+    category: 'academy',
+    role: loc('Author & maintainer', 'Autor y mantenedor'),
+    problem: loc(
+      'Scattered tutorials rarely build depth — learners need structured, repo-based paths tied to real certification and production skills.',
+      'Tutoriales dispersos rara vez construyen profundidad — hace falta rutas estructuradas en repos ligadas a certificación y skills productivos.',
+    ),
+    impact: loc(
+      'Six public academies on GitHub covering AWS DVA, JS internals, TypeScript, AI engineering, Java, and Go — each repo is a modular learning track.',
+      'Seis academias públicas en GitHub: AWS DVA, JS internals, TypeScript, AI engineering, Java y Go — cada repo es un track modular de aprendizaje.',
+    ),
+  }),
+  withLayers({
     id: 'making-code',
     title: 'Making Code',
     description:
@@ -266,4 +287,5 @@ export const portfolioFilters = [
   { id: 'architecture', label: 'Architecture & Patterns', i18nKey: 'portfolio.filter.architecture' },
   { id: 'blockchain', label: 'Blockchain', i18nKey: 'portfolio.filter.blockchain' },
   { id: 'frontend', label: 'Frontend', i18nKey: 'portfolio.filter.frontend' },
+  { id: 'academy', label: 'Academy', i18nKey: 'portfolio.filter.academy' },
 ] as const;

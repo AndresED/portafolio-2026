@@ -123,6 +123,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'portfolio.filter.blockchain': 'Blockchain',
     'portfolio.filter.frontend': 'Frontend',
     'portfolio.filter.iot': 'IoT & Edge',
+    'portfolio.filter.academy': 'Academy',
     'portfolio.featuredBadge': 'Featured',
     'blog.title': 'Publications',
     'blog.lead':
@@ -287,6 +288,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'portfolio.filter.blockchain': 'Blockchain',
     'portfolio.filter.frontend': 'Frontend',
     'portfolio.filter.iot': 'IoT y edge',
+    'portfolio.filter.academy': 'Academia',
     'portfolio.featuredBadge': 'Destacado',
     'blog.title': 'Publicaciones',
     'blog.lead':
