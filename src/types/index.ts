@@ -21,6 +21,9 @@ export type ProjectCategory =
   | 'iot'
   | 'academy';
 
+/** Production client work vs open-source reference builds vs learning repos. */
+export type ProjectTier = 'production' | 'reference' | 'learning';
+
 /** Subsystem or layer shown inside a project detail modal. */
 export interface ProjectLayer {
   id: string;
@@ -42,6 +45,8 @@ export interface Project {
   tags: string[];
   featured: boolean;
   category: ProjectCategory;
+  /** Shown on cards — separates live product work from reference repos. */
+  tier: ProjectTier;
   role?: LocalizedText;
   problem?: LocalizedText;
   impact?: LocalizedText;

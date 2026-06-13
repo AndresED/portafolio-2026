@@ -3,8 +3,6 @@ import { profile } from '../../data/profile';
 import { dictionary } from '../../i18n/dictionary';
 import LocalePair from '../LocalePair.astro';
 
-const linkedIn = profile.socials.find((s) => s.icon === 'linkedin');
-
 const heroThesis = {
   en: dictionary.en['hero.thesis'],
   es: dictionary.es['hero.thesis'],
@@ -45,40 +43,40 @@ const heroH1Role = {
   }
 
   <p class="mt-5 max-w-3xl text-pretty font-mono text-sm tabular-nums text-meta-500">
-    {profile.stackKeywords.map((keyword) => keyword.toUpperCase()).join(' · ')}
+    {profile.stackKeywords.slice(0, 6).map((keyword) => keyword.toUpperCase()).join(' · ')}
+    <span class="text-ink-muted/70"> · +{profile.stackKeywords.length - 6}</span>
   </p>
 
   <div class="mt-8 flex flex-wrap items-center gap-3">
-    <a href="/portfolio" class="btn-primary" data-i18n="hero.ctaPortfolio">
-      View portfolio
-    </a>
-    <a href="/topics" class="btn-secondary" data-i18n="hero.ctaTopics">
-      Explore topics
-    </a>
-    <a href="/contact" class="btn-secondary" data-i18n="hero.ctaContact">
-      Get in touch
-    </a>
-    {
-      linkedIn && (
-        <a
-          href={linkedIn.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-secondary"
-          data-i18n="hero.ctaLinkedin"
-        >
-          LinkedIn ↗
-        </a>
-      )
-    }
     <a
       href={profile.cvUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class="btn-ghost"
-      data-i18n="hero.ctaCv"
+      class="btn-primary"
+      data-i18n="hero.ctaDownloadCv"
     >
-      CV ↗
+      Download CV
+    </a>
+    <a href="/portfolio" class="btn-secondary" data-i18n="hero.ctaPortfolio">
+      View portfolio
     </a>
   </div>
+
+  <p class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+    <a
+      href="/topics"
+      class="text-meta-400 underline-offset-4 transition-colors hover:text-accent-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40"
+      data-i18n="hero.ctaTopics"
+    >
+      Explore topics
+    </a>
+    <span class="text-white/15" aria-hidden="true">·</span>
+    <a
+      href="/contact"
+      class="text-meta-400 underline-offset-4 transition-colors hover:text-accent-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40"
+      data-i18n="hero.ctaContact"
+    >
+      Get in touch
+    </a>
+  </p>
 </section>

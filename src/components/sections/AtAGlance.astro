@@ -1,0 +1,49 @@
+---
+import {
+  atAGlanceBullets,
+  atAGlanceResumeLink,
+  atAGlanceTitle,
+  atAGlanceYears,
+  currentExperience,
+} from '../../data/at-a-glance';
+import LocalePair from '../LocalePair.astro';
+---
+
+<section id="at-a-glance" class="reveal mb-16 border-b border-white/[0.06] pb-14 lg:mb-20 lg:pb-16" aria-labelledby="at-a-glance-heading">
+  <h2 id="at-a-glance-heading" class="section-title mb-2">
+    <LocalePair text={atAGlanceTitle} />
+  </h2>
+  <p class="mb-6 font-mono text-sm text-meta-500">
+    <LocalePair text={atAGlanceYears} display="block" />
+  </p>
+
+  <div class="mb-6 rounded-xl border border-white/[0.08] bg-surface-raised p-5">
+    <p class="section-label mb-2" data-i18n="glance.currentRole">Current role</p>
+    <p class="font-display text-lg font-semibold text-ink">
+      <LocalePair text={currentExperience.role} />
+      <span class="text-ink-muted"> · </span>
+      {currentExperience.company}
+    </p>
+    <p class="mt-1 font-mono text-xs text-meta-500">
+      <LocalePair text={currentExperience.period} />
+    </p>
+  </div>
+
+  <ul class="mb-6 space-y-3 text-pretty text-base leading-7 text-ink-body">
+    {
+      atAGlanceBullets.map((bullet) => (
+        <li class="flex gap-3">
+          <span class="mt-2 size-1.5 shrink-0 rounded-full bg-accent-400" aria-hidden="true"></span>
+          <LocalePair text={bullet} display="block" />
+        </li>
+      ))
+    }
+  </ul>
+
+  <a
+    href="/#resume"
+    class="inline-flex items-center gap-1 font-medium text-accent-400 transition-colors hover:text-accent-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40"
+  >
+    <LocalePair text={atAGlanceResumeLink} />
+  </a>
+</section>

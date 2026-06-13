@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { Project } from '../../types';
 import LocalePair from './LocalePair.astro';
 import ProjectStackModal from './ProjectStackModal.astro';
+import ProjectTierBadge from './ProjectTierBadge.astro';
 import { projectPath } from '../data/seo';
 
 interface Props {
@@ -21,6 +22,7 @@ const hasLayers = (project.layers?.length ?? 0) > 0;
 <article
   class:list={['project-card group glass-card media-card transition-colors duration-200 hover:border-accent-500/25', className]}
   data-category={project.category}
+  data-tier={project.tier}
   style={style}
 >
   {
@@ -50,13 +52,16 @@ const hasLayers = (project.layers?.length ?? 0) > 0;
           {project.title}
         </a>
       </h3>
-      {
-        project.featured && (
-          <span class="shrink-0 font-mono text-[10px] uppercase tracking-wide text-accent-400" data-i18n="portfolio.featuredBadge">
-            Featured
-          </span>
-        )
-      }
+      <div class="flex shrink-0 flex-wrap items-center justify-end gap-1.5">
+        <ProjectTierBadge tier={project.tier} />
+        {
+          project.featured && (
+            <span class="font-mono text-[10px] uppercase tracking-wide text-accent-400/80" data-i18n="portfolio.featuredBadge">
+              Featured
+            </span>
+          )
+        }
+      </div>
     </div>
 
     <p class="media-card__excerpt">{project.description}</p>

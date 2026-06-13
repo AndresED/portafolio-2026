@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import type { Project } from '../types';
 import LocalePair from './LocalePair.astro';
+import ProjectTierBadge from './ProjectTierBadge.astro';
 import RelatedTopics from './RelatedTopics.astro';
 import { getTopicsForProject } from '../data/topics';
 
@@ -34,9 +35,10 @@ const relatedTopics = getTopicsForProject(project.id);
 
   <header class="mb-10 border-b border-white/[0.06] pb-10">
     <div class="mb-3 flex flex-wrap items-center gap-2">
+      <ProjectTierBadge tier={project.tier} />
       {
         project.featured && (
-          <span class="font-mono text-[10px] uppercase tracking-wide text-accent-400" data-i18n="portfolio.featuredBadge">
+          <span class="font-mono text-[10px] uppercase tracking-wide text-accent-400/80" data-i18n="portfolio.featuredBadge">
             Featured
           </span>
         )

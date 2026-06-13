@@ -1,0 +1,39 @@
+---
+import type { ProjectTier } from '../types';
+
+interface Props {
+  tier: ProjectTier;
+  class?: string;
+}
+
+const { tier, class: className } = Astro.props;
+
+const tierStyles: Record<ProjectTier, string> = {
+  production: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400',
+  reference: 'border-accent-500/30 bg-accent-500/10 text-accent-400',
+  learning: 'border-white/[0.12] bg-dark-700 text-meta-400',
+};
+
+const tierI18n: Record<ProjectTier, string> = {
+  production: 'portfolio.tier.production',
+  reference: 'portfolio.tier.reference',
+  learning: 'portfolio.tier.learning',
+};
+
+const tierFallback: Record<ProjectTier, string> = {
+  production: 'Production',
+  reference: 'Reference',
+  learning: 'Learning',
+};
+---
+
+<span
+  class:list={[
+    'shrink-0 rounded-md border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide',
+    tierStyles[tier],
+    className,
+  ]}
+  data-i18n={tierI18n[tier]}
+>
+  {tierFallback[tier]}
+</span>

@@ -3,7 +3,7 @@ import type { ProfileData } from '../types';
 export const profile: ProfileData = {
   name: 'Andrés Esquivel',
   title: 'Senior Backend Engineer',
-  tagline: 'Building scalable cloud architectures & distributed systems',
+  tagline: 'Backend systems · cloud-native · distributed architecture',
   email: 'andres30xed@gmail.com',
   location: 'Perú',
   cvUrl: '/cv.pdf',

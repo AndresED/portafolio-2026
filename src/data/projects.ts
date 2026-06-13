@@ -20,6 +20,7 @@ export const projects: Project[] = [
     tags: ['IoT', 'Multi-tenant', 'Real-time', 'Full stack'],
     featured: true,
     category: 'iot',
+    tier: 'production',
     role: loc(
       'Full-stack engineer — hardware edge, API architecture, Angular v1, React v2 migration, and Expo mobile',
       'Ingeniero full stack — edge hardware, arquitectura API, Angular v1, migración React v2 y móvil Expo',
@@ -44,6 +45,7 @@ export const projects: Project[] = [
     tags: ['Academy', 'Open source', 'Learning'],
     featured: false,
     category: 'academy',
+    tier: 'learning',
     role: loc('Author & maintainer', 'Autor y mantenedor'),
     problem: loc(
       'Scattered tutorials rarely build depth — learners need structured, repo-based paths tied to real certification and production skills.',
@@ -65,6 +67,7 @@ export const projects: Project[] = [
     tags: ['Blog', 'Next.js', 'MDX'],
     featured: true,
     category: 'frontend',
+    tier: 'reference',
     role: loc('Author & maintainer', 'Autor y mantenedor'),
     problem: loc(
       'Document deep technical topics without losing clarity for practitioners.',
@@ -87,6 +90,7 @@ export const projects: Project[] = [
     tags: ['Portfolio', 'Astro', 'Static Site'],
     featured: true,
     category: 'frontend',
+    tier: 'reference',
     role: loc('Author & maintainer', 'Autor y mantenedor'),
     problem: loc(
       'Present backend experience, projects, and publications in a fast, credible site recruiters can scan in minutes.',
@@ -108,6 +112,7 @@ export const projects: Project[] = [
     tags: ['Microservices', 'Event-Driven', 'CQRS'],
     featured: true,
     category: 'microservices',
+    tier: 'reference',
     role: loc('Architect & implementer', 'Arquitecto e implementador'),
     problem: loc(
       'Model a banking-style domain with reliable cross-service events and failure recovery.',
@@ -129,6 +134,7 @@ export const projects: Project[] = [
     tags: ['Architecture', 'Boilerplate', 'Multi-tenant'],
     featured: true,
     category: 'architecture',
+    tier: 'reference',
     role: loc('Author & maintainer', 'Autor y mantenedor'),
     problem: loc(
       'Teams need a NestJS baseline that scales from monolith to multi-tenant microservices without rewriting foundations.',
@@ -150,6 +156,7 @@ export const projects: Project[] = [
     tags: ['Blockchain', 'NestJS', 'Algorand'],
     featured: true,
     category: 'blockchain',
+    tier: 'reference',
     role: loc('Backend developer', 'Desarrollador backend'),
     problem: loc(
       'Prove document integrity with on-chain proof without exposing file contents on the ledger.',
@@ -171,6 +178,7 @@ export const projects: Project[] = [
     tags: ['Methodology', 'AI', 'Framework'],
     featured: true,
     category: 'architecture',
+    tier: 'reference',
     role: loc('Creator', 'Creador'),
     problem: loc(
       'AI-generated code drifts from architecture without explicit specs and guardrails.',
@@ -192,6 +200,7 @@ export const projects: Project[] = [
     tags: ['Multi-tenant', 'CQRS', 'MongoDB'],
     featured: false,
     category: 'architecture',
+    tier: 'reference',
     role: loc('Implementer', 'Implementador'),
     problem: loc(
       'Isolate tenant data completely while sharing application code and deployment.',
@@ -213,6 +222,7 @@ export const projects: Project[] = [
     tags: ['Microservices', 'RabbitMQ', 'NestJS'],
     featured: false,
     category: 'microservices',
+    tier: 'reference',
     role: loc('Implementer', 'Implementador'),
     problem: loc(
       'Coordinate user and transaction operations across services without tight coupling.',
@@ -234,6 +244,7 @@ export const projects: Project[] = [
     tags: ['Microservices', 'RabbitMQ', 'NestJS'],
     featured: false,
     category: 'microservices',
+    tier: 'reference',
     role: loc('Implementer', 'Implementador'),
     problem: loc(
       'User identity and profile data must stay isolated while other services consume auth events asynchronously.',
@@ -255,6 +266,7 @@ export const projects: Project[] = [
     tags: ['API Gateway', 'RabbitMQ', 'NestJS'],
     featured: false,
     category: 'microservices',
+    tier: 'reference',
     role: loc('Implementer', 'Implementador'),
     problem: loc(
       'External clients need REST while internal services should communicate only through the message bus.',
