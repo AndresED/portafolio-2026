@@ -33,6 +33,9 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'hero.ctaLinkedin': 'LinkedIn',
     'hero.ctaCv': 'CV ↗',
     'glance.currentRole': 'Current role',
+    'socialProof.eyebrow': 'Peer validation',
+    'socialProof.title': 'Recommendation',
+    'socialProof.linkedin': 'More on LinkedIn',
     'about.heroGreeting': "Hello, I'm",
     'about.heroSubtitle':
       'Senior Backend Engineer | AWS Developer Associate',
@@ -234,6 +237,9 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'hero.ctaLinkedin': 'LinkedIn',
     'hero.ctaCv': 'CV ↗',
     'glance.currentRole': 'Rol actual',
+    'socialProof.eyebrow': 'Validación de pares',
+    'socialProof.title': 'Recomendación',
+    'socialProof.linkedin': 'Ver más en LinkedIn',
     'about.heroGreeting': 'Hola, soy',
     'about.heroSubtitle':
       'Senior Backend Engineer | AWS Developer Associate',

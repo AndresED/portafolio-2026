@@ -1,0 +1,45 @@
+---
+import { featuredRecommendation } from '../../data/recommendations';
+import { profile } from '../../data/profile';
+import LocalePair from '../LocalePair.astro';
+
+const linkedIn = profile.socials.find((s) => s.icon === 'linkedin');
+---
+
+<section id="recommendation" class="reveal mb-16 lg:mb-20" aria-labelledby="social-proof-heading">
+  <p class="section-label mb-3" data-i18n="socialProof.eyebrow">Peer validation</p>
+  <h2 id="social-proof-heading" class="section-title mb-8" data-i18n="socialProof.title">
+    Recommendation
+  </h2>
+
+  <figure class="glass-card border-l-2 border-accent-500/40 p-6 sm:p-8">
+    <blockquote class="text-pretty text-base leading-7 text-ink-body md:text-lg">
+      <LocalePair text={featuredRecommendation.quote} display="block" />
+    </blockquote>
+    <figcaption class="mt-6 flex flex-wrap items-end justify-between gap-4 border-t border-white/[0.06] pt-5">
+      <div>
+        <p class="font-semibold text-ink">{featuredRecommendation.author}</p>
+        <p class="mt-0.5 text-sm text-ink-muted">
+          <LocalePair text={featuredRecommendation.role} />
+        </p>
+        <p class="mt-1 font-mono text-xs text-meta-500">
+          <LocalePair text={featuredRecommendation.date} />
+        </p>
+      </div>
+      {
+        linkedIn && (
+          <a
+            href={linkedIn.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1 text-sm font-medium text-accent-400 transition-colors hover:text-accent-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40"
+            data-i18n="socialProof.linkedin"
+          >
+            More on LinkedIn
+            <span aria-hidden="true">↗</span>
+          </a>
+        )
+      }
+    </figcaption>
+  </figure>
+</section>
