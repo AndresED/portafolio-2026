@@ -91,6 +91,7 @@ export function buildWebPageNode(options: {
     description: options.description,
     isPartOf: { '@id': websiteId },
     about: { '@id': personId },
+    ...(pageType === 'ProfilePage' ? { mainEntity: { '@id': personId } } : {}),
     inLanguage: ['en', 'es'],
   };
 }
