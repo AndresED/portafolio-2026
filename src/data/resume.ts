@@ -243,4 +243,10 @@ export const skillCategories = {
     label: 'Methodologies',
     skills: ['Agile', 'Scrum', 'Spec-Driven Development', 'ADR'],
   },
-};
+} as const;
+
+/** Shown first in About — senior backend positioning. */
+export const coreSkillCategoryKeys = ['backend', 'databases', 'cloud', 'messaging', 'methodologies'] as const;
+
+/** Supporting stack from full-stack / IoT deliveries — secondary section. */
+export const additionalSkillCategoryKeys = ['frontend', 'aiAssisted', 'aiLlm'] as const;

@@ -1,6 +1,10 @@
 ---
 import { dictionary } from '../../i18n/dictionary';
-import { skillCategories } from '../../data/resume';
+import {
+  additionalSkillCategoryKeys,
+  coreSkillCategoryKeys,
+  skillCategories,
+} from '../../data/resume';
 import LocalePair from '../LocalePair.astro';
 import type { LocalizedText } from '../../types';
 
@@ -18,7 +22,9 @@ const focusAreas = [
 
 const summaryBody = locKey('about.summaryBody');
 const summaryBody2 = locKey('about.summaryBody2');
+const legalName = locKey('about.legalName');
 const techLead = locKey('about.techLead');
+const techAdditionalLead = locKey('about.techAdditionalLead');
 ---
 
 <section id="about" class="mb-20">
@@ -31,6 +37,9 @@ const techLead = locKey('about.techLead');
       </p>
       <p>
         <LocalePair text={summaryBody2} display="block" />
+      </p>
+      <p class="rounded-lg border border-white/[0.06] bg-surface-raised px-4 py-3 font-mono text-xs leading-6 text-meta-500">
+        <LocalePair text={legalName} display="block" />
       </p>
     </div>
 
@@ -55,23 +64,51 @@ const techLead = locKey('about.techLead');
 
   <div class="reveal">
     <h2 class="section-title mb-2" data-i18n="about.techTitle">Technologies</h2>
-    <p class="mb-8 max-w-xl text-pretty text-base leading-7 text-ink-muted">
+    <p class="section-label mb-3" data-i18n="about.techCoreTitle">Core stack</p>
+    <p class="mb-6 max-w-xl text-pretty text-base leading-7 text-ink-muted">
       <LocalePair text={techLead} display="block" />
     </p>
 
     <dl class="divide-y divide-white/[0.06] border-y border-white/[0.06]">
       {
-        Object.entries(skillCategories).map(([skillKey, category]) => (
-          <div class="stack-row py-4">
-            <dt class="stack-row__label" data-i18n={`skills.label.${skillKey}`}>
-              {category.label}
-            </dt>
-            <dd class="stack-row__value text-base leading-7">
-              {category.skills.join(' · ')}
-            </dd>
-          </div>
-        ))
+        coreSkillCategoryKeys.map((skillKey) => {
+          const category = skillCategories[skillKey];
+          return (
+            <div class="stack-row py-4">
+              <dt class="stack-row__label" data-i18n={`skills.label.${skillKey}`}>
+                {category.label}
+              </dt>
+              <dd class="stack-row__value text-base leading-7">
+                {category.skills.join(' · ')}
+              </dd>
+            </div>
+          );
+        })
       }
     </dl>
+
+    <div class="mt-10 border-t border-white/[0.06] pt-8">
+      <p class="section-label mb-3" data-i18n="about.techAdditionalTitle">Also worked with</p>
+      <p class="mb-6 max-w-xl text-pretty text-base leading-7 text-ink-muted">
+        <LocalePair text={techAdditionalLead} display="block" />
+      </p>
+      <dl class="divide-y divide-white/[0.06] border-y border-white/[0.06]">
+        {
+          additionalSkillCategoryKeys.map((skillKey) => {
+            const category = skillCategories[skillKey];
+            return (
+              <div class="stack-row py-4">
+                <dt class="stack-row__label" data-i18n={`skills.label.${skillKey}`}>
+                  {category.label}
+                </dt>
+                <dd class="stack-row__value text-base leading-7">
+                  {category.skills.join(' · ')}
+                </dd>
+              </div>
+            );
+          })
+        }
+      </dl>
+    </div>
   </div>
 </section>

@@ -23,8 +23,8 @@ export const atAGlanceBullets: LocalizedText[] = [
     'Microservicios orientados a eventos en AWS — Kafka, límites hexagonales y consumidores idempotentes en builds de referencia.',
   ),
   loc(
-    'Technical lead track — architecture ownership, mentoring, and CI/CD across distributed product teams.',
-    'Trayectoria de liderazgo técnico — arquitectura, mentoría y CI/CD en equipos de producto distribuidos.',
+    'Lead Backend at Tres Astronautas (2021–2026) — owned microservice architecture, mentored engineers, and CI/CD standards across distributed product teams.',
+    'Lead Backend en Tres Astronautas (2021–2026) — arquitectura de microservicios, mentoría a engineers y estándares de CI/CD en equipos de producto distribuidos.',
   ),
 ];
 

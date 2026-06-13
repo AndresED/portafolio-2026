@@ -21,7 +21,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'profile.openToWork': 'Open to opportunities · remote · full-time or contract',
     'hero.eyebrow': 'Senior Backend Engineer · Peru',
     'hero.thesis':
-      'Senior backend engineer (5+ years) shipping NestJS microservices on AWS for logistics and compliance products — event-driven, multitenant, production-first.',
+      'Senior backend engineer (6+ years, since 2019) shipping NestJS microservices on AWS for logistics and compliance products — event-driven, multitenant, production-first.',
     'hero.fit': 'Remote · Peru (UTC-5) · Backend & platform roles · English & Spanish',
     'hero.h1Role': 'Senior Backend Engineer · NestJS & AWS',
     'hero.evidence': 'NESTJS · AWS · HEXAGONAL · KAFKA · POSTGRESQL',
@@ -40,12 +40,14 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'about.heroSubtitle':
       'Senior Backend Engineer | AWS Developer Associate',
     'about.lead':
-      'With 5+ years of experience building scalable backend systems and cloud-native architectures, I specialize in designing distributed systems that handle millions of requests. From microservices to serverless, I am passionate about creating robust, maintainable solutions.',
+      'With 6+ years of experience building scalable backend systems and cloud-native architectures, I specialize in designing distributed systems that handle millions of requests. From microservices to serverless, I am passionate about creating robust, maintainable solutions.',
     'about.summaryTitle': 'Professional Summary',
     'about.summaryBody':
-      'Senior backend engineer with 5+ years building production APIs, microservices, and cloud-native systems. I work from explicit boundaries — ports and adapters, bounded contexts, and contracts you can test — not from framework magic.',
+      'Senior backend engineer with 6+ years building production APIs, microservices, and cloud-native systems. I work from explicit boundaries — ports and adapters, bounded contexts, and contracts you can test — not from framework magic.',
     'about.summaryBody2':
       'Recent work spans multitenant NestJS services on AWS, event-driven architectures with Kafka, and integrations across compliance and logistics domains. I also mentor teams on testing, CI/CD, and maintainable delivery.',
+    'about.legalName':
+      'Professional name: Andrés Esquivel · Legal name: Estuardo Andrés Esquivel Díaz (as on CV and contracts).',
     'about.focusTitle': 'Focus areas',
     'about.focus.arch':
       'Microservices with Clean Architecture, hexagonal patterns, and CQRS where the domain requires it.',
@@ -55,7 +57,11 @@ export const dictionary: Record<Locale, Record<string, string>> = {
       'Resilient messaging with Kafka, gRPC, and idempotent consumers for high-availability workloads.',
     'about.focus.perf':
       'Latency and cost tuning through caching, query design, and observability-driven iteration.',
-    'about.techLead': 'Stack I use day to day across backend, cloud, and delivery — grouped by domain.',
+    'about.techLead': 'Core backend, cloud, and delivery stack — what I use day to day in senior backend roles.',
+    'about.techCoreTitle': 'Core stack',
+    'about.techAdditionalTitle': 'Also worked with',
+    'about.techAdditionalLead':
+      'Frontend, mobile, and AI tooling from full-stack and IoT deliveries — supporting roles, not the primary headline.',
     'certs.badge': 'Credentials',
     'certs.title': 'Certifications',
     'certs.upcomingTitle': 'Upcoming credentials',
@@ -225,7 +231,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'profile.openToWork': 'Abierto a oportunidades · remoto · tiempo completo o contrato',
     'hero.eyebrow': 'Senior Backend Engineer · Perú',
     'hero.thesis':
-      'Backend senior (5+ años) entregando microservicios NestJS en AWS para logística y cumplimiento — orientado a eventos, multitenant y producción.',
+      'Backend senior (6+ años, desde 2019) entregando microservicios NestJS en AWS para logística y cumplimiento — orientado a eventos, multitenant y producción.',
     'hero.fit': 'Remoto · Perú (UTC-5) · Roles backend y plataforma · Inglés y español',
     'hero.h1Role': 'Senior Backend Engineer · NestJS y AWS',
     'hero.evidence': 'NESTJS · AWS · HEXAGONAL · KAFKA · POSTGRESQL',
@@ -244,12 +250,14 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'about.heroSubtitle':
       'Senior Backend Engineer | AWS Developer Associate',
     'about.lead':
-      'Con más de 5 años de experiencia construyendo backends escalables y arquitecturas cloud-native, me especializo en sistemas distribuidos que soportan millones de peticiones. De microservicios a serverless, me apasionan soluciones robustas y mantenibles.',
+      'Con más de 6 años de experiencia construyendo backends escalables y arquitecturas cloud-native, me especializo en sistemas distribuidos que soportan millones de peticiones. De microservicios a serverless, me apasionan soluciones robustas y mantenibles.',
     'about.summaryTitle': 'Resumen profesional',
     'about.summaryBody':
-      'Backend senior con más de 5 años construyendo APIs, microservicios y sistemas cloud-native en producción. Trabajo con límites explícitos — puertos y adaptadores, bounded contexts y contratos testeables — no con magia de frameworks.',
+      'Backend senior con más de 6 años construyendo APIs, microservicios y sistemas cloud-native en producción. Trabajo con límites explícitos — puertos y adaptadores, bounded contexts y contratos testeables — no con magia de frameworks.',
     'about.summaryBody2':
       'Trabajo reciente: servicios NestJS multitenant en AWS, arquitecturas orientadas a eventos con Kafka e integraciones de cumplimiento y logística. También mentoreo equipos en pruebas, CI/CD y entrega mantenible.',
+    'about.legalName':
+      'Nombre profesional: Andrés Esquivel · Nombre legal: Estuardo Andrés Esquivel Díaz (como en CV y contratos).',
     'about.focusTitle': 'Áreas de enfoque',
     'about.focus.arch':
       'Microservicios con Clean Architecture, patrones hexagonales y CQRS cuando el dominio lo exige.',
@@ -259,7 +267,11 @@ export const dictionary: Record<Locale, Record<string, string>> = {
       'Mensajería resiliente con Kafka, gRPC y consumidores idempotentes para cargas de alta disponibilidad.',
     'about.focus.perf':
       'Afinamiento de latencia y coste con caché, diseño de consultas e iteración guiada por observabilidad.',
-    'about.techLead': 'Stack que uso a diario en backend, cloud y entrega — agrupado por dominio.',
+    'about.techLead': 'Stack core backend, cloud y entrega — lo que uso a diario en roles backend senior.',
+    'about.techCoreTitle': 'Stack principal',
+    'about.techAdditionalTitle': 'También he trabajado con',
+    'about.techAdditionalLead':
+      'Frontend, móvil y herramientas de IA en entregas full stack e IoT — rol de soporte, no el headline principal.',
     'certs.badge': 'Credenciales',
     'certs.title': 'Certificaciones',
     'certs.upcomingTitle': 'Próximas credenciales',
