@@ -2,6 +2,8 @@
 import { Image } from 'astro:assets';
 import type { Project } from '../types';
 import LocalePair from './LocalePair.astro';
+import RelatedTopics from './RelatedTopics.astro';
+import { getTopicsForProject } from '../data/topics';
 
 interface Props {
   project: Project;
@@ -10,6 +12,7 @@ interface Props {
 
 const { project, imgSrc } = Astro.props;
 const layers = project.layers ?? [];
+const relatedTopics = getTopicsForProject(project.id);
 ---
 
 <article class="reveal">
@@ -151,4 +154,6 @@ const layers = project.layers ?? [];
       </section>
     )
   }
+
+  <RelatedTopics topics={relatedTopics} />
 </article>

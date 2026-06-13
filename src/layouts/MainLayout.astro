@@ -12,10 +12,11 @@ interface Props {
   description?: string;
   ogImage?: string;
   ogTitle?: string;
+  ogType?: 'website' | 'article';
   jsonLdExtra?: Record<string, unknown>[];
 }
 
-const { currentPage = 'home', title, description, ogImage, ogTitle, jsonLdExtra } = Astro.props;
+const { currentPage = 'home', title, description, ogImage, ogTitle, ogType, jsonLdExtra } = Astro.props;
 
 type NavItem = {
   id: Props['currentPage'];
@@ -79,6 +80,7 @@ function mobileNavClasses(item: NavItem, isActive: boolean) {
   description={description}
   ogImage={ogImage}
   ogTitle={ogTitle}
+  ogType={ogType}
   jsonLdExtra={jsonLdExtra}
 >
   <LanguageSwitcher />

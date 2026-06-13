@@ -164,3 +164,11 @@ export function getFeaturedTopics(): TopicHub[] {
     .map((id) => getTopicById(id))
     .filter((topic): topic is TopicHub => topic !== undefined);
 }
+
+export function getTopicsForProject(projectId: string): TopicHub[] {
+  return topics.filter((topic) => topic.projectIds.includes(projectId));
+}
+
+export function getTopicsForPost(postId: string): TopicHub[] {
+  return topics.filter((topic) => topic.blogPostIds.includes(postId));
+}

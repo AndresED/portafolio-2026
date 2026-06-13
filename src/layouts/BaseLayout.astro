@@ -14,6 +14,7 @@ interface Props {
   description?: string;
   ogImage?: string;
   ogTitle?: string;
+  ogType?: 'website' | 'article';
   jsonLdExtra?: Record<string, unknown>[];
 }
 
@@ -22,6 +23,7 @@ const {
   description = siteDescription,
   ogImage = siteConfig.seo.ogImage,
   ogTitle,
+  ogType = 'website',
   jsonLdExtra = [],
 } = Astro.props;
 
@@ -64,7 +66,7 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
     <meta property="og:title" content={shareTitle} />
     <meta property="og:description" content={shareDescription} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={profile.name} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="es_PE" />

@@ -7,7 +7,8 @@ import ContactCta from '../../components/sections/ContactCta.astro';
 import Footer from '../../components/Footer.astro';
 import { topics } from '../../data/topics';
 import { profile } from '../../data/profile';
-import { buildWebPageNode, topicPath } from '../../data/seo';
+import { topics } from '../../data/topics';
+import { buildItemListNode, buildWebPageNode, topicPageUrl, topicPath } from '../../data/seo';
 import { absoluteUrl } from '../../data/site';
 
 const pageUrl = absoluteUrl('/topics');
@@ -20,6 +21,13 @@ const jsonLdExtra = [
     url: pageUrl,
     type: 'CollectionPage',
   }),
+  buildItemListNode(
+    pageUrl,
+    topics.map((topic) => ({
+      name: topic.title.en,
+      url: topicPageUrl(topic.id),
+    })),
+  ),
 ];
 ---
 

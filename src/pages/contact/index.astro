@@ -3,12 +3,27 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import Contact from '../../components/sections/Contact.astro';
 import Footer from '../../components/Footer.astro';
 import { profile } from '../../data/profile';
+import { buildWebPageNode } from '../../data/seo';
+import { absoluteUrl } from '../../data/site';
+
+const pageUrl = absoluteUrl('/contact');
+const pageDescription =
+  'Contact Andrés Esquivel — senior backend engineer available for NestJS, AWS microservices, and cloud architecture roles. Remote · Peru · English & Spanish.';
+const jsonLdExtra = [
+  buildWebPageNode({
+    name: `${profile.name} | Contact`,
+    description: pageDescription,
+    url: pageUrl,
+    type: 'ContactPage',
+  }),
+];
 ---
 
 <MainLayout
   currentPage="contact"
-  title={`${profile.name} | Contact`}
-  description="Get in touch for new opportunities, interesting projects, or a conversation about technology."
+  title={`${profile.name} | Contact — Backend Engineer`}
+  description={pageDescription}
+  jsonLdExtra={jsonLdExtra}
 >
   <Contact />
   <Footer />

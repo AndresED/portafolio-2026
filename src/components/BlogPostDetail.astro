@@ -1,6 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import type { BlogPost } from '../types';
+import { profile } from '../data/profile';
+import RelatedTopics from './RelatedTopics.astro';
+import { getTopicsForPost } from '../data/topics';
 
 interface Props {
   post: BlogPost;
@@ -8,6 +11,7 @@ interface Props {
 }
 
 const { post, imgSrc } = Astro.props;
+const relatedTopics = getTopicsForPost(post.id);
 
 function formatPostDate(iso: string): string {
   return new Date(iso).toLocaleDateString('en-GB', {
@@ -67,4 +71,17 @@ function formatPostDate(iso: string): string {
       Full article hosted on Making Code — this page is a summary for discovery on andresed.dev.
     </p>
   </header>
+
+  <RelatedTopics topics={relatedTopics} />
+
+  <p class="mt-8 text-sm text-meta-500">
+    <span data-i18n="blog.detail.author">Author:</span>{' '}
+    <a
+      href={profile.makingCodeUrl}
+      rel="author"
+      class="text-accent-400 transition-colors hover:text-accent-300"
+    >
+      {profile.name} · Making Code
+    </a>
+  </p>
 </article>

@@ -1,0 +1,35 @@
+---
+import LocalePair from './LocalePair.astro';
+import { topicPath } from '../data/seo';
+import type { TopicHub } from '../data/topics';
+
+interface Props {
+  topics: TopicHub[];
+}
+
+const { topics } = Astro.props;
+
+if (topics.length === 0) return null;
+---
+
+<section class="mb-4 border-t border-white/[0.06] pt-10">
+  <h2 class="section-title mb-2" data-i18n="seo.relatedTopics.title">Related topics</h2>
+  <p class="mb-6 max-w-2xl text-pretty text-base leading-7 text-ink-muted" data-i18n="seo.relatedTopics.lead">
+    Explore curated hubs that connect this work with case studies, articles, and learning repos.
+  </p>
+  <ul class="flex flex-wrap gap-3">
+    {
+      topics.map((topic) => (
+        <li>
+          <a
+            href={topicPath(topic.id)}
+            class="inline-flex items-center gap-2 rounded-lg border border-white/[0.08] bg-surface-raised px-4 py-2 text-sm text-ink-body transition-colors hover:border-accent-500/40 hover:text-accent-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40"
+          >
+            <LocalePair text={topic.title} />
+            <span aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

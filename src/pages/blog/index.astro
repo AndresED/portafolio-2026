@@ -4,7 +4,8 @@ import Blog from '../../components/sections/Blog.astro';
 import ContactCta from '../../components/sections/ContactCta.astro';
 import Footer from '../../components/Footer.astro';
 import { profile } from '../../data/profile';
-import { buildWebPageNode } from '../../data/seo';
+import { posts } from '../../data/blog';
+import { buildItemListNode, buildWebPageNode, blogPageUrl } from '../../data/seo';
 import { absoluteUrl } from '../../data/site';
 
 const pageUrl = absoluteUrl('/blog');
@@ -17,6 +18,13 @@ const jsonLdExtra = [
     url: pageUrl,
     type: 'CollectionPage',
   }),
+  buildItemListNode(
+    pageUrl,
+    posts.map((post) => ({
+      name: post.title,
+      url: blogPageUrl(post.id),
+    })),
+  ),
 ];
 ---
 

@@ -80,7 +80,7 @@ export function buildWebPageNode(options: {
   name: string;
   description: string;
   url: string;
-  type?: 'WebPage' | 'CollectionPage' | 'ProfilePage';
+  type?: 'WebPage' | 'CollectionPage' | 'ProfilePage' | 'ContactPage';
 }) {
   const pageType = options.type ?? 'WebPage';
   return {
@@ -104,6 +104,24 @@ export function buildBreadcrumbNode(items: { name: string; url: string }[]) {
       position: index + 1,
       name: item.name,
       item: item.url,
+    })),
+  };
+}
+
+export function buildItemListNode(
+  listUrl: string,
+  items: { name: string; url: string }[],
+) {
+  return {
+    '@type': 'ItemList',
+    '@id': `${listUrl}#itemlist`,
+    url: listUrl,
+    numberOfItems: items.length,
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      url: item.url,
     })),
   };
 }
@@ -135,6 +153,7 @@ export function buildBlogArticleNode(post: BlogPost, pageUrl: string, imageUrl?:
     isPartOf: { '@id': websiteId },
     mainEntityOfPage: pageUrl,
     sameAs: post.mediumUrl,
+    isBasedOn: post.mediumUrl,
     keywords: post.tags.join(', '),
     ...(imageUrl ? { image: imageUrl } : {}),
   };

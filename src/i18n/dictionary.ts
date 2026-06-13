@@ -145,6 +145,9 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'topics.detail.articlesTitle': 'Related articles',
     'topics.detail.articlesLead': 'Summaries on andresed.dev with links to full posts on Making Code.',
     'topics.detail.resourcesTitle': 'Learning resources',
+    'seo.relatedTopics.title': 'Related topics',
+    'seo.relatedTopics.lead':
+      'Explore curated hubs that connect this work with case studies, articles, and learning repos.',
     'blog.title': 'Publications',
     'blog.lead':
       'Technical articles on backend architecture, algorithms, and cryptography — recent NestJS writing on makingcode.dev plus a curated archive (2015–2018) on the legacy blog.',
@@ -162,6 +165,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'blog.detail.backToList': 'Back to publications',
     'blog.detail.canonicalNote':
       'Full article hosted on Making Code — this page is a summary for discovery on andresed.dev.',
+    'blog.detail.author': 'Author',
     'blog.loadMore': 'Load More Articles',
     'blog.loading': 'Loading more articles…',
     'blog.seeMore': 'See more publications',
@@ -335,6 +339,9 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'topics.detail.articlesTitle': 'Artículos relacionados',
     'topics.detail.articlesLead': 'Resúmenes en andresed.dev con enlaces al artículo completo en Making Code.',
     'topics.detail.resourcesTitle': 'Recursos de aprendizaje',
+    'seo.relatedTopics.title': 'Temas relacionados',
+    'seo.relatedTopics.lead':
+      'Explora hubs curados que conectan este trabajo con casos de estudio, artículos y repos de aprendizaje.',
     'blog.title': 'Publicaciones',
     'blog.lead':
       'Artículos técnicos sobre arquitectura backend, algoritmos y criptografía — escritura reciente en NestJS en makingcode.dev más un archivo curado (2015–2018) en el blog legacy.',
@@ -352,6 +359,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'blog.detail.backToList': 'Volver a publicaciones',
     'blog.detail.canonicalNote':
       'Artículo completo en Making Code — esta página es un resumen para descubrimiento en andresed.dev.',
+    'blog.detail.author': 'Autor',
     'blog.loadMore': 'Cargar más artículos',
     'blog.loading': 'Cargando más artículos…',
     'blog.seeMore': 'Ver más publicaciones',
