@@ -1,0 +1,81 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import TopicHubDetail from '../../components/TopicHubDetail.astro';
+import LocalePair from '../../components/LocalePair.astro';
+import ContactCta from '../../components/sections/ContactCta.astro';
+import Footer from '../../components/Footer.astro';
+import { topics } from '../../data/topics';
+import { profile } from '../../data/profile';
+import { buildWebPageNode, topicPath } from '../../data/seo';
+import { absoluteUrl } from '../../data/site';
+
+const pageUrl = absoluteUrl('/topics');
+const pageDescription =
+  'Topic hubs on NestJS multi-tenancy, event-driven architecture, hexagonal design, IoT compliance, and AWS backend delivery — linking case studies, articles, and academies.';
+const jsonLdExtra = [
+  buildWebPageNode({
+    name: `${profile.name} | Topics`,
+    description: pageDescription,
+    url: pageUrl,
+    type: 'CollectionPage',
+  }),
+];
+---
+
+<MainLayout
+  currentPage="portfolio"
+  title={`${profile.name} | Topics — NestJS, AWS & IoT Hubs`}
+  description={pageDescription}
+  jsonLdExtra={jsonLdExtra}
+>
+  <div class="mx-auto max-w-4xl px-4 py-10 lg:px-8">
+    <Breadcrumbs
+      items={[
+        { name: 'Home', href: '/' },
+        { name: 'Topics', href: '/topics' },
+      ]}
+    />
+
+    <header class="reveal mb-12 border-b border-white/[0.06] pb-10">
+      <h1 class="section-title mb-3" data-i18n="topics.title">Explore by expertise</h1>
+      <p class="max-w-2xl text-pretty text-base leading-7 text-ink-muted" data-i18n="topics.lead">
+        Curated hubs linking case studies, articles, and GitHub academies — built for search and deep dives into NestJS, AWS, and IoT delivery.
+      </p>
+    </header>
+
+    <div class="media-card-list">
+      {
+        topics.map((topic, index) => (
+          <a
+            href={topicPath(topic.id)}
+            class="group glass-card media-card transition-colors duration-200 hover:border-accent-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/30 reveal"
+            style={`animation-delay: ${Math.min(index, 4) * 80}ms`}
+          >
+            <div class="media-card__body">
+              <h2 class="media-card__title text-xl">
+                <LocalePair text={topic.title} />
+              </h2>
+              <p class="media-card__excerpt">
+                <LocalePair text={topic.description} display="block" />
+              </p>
+              <div class="media-card__tags">
+                {topic.keywords.slice(0, 4).map((keyword) => (
+                  <span class="tag">{keyword}</span>
+                ))}
+              </div>
+              <div class="media-card__footer">
+                <span>
+                  {topic.projectIds.length} projects · {topic.blogPostIds.length} articles
+                </span>
+                <span aria-hidden="true">→</span>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+  <ContactCta />
+  <Footer />
+</MainLayout>

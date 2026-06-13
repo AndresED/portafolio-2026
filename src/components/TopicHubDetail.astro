@@ -1,0 +1,136 @@
+---
+import type { TopicHub } from '../data/topics';
+import { getPostById } from '../data/blog';
+import { getProjectById } from '../data/projects';
+import LocalePair from './LocalePair.astro';
+import { blogPath, projectPath } from '../data/seo';
+
+interface Props {
+  topic: TopicHub;
+}
+
+const { topic } = Astro.props;
+
+const relatedProjects = topic.projectIds
+  .map((id) => getProjectById(id))
+  .filter((project): project is NonNullable<typeof project> => project !== undefined);
+
+const relatedPosts = topic.blogPostIds
+  .map((id) => getPostById(id))
+  .filter((post): post is NonNullable<typeof post> => post !== undefined);
+---
+
+<article class="reveal">
+  <header class="mb-10 border-b border-white/[0.06] pb-10">
+    <div class="mb-3 flex flex-wrap gap-2">
+      {topic.keywords.map((keyword) => (
+        <span class="tag">{keyword}</span>
+      ))}
+    </div>
+
+    <h1 class="font-display text-balance text-3xl font-bold tracking-tight text-ink md:text-4xl">
+      <LocalePair text={topic.title} display="block" />
+    </h1>
+
+    <p class="mt-4 max-w-3xl text-pretty text-lg leading-8 text-ink-body">
+      <LocalePair text={topic.lead} display="block" />
+    </p>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="/topics" class="btn-ghost" data-i18n="topics.detail.backToList">
+        All topics
+      </a>
+      <a href="/portfolio" class="btn-secondary" data-i18n="topics.detail.viewPortfolio">
+        View portfolio
+      </a>
+    </div>
+  </header>
+
+  {
+    relatedProjects.length > 0 && (
+      <section class="mb-12">
+        <h2 class="section-title mb-2" data-i18n="topics.detail.projectsTitle">
+          Related projects
+        </h2>
+        <p class="mb-6 max-w-2xl text-pretty text-base leading-7 text-ink-muted" data-i18n="topics.detail.projectsLead">
+          Case studies with role, problem, impact, and stack breakdowns.
+        </p>
+        <ul class="space-y-4">
+          {
+            relatedProjects.map((project) => (
+              <li class="glass-card rounded-xl border border-white/[0.06] p-5">
+                <h3 class="font-display text-lg font-semibold text-ink">
+                  <a
+                    href={projectPath(project.id)}
+                    class="transition-colors hover:text-accent-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40"
+                  >
+                    {project.title}
+                  </a>
+                </h3>
+                <p class="mt-2 text-pretty text-sm leading-6 text-ink-body">{project.description}</p>
+                <p class="mt-3 font-mono text-xs text-meta-500">{project.techStack.slice(0, 5).join(' · ')}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    )
+  }
+
+  {
+    relatedPosts.length > 0 && (
+      <section class="mb-12">
+        <h2 class="section-title mb-2" data-i18n="topics.detail.articlesTitle">
+          Related articles
+        </h2>
+        <p class="mb-6 max-w-2xl text-pretty text-base leading-7 text-ink-muted" data-i18n="topics.detail.articlesLead">
+          Summaries on andresed.dev with links to full posts on Making Code.
+        </p>
+        <ul class="space-y-4">
+          {
+            relatedPosts.map((post) => (
+              <li class="glass-card rounded-xl border border-white/[0.06] p-5">
+                <h3 class="font-display text-lg font-semibold text-ink">
+                  <a
+                    href={blogPath(post.id)}
+                    class="transition-colors hover:text-accent-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/40"
+                  >
+                    {post.title}
+                  </a>
+                </h3>
+                <p class="mt-2 text-pretty text-sm leading-6 text-ink-body">{post.description}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    )
+  }
+
+  {
+    topic.resources && topic.resources.length > 0 && (
+      <section class="mb-4">
+        <h2 class="section-title mb-2" data-i18n="topics.detail.resourcesTitle">
+          Learning resources
+        </h2>
+        <ul class="space-y-3">
+          {
+            topic.resources.map((resource) => (
+              <li>
+                <a
+                  href={resource.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1 text-accent-400 transition-colors hover:text-accent-300"
+                >
+                  <LocalePair text={resource.label} />
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    )
+  }
+</article>

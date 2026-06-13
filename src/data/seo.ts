@@ -1,4 +1,5 @@
 import type { BlogPost, Project } from '../types';
+import type { TopicHub } from './topics';
 import { profile } from './profile';
 import { visibleCertifications } from './resume';
 import { absoluteUrl, homepageUrl, siteConfig, siteDescription, siteUrl } from './site';
@@ -11,12 +12,20 @@ export function blogPath(id: string): string {
   return `/blog/${id}`;
 }
 
+export function topicPath(id: string): string {
+  return `/topics/${id}`;
+}
+
 export function projectPageUrl(id: string): string {
   return absoluteUrl(projectPath(id));
 }
 
 export function blogPageUrl(id: string): string {
   return absoluteUrl(blogPath(id));
+}
+
+export function topicPageUrl(id: string): string {
+  return absoluteUrl(topicPath(id));
 }
 
 const personId = `${homepageUrl()}#person`;
@@ -149,6 +158,14 @@ export function projectSeoDescription(project: Project): string {
 
 export function blogSeoTitle(post: BlogPost): string {
   return `${post.title} | ${profile.name}`;
+}
+
+export function topicSeoTitle(topic: TopicHub): string {
+  return `${topic.title.en} | ${profile.name}`;
+}
+
+export function topicSeoDescription(topic: TopicHub): string {
+  return topic.description.en;
 }
 
 export { personId, siteUrl, websiteId };

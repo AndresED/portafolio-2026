@@ -1,0 +1,53 @@
+---
+import { getFeaturedTopics } from '../../data/topics';
+import LocalePair from '../LocalePair.astro';
+import { topicPath } from '../../data/seo';
+
+const featured = getFeaturedTopics();
+---
+
+<section id="topics" class="mb-20 border-b border-white/[0.06] pb-16">
+  <div class="reveal mb-10">
+    <p class="section-label mb-3" data-i18n="topics.eyebrow">Topic clusters</p>
+    <h2 class="section-title mb-3" data-i18n="topics.title">Explore by expertise</h2>
+    <p class="max-w-2xl text-pretty text-base leading-7 text-ink-muted" data-i18n="topics.lead">
+      Curated hubs linking case studies, articles, and GitHub academies — built for search and deep dives into NestJS, AWS, and IoT delivery.
+    </p>
+  </div>
+
+  <div class="media-card-list">
+    {
+      featured.map((topic, index) => (
+        <a
+          href={topicPath(topic.id)}
+          class="group glass-card media-card transition-colors duration-200 hover:border-accent-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/30 reveal"
+          style={`animation-delay: ${index * 80}ms`}
+        >
+          <div class="media-card__body">
+            <h3 class="media-card__title">
+              <LocalePair text={topic.title} />
+            </h3>
+            <p class="media-card__excerpt">
+              <LocalePair text={topic.description} display="block" />
+            </p>
+            <div class="media-card__tags">
+              {topic.keywords.slice(0, 4).map((keyword) => (
+                <span class="tag">{keyword}</span>
+              ))}
+            </div>
+            <div class="media-card__footer">
+              <span data-i18n="topics.card.cta">Explore topic</span>
+              <span aria-hidden="true">→</span>
+            </div>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="reveal mt-8">
+    <a href="/topics" class="btn-secondary" data-i18n="topics.viewAll">
+      View all topics
+    </a>
+  </div>
+</section>

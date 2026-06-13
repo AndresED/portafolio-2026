@@ -1,7 +1,19 @@
 ---
 import { profile } from '../../data/profile';
+import { dictionary } from '../../i18n/dictionary';
+import LocalePair from '../LocalePair.astro';
 
 const linkedIn = profile.socials.find((s) => s.icon === 'linkedin');
+
+const heroThesis = {
+  en: dictionary.en['hero.thesis'],
+  es: dictionary.es['hero.thesis'],
+};
+
+const heroH1Role = {
+  en: dictionary.en['hero.h1Role'],
+  es: dictionary.es['hero.h1Role'],
+};
 ---
 
 <section id="hero" class="reveal mb-16 border-b border-white/[0.06] pb-14 lg:mb-20 lg:pb-16" aria-labelledby="hero-heading">
@@ -11,16 +23,13 @@ const linkedIn = profile.socials.find((s) => s.icon === 'linkedin');
 
   <h1 id="hero-heading" class="font-display text-balance text-4xl font-bold tracking-tight text-ink md:text-5xl lg:text-[3.25rem] lg:leading-tight">
     <span class="block">{profile.name}</span>
-    <span
-      class="mt-2 block text-2xl font-semibold tracking-tight text-ink-body md:text-3xl"
-      data-i18n="hero.h1Role"
-    >
-      Senior Backend Engineer · NestJS & AWS
+    <span class="mt-2 block text-2xl font-semibold tracking-tight text-ink-body md:text-3xl">
+      <LocalePair text={heroH1Role} display="block" />
     </span>
   </h1>
 
-  <p class="mt-5 max-w-2xl text-pretty text-lg leading-7 text-ink-body md:text-xl" data-i18n="hero.thesis">
-    Senior backend engineer (5+ years) shipping NestJS microservices on AWS for logistics and compliance products — event-driven, multitenant, production-first.
+  <p class="mt-5 max-w-2xl text-pretty text-lg leading-7 text-ink-body md:text-xl">
+    <LocalePair text={heroThesis} display="block" />
   </p>
 
   <p class="mt-4 font-mono text-sm text-meta-500" data-i18n="hero.fit">
@@ -42,6 +51,9 @@ const linkedIn = profile.socials.find((s) => s.icon === 'linkedin');
   <div class="mt-8 flex flex-wrap items-center gap-3">
     <a href="/portfolio" class="btn-primary" data-i18n="hero.ctaPortfolio">
       View portfolio
+    </a>
+    <a href="/topics" class="btn-secondary" data-i18n="hero.ctaTopics">
+      Explore topics
     </a>
     <a href="/contact" class="btn-secondary" data-i18n="hero.ctaContact">
       Get in touch

@@ -1,15 +1,24 @@
 ---
 import { dictionary } from '../../i18n/dictionary';
 import { skillCategories } from '../../data/resume';
+import LocalePair from '../LocalePair.astro';
+import type { LocalizedText } from '../../types';
+
+const locKey = (key: string): LocalizedText => ({
+  en: dictionary.en[key] ?? key,
+  es: dictionary.es[key] ?? key,
+});
 
 const focusAreas = [
-  { titleKey: 'about.sum.archTitle', valueKey: 'about.focus.arch' },
-  { titleKey: 'about.sum.cloudTitle', valueKey: 'about.focus.cloud' },
-  { titleKey: 'about.sum.distTitle', valueKey: 'about.focus.dist' },
-  { titleKey: 'about.sum.perfTitle', valueKey: 'about.focus.perf' },
-] as const;
+  { title: locKey('about.sum.archTitle'), value: locKey('about.focus.arch') },
+  { title: locKey('about.sum.cloudTitle'), value: locKey('about.focus.cloud') },
+  { title: locKey('about.sum.distTitle'), value: locKey('about.focus.dist') },
+  { title: locKey('about.sum.perfTitle'), value: locKey('about.focus.perf') },
+];
 
-const en = dictionary.en;
+const summaryBody = locKey('about.summaryBody');
+const summaryBody2 = locKey('about.summaryBody2');
+const techLead = locKey('about.techLead');
 ---
 
 <section id="about" class="mb-20">
@@ -17,11 +26,11 @@ const en = dictionary.en;
     <h2 class="section-title mb-6" data-i18n="about.summaryTitle">Professional Summary</h2>
 
     <div class="max-w-2xl space-y-4 text-pretty text-base leading-7 text-ink-body">
-      <p data-i18n="about.summaryBody">
-        Senior backend engineer with 5+ years building production APIs, microservices, and cloud-native systems. I work from explicit boundaries — ports and adapters, bounded contexts, and contracts you can test — not from framework magic.
+      <p>
+        <LocalePair text={summaryBody} display="block" />
       </p>
-      <p data-i18n="about.summaryBody2">
-        Recent work spans multitenant NestJS services on AWS, event-driven architectures with Kafka, and integrations across compliance and logistics domains. I also mentor teams on testing, CI/CD, and maintainable delivery.
+      <p>
+        <LocalePair text={summaryBody2} display="block" />
       </p>
     </div>
 
@@ -29,13 +38,13 @@ const en = dictionary.en;
       <p class="section-label mb-5" data-i18n="about.focusTitle">Focus areas</p>
       <dl class="divide-y divide-white/[0.06] border-y border-white/[0.06]">
         {
-          focusAreas.map(({ titleKey, valueKey }) => (
+          focusAreas.map(({ title, value }) => (
             <div class="stack-row py-4">
-              <dt class="stack-row__label" data-i18n={titleKey}>
-                {en[titleKey]}
+              <dt class="stack-row__label">
+                <LocalePair text={title} />
               </dt>
-              <dd class="stack-row__value text-pretty" data-i18n={valueKey}>
-                {en[valueKey]}
+              <dd class="stack-row__value text-pretty">
+                <LocalePair text={value} display="block" />
               </dd>
             </div>
           ))
@@ -46,8 +55,8 @@ const en = dictionary.en;
 
   <div class="reveal">
     <h2 class="section-title mb-2" data-i18n="about.techTitle">Technologies</h2>
-    <p class="mb-8 max-w-xl text-pretty text-base leading-7 text-ink-muted" data-i18n="about.techLead">
-      Stack I use day to day across backend, cloud, and delivery — grouped by domain.
+    <p class="mb-8 max-w-xl text-pretty text-base leading-7 text-ink-muted">
+      <LocalePair text={techLead} display="block" />
     </p>
 
     <dl class="divide-y divide-white/[0.06] border-y border-white/[0.06]">

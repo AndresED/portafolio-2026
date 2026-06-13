@@ -1,13 +1,14 @@
 import type { APIRoute } from 'astro';
 import { posts } from '../data/blog';
 import { projects } from '../data/projects';
-import { blogPath, projectPath } from '../data/seo';
+import { topics } from '../data/topics';
+import { blogPath, projectPath, topicPath } from '../data/seo';
 import { siteUrl } from '../data/site';
 
 export const GET: APIRoute = async () => {
   const baseUrl = siteUrl;
 
-  const staticPages = ['', 'portfolio', 'blog', 'contact'].map((path) => ({
+  const staticPages = ['', 'portfolio', 'blog', 'contact', 'topics'].map((path) => ({
     url: path === '' ? `${baseUrl}/` : `${baseUrl}/${path}`,
     lastmod: new Date().toISOString().split('T')[0],
     priority: path === '' ? '1.0' : '0.8',
@@ -28,7 +29,14 @@ export const GET: APIRoute = async () => {
     changefreq: 'yearly',
   }));
 
-  const allPages = [...staticPages, ...projectPages, ...blogPages];
+  const topicPages = topics.map((topic) => ({
+    url: `${baseUrl}${topicPath(topic.id)}`,
+    lastmod: new Date().toISOString().split('T')[0],
+    priority: '0.8',
+    changefreq: 'monthly',
+  }));
+
+  const allPages = [...staticPages, ...projectPages, ...blogPages, ...topicPages];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
