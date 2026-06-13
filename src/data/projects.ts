@@ -280,6 +280,10 @@ export function getHomeFeaturedProjects(): Project[] {
     .filter((p): p is Project => p !== undefined);
 }
 
+export function getProjectById(id: string): Project | undefined {
+  return projects.find((p) => p.id === id);
+}
+
 export const portfolioFilters = [
   { id: 'all', label: 'All', i18nKey: 'portfolio.filter.all' },
   { id: 'iot', label: 'IoT & Edge', i18nKey: 'portfolio.filter.iot' },

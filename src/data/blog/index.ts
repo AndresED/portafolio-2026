@@ -293,3 +293,7 @@ export const blogBatchSize = 6;
 
 /** Cards in the first batch that may appear above the fold on /blog (horizontal layout). */
 export const blogAboveFoldEagerCount = 6;
+
+export function getPostById(id: string): BlogPost | undefined {
+  return posts.find((post) => post.id === id);
+}

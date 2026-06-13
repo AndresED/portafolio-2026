@@ -25,6 +25,17 @@ export const siteConfig = {
     ogImageAlt: `${profile.name} - Senior Backend Engineer portfolio`,
     twitterHandle: '',
     keywords: ['Backend Engineer', 'AWS', 'NestJS', 'Microservices', 'Cloud Architecture', 'TypeScript'],
+    knowsAbout: [
+      'NestJS',
+      'AWS',
+      'Microservices',
+      'Event-driven architecture',
+      'Hexagonal architecture',
+      'CQRS',
+      'Multi-tenant SaaS',
+      'TypeScript',
+      'IoT platforms',
+    ],
   },
 };
 

@@ -5,18 +5,24 @@ import {
   homepageUrl,
   siteConfig,
   siteDescription,
-  socialShareTitle,
 } from '../data/site';
+import { buildDefaultGraph, buildWebPageNode } from '../data/seo';
 import '../styles/global.css';
 
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
+  ogTitle?: string;
+  jsonLdExtra?: Record<string, unknown>[];
 }
 
 const {
   title = `${profile.name} | ${profile.title}`,
   description = siteDescription,
+  ogImage = siteConfig.seo.ogImage,
+  ogTitle,
+  jsonLdExtra = [],
 } = Astro.props;
 
 const canonicalUrl =
@@ -24,32 +30,25 @@ const canonicalUrl =
     ? homepageUrl()
     : absoluteUrl(Astro.url.pathname);
 
-const shareTitle = socialShareTitle;
+const shareTitle = ogTitle ?? title;
 const shareDescription = description;
-const ogImage = absoluteUrl(siteConfig.seo.ogImage);
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : absoluteUrl(ogImage);
 const ogImageAlt = siteConfig.seo.ogImageAlt;
+const twitterHandle = siteConfig.seo.twitterHandle;
 
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebSite',
-      '@id': `${homepageUrl()}#website`,
-      url: homepageUrl(),
-      name: profile.name,
-      description: shareDescription,
-      inLanguage: 'en',
-    },
-    {
-      '@type': 'Person',
-      '@id': `${homepageUrl()}#person`,
-      name: profile.name,
-      jobTitle: profile.title,
-      url: homepageUrl(),
-      description: shareDescription,
-    },
-  ],
-};
+const structuredData = buildDefaultGraph([
+  buildWebPageNode({
+    name: shareTitle,
+    description: shareDescription,
+    url: canonicalUrl,
+    type:
+      Astro.url.pathname === '/' || Astro.url.pathname === '' ? 'ProfilePage' : 'WebPage',
+  }),
+  ...jsonLdExtra,
+]);
+
+const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 ---
 
 <!doctype html>
@@ -67,8 +66,9 @@ const structuredData = {
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={profile.name} />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:locale:alternate" content="es_PE" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:secure_url" content={ogImageUrl} />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -77,8 +77,16 @@ const structuredData = {
     <meta name="twitter:title" content={shareTitle} />
     <meta name="twitter:description" content={shareDescription} />
     <meta name="twitter:url" content={canonicalUrl} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
+    {
+      twitterHandle && (
+        <>
+          <meta name="twitter:site" content={twitterHandle} />
+          <meta name="twitter:creator" content={twitterHandle} />
+        </>
+      )
+    }
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <meta name="author" content={profile.name} />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
@@ -96,6 +104,26 @@ const structuredData = {
       type="font/woff2"
       crossorigin
     />
+    {
+      plausibleDomain && (
+        <script defer data-domain={plausibleDomain} src="https://plausible.io/js/script.js" />
+      )
+    }
+    {
+      gaMeasurementId && (
+        <>
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`} />
+          <script is:inline define:vars={{ gaMeasurementId }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', gaMeasurementId);
+          </script>
+        </>
+      )
+    }
   </head>
   <body class="min-h-dvh bg-dark-900">
     <slot />

@@ -10,9 +10,12 @@ interface Props {
   currentPage?: 'home' | 'blog' | 'contact' | 'about' | 'resume' | 'certifications' | 'portfolio';
   title?: string;
   description?: string;
+  ogImage?: string;
+  ogTitle?: string;
+  jsonLdExtra?: Record<string, unknown>[];
 }
 
-const { currentPage = 'home', title, description } = Astro.props;
+const { currentPage = 'home', title, description, ogImage, ogTitle, jsonLdExtra } = Astro.props;
 
 type NavItem = {
   id: Props['currentPage'];
@@ -71,7 +74,13 @@ function mobileNavClasses(item: NavItem, isActive: boolean) {
 }
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  ogImage={ogImage}
+  ogTitle={ogTitle}
+  jsonLdExtra={jsonLdExtra}
+>
   <LanguageSwitcher />
   <button
     type="button"

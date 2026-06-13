@@ -1,0 +1,78 @@
+---
+import { getImage } from 'astro:assets';
+import MainLayout from '../../layouts/MainLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import BlogPostDetail from '../../components/BlogPostDetail.astro';
+import ContactCta from '../../components/sections/ContactCta.astro';
+import Footer from '../../components/Footer.astro';
+import { getPostById, posts } from '../../data/blog';
+import {
+  blogPageUrl,
+  blogSeoTitle,
+  buildBlogArticleNode,
+  buildBreadcrumbNode,
+} from '../../data/seo';
+import { absoluteUrl, homepageUrl } from '../../data/site';
+
+export function getStaticPaths() {
+  return posts.map((post) => ({
+    params: { slug: post.id },
+  }));
+}
+
+const { slug } = Astro.params;
+const post = slug ? getPostById(slug) : undefined;
+
+if (!post) {
+  return Astro.redirect('/blog');
+}
+
+const pageUrl = blogPageUrl(post.id);
+const seoTitle = blogSeoTitle(post);
+const seoDescription = post.description;
+
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/blog/*.{png,jpg,jpeg,svg,webp}',
+  { eager: true },
+);
+
+const blogImages: Record<string, ImageMetadata> = {};
+for (const [path, mod] of Object.entries(imageModules)) {
+  const filename = path.split('/').pop()!;
+  blogImages[filename] = mod.default;
+}
+
+const filename = post.coverImage.split('/').pop()!;
+const imgSrc = blogImages[filename];
+const ogImageMeta = imgSrc ? await getImage({ src: imgSrc, width: 1200, height: 630 }) : undefined;
+
+const jsonLdExtra = [
+  buildBreadcrumbNode([
+    { name: 'Home', url: homepageUrl() },
+    { name: 'Publications', url: absoluteUrl('/blog') },
+    { name: post.title, url: pageUrl },
+  ]),
+  buildBlogArticleNode(post, pageUrl, ogImageMeta?.src ? absoluteUrl(ogImageMeta.src) : undefined),
+];
+---
+
+<MainLayout
+  currentPage="blog"
+  title={seoTitle}
+  description={seoDescription}
+  ogImage={ogImageMeta?.src}
+  jsonLdExtra={jsonLdExtra}
+>
+  <div class="mx-auto max-w-4xl px-4 py-10 lg:px-8">
+    <Breadcrumbs
+      items={[
+        { name: 'Home', href: '/' },
+        { name: 'Publications', href: '/blog' },
+        { name: post.title, href: pageUrl },
+      ]}
+    />
+    <BlogPostDetail post={post} imgSrc={imgSrc} />
+  </div>
+  <ContactCta />
+  <Footer />
+</MainLayout>

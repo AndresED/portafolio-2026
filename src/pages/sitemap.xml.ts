@@ -1,37 +1,48 @@
 import type { APIRoute } from 'astro';
 import { posts } from '../data/blog';
+import { projects } from '../data/projects';
+import { blogPath, projectPath } from '../data/seo';
 import { siteUrl } from '../data/site';
 
 export const GET: APIRoute = async () => {
   const baseUrl = siteUrl;
 
   const staticPages = ['', 'portfolio', 'blog', 'contact'].map((path) => ({
-    url: `${baseUrl}/${path}`.replace(/\/$/, ''),
+    url: path === '' ? `${baseUrl}/` : `${baseUrl}/${path}`,
     lastmod: new Date().toISOString().split('T')[0],
     priority: path === '' ? '1.0' : '0.8',
+    changefreq: path === '' ? 'weekly' : 'monthly',
   }));
 
-  const blogPosts = posts.map(post => ({
-    url: post.mediumUrl,
-    lastmod: post.publishedAt,
-    priority: post.featured ? '0.9' : '0.7',
+  const projectPages = projects.map((project) => ({
+    url: `${baseUrl}${projectPath(project.id)}`,
+    lastmod: new Date().toISOString().split('T')[0],
+    priority: project.featured ? '0.85' : '0.75',
+    changefreq: 'monthly',
   }));
+
+  const blogPages = posts.map((post) => ({
+    url: `${baseUrl}${blogPath(post.id)}`,
+    lastmod: post.publishedAt,
+    priority: post.featured ? '0.8' : '0.65',
+    changefreq: 'yearly',
+  }));
+
+  const allPages = [...staticPages, ...projectPages, ...blogPages];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${staticPages.map(page => `
+  ${allPages
+    .map(
+      (page) => `
   <url>
     <loc>${page.url}</loc>
     <lastmod>${page.lastmod}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
-  </url>`).join('')}
-  ${blogPosts.map(post => `
-  <url>
-    <loc>${post.url}</loc>
-    <lastmod>${post.lastmod}</lastmod>
-    <priority>${post.priority}</priority>
-    <changefreq>monthly</changefreq>
-  </url>`).join('')}
+  </url>`,
+    )
+    .join('')}
 </urlset>`;
 
   return new Response(sitemap, {

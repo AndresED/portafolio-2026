@@ -22,6 +22,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'hero.thesis':
       'Senior backend engineer (5+ years) shipping NestJS microservices on AWS for logistics and compliance products — event-driven, multitenant, production-first.',
     'hero.fit': 'Remote · Peru (UTC-5) · Backend & platform roles · English & Spanish',
+    'hero.h1Role': 'Senior Backend Engineer · NestJS & AWS',
     'hero.evidence': 'NESTJS · AWS · HEXAGONAL · KAFKA · POSTGRESQL',
     'hero.ctaPortfolio': 'View portfolio',
     'hero.ctaContact': 'Get in touch',
@@ -105,6 +106,11 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'portfolio.link.github': 'GitHub',
     'portfolio.link.live': 'Live',
     'portfolio.link.stack': 'View stack',
+    'portfolio.link.caseStudy': 'Case study',
+    'portfolio.detail.backToList': 'Back to portfolio',
+    'portfolio.detail.stackTitle': 'Technical stack',
+    'portfolio.detail.stackLead':
+      'Layer-by-layer breakdown of subsystems, repositories, and production concerns.',
     'portfolio.modal.eyebrow': 'Project breakdown',
     'portfolio.modal.close': 'Close',
     'home.featured.eyebrow': 'Selected work',
@@ -138,6 +144,10 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'blog.tagAll': 'All',
     'blog.featured': 'Featured',
     'blog.readMedium': 'Read on Making Code',
+    'blog.readFull': 'Read full article',
+    'blog.detail.backToList': 'Back to publications',
+    'blog.detail.canonicalNote':
+      'Full article hosted on Making Code — this page is a summary for discovery on andresed.dev.',
     'blog.loadMore': 'Load More Articles',
     'blog.loading': 'Loading more articles…',
     'blog.seeMore': 'See more publications',
@@ -187,6 +197,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'hero.thesis':
       'Backend senior (5+ años) entregando microservicios NestJS en AWS para logística y cumplimiento — orientado a eventos, multitenant y producción.',
     'hero.fit': 'Remoto · Perú (UTC-5) · Roles backend y plataforma · Inglés y español',
+    'hero.h1Role': 'Senior Backend Engineer · NestJS y AWS',
     'hero.evidence': 'NESTJS · AWS · HEXAGONAL · KAFKA · POSTGRESQL',
     'hero.ctaPortfolio': 'Ver portafolio',
     'hero.ctaContact': 'Contacto',
@@ -270,6 +281,11 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'portfolio.link.github': 'GitHub',
     'portfolio.link.live': 'Sitio',
     'portfolio.link.stack': 'Ver stack',
+    'portfolio.link.caseStudy': 'Caso de estudio',
+    'portfolio.detail.backToList': 'Volver al portafolio',
+    'portfolio.detail.stackTitle': 'Stack técnico',
+    'portfolio.detail.stackLead':
+      'Desglose por capas de subsistemas, repositorios y aspectos productivos.',
     'portfolio.modal.eyebrow': 'Desglose del proyecto',
     'portfolio.modal.close': 'Cerrar',
     'home.featured.eyebrow': 'Trabajo seleccionado',
@@ -303,6 +319,10 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'blog.tagAll': 'Todos',
     'blog.featured': 'Destacado',
     'blog.readMedium': 'Leer en Making Code',
+    'blog.readFull': 'Leer artículo completo',
+    'blog.detail.backToList': 'Volver a publicaciones',
+    'blog.detail.canonicalNote':
+      'Artículo completo en Making Code — esta página es un resumen para descubrimiento en andresed.dev.',
     'blog.loadMore': 'Cargar más artículos',
     'blog.loading': 'Cargando más artículos…',
     'blog.seeMore': 'Ver más publicaciones',

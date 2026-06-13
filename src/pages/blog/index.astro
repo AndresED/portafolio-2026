@@ -4,12 +4,27 @@ import Blog from '../../components/sections/Blog.astro';
 import ContactCta from '../../components/sections/ContactCta.astro';
 import Footer from '../../components/Footer.astro';
 import { profile } from '../../data/profile';
+import { buildWebPageNode } from '../../data/seo';
+import { absoluteUrl } from '../../data/site';
+
+const pageUrl = absoluteUrl('/blog');
+const pageDescription =
+  'Technical publications on NestJS architecture, multi-tenant SaaS, CQRS, algorithms, and cryptography — summaries with links to full articles on Making Code.';
+const jsonLdExtra = [
+  buildWebPageNode({
+    name: `${profile.name} | Publications`,
+    description: pageDescription,
+    url: pageUrl,
+    type: 'CollectionPage',
+  }),
+];
 ---
 
 <MainLayout
   currentPage="blog"
-  title={`${profile.name} | Publications`}
-  description="Articles and publications on software engineering, algorithms, and backend development."
+  title={`${profile.name} | Publications — NestJS & Backend Architecture`}
+  description={pageDescription}
+  jsonLdExtra={jsonLdExtra}
 >
   <Blog />
   <ContactCta />

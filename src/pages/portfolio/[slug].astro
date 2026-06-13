@@ -1,0 +1,77 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProjectDetail from '../../components/ProjectDetail.astro';
+import ContactCta from '../../components/sections/ContactCta.astro';
+import Footer from '../../components/Footer.astro';
+import { getProjectById, projects } from '../../data/projects';
+import {
+  buildBreadcrumbNode,
+  buildProjectCreativeWorkNode,
+  projectPageUrl,
+  projectSeoDescription,
+  projectSeoTitle,
+} from '../../data/seo';
+import { absoluteUrl, homepageUrl } from '../../data/site';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.id },
+  }));
+}
+
+const { slug } = Astro.params;
+const project = slug ? getProjectById(slug) : undefined;
+
+if (!project) {
+  return Astro.redirect('/portfolio');
+}
+
+const pageUrl = projectPageUrl(project.id);
+const seoTitle = projectSeoTitle(project);
+const seoDescription = projectSeoDescription(project);
+
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/projects/*.{png,svg,webp}',
+  { eager: true },
+);
+
+const projectImages: Record<string, ImageMetadata> = {};
+for (const [path, mod] of Object.entries(imageModules)) {
+  const filename = path.split('/').pop()!;
+  projectImages[filename] = mod.default;
+}
+
+const filename = project.thumbnail.split('/').pop()!;
+const imgSrc = projectImages[filename];
+
+const jsonLdExtra = [
+  buildBreadcrumbNode([
+    { name: 'Home', url: homepageUrl() },
+    { name: 'Portfolio', url: absoluteUrl('/portfolio') },
+    { name: project.title, url: pageUrl },
+  ]),
+  buildProjectCreativeWorkNode(project, pageUrl),
+];
+---
+
+<MainLayout
+  currentPage="portfolio"
+  title={seoTitle}
+  description={seoDescription}
+  ogImage={project.thumbnail}
+  jsonLdExtra={jsonLdExtra}
+>
+  <div class="mx-auto max-w-4xl px-4 py-10 lg:px-8">
+    <Breadcrumbs
+      items={[
+        { name: 'Home', href: '/' },
+        { name: 'Portfolio', href: '/portfolio' },
+        { name: project.title, href: pageUrl },
+      ]}
+    />
+    <ProjectDetail project={project} imgSrc={imgSrc} />
+  </div>
+  <ContactCta />
+  <Footer />
+</MainLayout>

@@ -1,0 +1,154 @@
+---
+import { Image } from 'astro:assets';
+import type { Project } from '../types';
+import LocalePair from './LocalePair.astro';
+
+interface Props {
+  project: Project;
+  imgSrc?: ImageMetadata;
+}
+
+const { project, imgSrc } = Astro.props;
+const layers = project.layers ?? [];
+---
+
+<article class="reveal">
+  {
+    imgSrc && (
+      <div class="mb-8 overflow-hidden rounded-xl border border-white/[0.06]">
+        <Image
+          src={imgSrc}
+          alt={project.title}
+          width={1200}
+          height={675}
+          class="aspect-video w-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    )
+  }
+
+  <header class="mb-10 border-b border-white/[0.06] pb-10">
+    <div class="mb-3 flex flex-wrap items-center gap-2">
+      {
+        project.featured && (
+          <span class="font-mono text-[10px] uppercase tracking-wide text-accent-400" data-i18n="portfolio.featuredBadge">
+            Featured
+          </span>
+        )
+      }
+      {project.tags.map((tag) => (
+        <span class="tag">{tag}</span>
+      ))}
+    </div>
+
+    <h1 class="font-display text-balance text-3xl font-bold tracking-tight text-ink md:text-4xl">
+      {project.title}
+    </h1>
+
+    <p class="mt-4 max-w-3xl text-pretty text-lg leading-8 text-ink-body">{project.description}</p>
+
+    <p class="mt-4 font-mono text-sm text-meta-500">{project.techStack.join(' · ')}</p>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      {
+        project.liveUrl && (
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+            <span data-i18n="portfolio.link.live">Live</span>
+            <span aria-hidden="true"> ↗</span>
+          </a>
+        )
+      }
+      {
+        project.githubUrl && (
+          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <span data-i18n="portfolio.link.github">GitHub</span>
+            <span aria-hidden="true"> ↗</span>
+          </a>
+        )
+      }
+      <a href="/portfolio" class="btn-ghost" data-i18n="portfolio.detail.backToList">
+        Back to portfolio
+      </a>
+    </div>
+  </header>
+
+  <div class="mb-12 grid gap-8 lg:grid-cols-3">
+    {
+      project.role && (
+        <section class="lg:col-span-1">
+          <h2 class="section-label mb-3" data-i18n="portfolio.meta.role">Role</h2>
+          <LocalePair text={project.role} display="block" class="text-base leading-7 text-ink-body" />
+        </section>
+      )
+    }
+    {
+      project.problem && (
+        <section class="lg:col-span-2">
+          <h2 class="section-label mb-3" data-i18n="portfolio.meta.problem">Problem</h2>
+          <LocalePair text={project.problem} display="block" class="text-base leading-7 text-ink-body" />
+        </section>
+      )
+    }
+  </div>
+
+  {
+    project.impact && (
+      <section class="mb-12">
+        <h2 class="section-label mb-3" data-i18n="portfolio.meta.impact">Impact</h2>
+        <LocalePair text={project.impact} display="block" class="max-w-3xl text-base leading-7 text-ink-body" />
+      </section>
+    )
+  }
+
+  {
+    layers.length > 0 && (
+      <section class="mb-4">
+        <h2 class="section-title mb-2" data-i18n="portfolio.detail.stackTitle">Technical stack</h2>
+        <p class="mb-8 max-w-2xl text-pretty text-base leading-7 text-ink-muted" data-i18n="portfolio.detail.stackLead">
+          Layer-by-layer breakdown of subsystems, repositories, and production concerns.
+        </p>
+
+        <div class="space-y-6">
+          {
+            layers.map((layer) => (
+              <section class="glass-card rounded-xl border border-white/[0.06] p-6">
+                <h3 class="font-display text-lg font-semibold text-ink">
+                  <LocalePair text={layer.title} />
+                </h3>
+                <p class="mt-3 text-pretty text-base leading-7 text-ink-body">
+                  <LocalePair text={layer.summary} display="block" />
+                </p>
+                <p class="mt-4 font-mono text-xs text-meta-500">{layer.techStack.join(' · ')}</p>
+                {
+                  layer.highlights && layer.highlights.length > 0 && (
+                    <ul class="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-ink-body">
+                      {layer.highlights.map((highlight) => (
+                        <li>
+                          <LocalePair text={highlight} />
+                        </li>
+                      ))}
+                    </ul>
+                  )
+                }
+                {
+                  layer.githubUrl && (
+                    <a
+                      href={layer.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="mt-4 inline-flex items-center gap-1 text-sm text-accent-400 transition-colors hover:text-accent-300"
+                    >
+                      GitHub ↗
+                    </a>
+                  )
+                }
+              </section>
+            ))
+          }
+        </div>
+      </section>
+    )
+  }
+</article>

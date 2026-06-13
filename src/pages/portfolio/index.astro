@@ -4,12 +4,27 @@ import Portfolio from '../../components/sections/Portfolio.astro';
 import ContactCta from '../../components/sections/ContactCta.astro';
 import Footer from '../../components/Footer.astro';
 import { profile } from '../../data/profile';
+import { buildWebPageNode } from '../../data/seo';
+import { absoluteUrl } from '../../data/site';
+
+const pageUrl = absoluteUrl('/portfolio');
+const pageDescription =
+  'Production IoT platforms, NestJS microservices, event-driven architectures, and open-source reference builds — case studies with stack breakdowns.';
+const jsonLdExtra = [
+  buildWebPageNode({
+    name: `${profile.name} | Portfolio`,
+    description: pageDescription,
+    url: pageUrl,
+    type: 'CollectionPage',
+  }),
+];
 ---
 
 <MainLayout
   currentPage="portfolio"
-  title={`${profile.name} | Portfolio`}
-  description="Featured projects in backend engineering, cloud architecture, and distributed systems."
+  title={`${profile.name} | Portfolio — NestJS, AWS & IoT Projects`}
+  description={pageDescription}
+  jsonLdExtra={jsonLdExtra}
 >
   <Portfolio />
   <ContactCta />

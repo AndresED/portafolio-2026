@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { posts, blogBatchSize, blogAboveFoldEagerCount, blogFilters } from '../../data/blog';
+import { blogPath } from '../../data/seo';
 
 const imageModules = import.meta.glob<{ default: ImageMetadata }>(
   '../../assets/blog/*.{png,jpg,jpeg,svg,webp}',
@@ -65,9 +66,7 @@ function formatPostDate(iso: string): string {
 
         return (
           <a
-            href={post.mediumUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={blogPath(post.id)}
             class:list={[
               'blog-post group glass-card media-card transition-colors duration-200 hover:border-accent-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/30 reveal',
               isScrollHidden && 'blog-post--scroll-hidden',
@@ -75,14 +74,14 @@ function formatPostDate(iso: string): string {
             data-index={index}
             data-category={post.category}
             style={`animation-delay: ${Math.min(index, blogBatchSize - 1) * 100}ms`}
-            aria-label={`${post.title} — opens on Making Code`}
+            aria-label={post.title}
           >
             <div class="media-card__media">
               {
                 localImg && (
                   <Image
                     src={localImg}
-                    alt=""
+                    alt={post.title}
                     width={640}
                     height={360}
                     class="size-full object-cover opacity-90 transition-opacity duration-200 group-hover:opacity-100"
@@ -105,7 +104,7 @@ function formatPostDate(iso: string): string {
                 <time datetime={post.publishedAt}>{formatPostDate(post.publishedAt)}</time>
                 <span class="inline-flex items-center gap-1.5">
                   {post.readingTime}
-                  <span aria-hidden="true">↗</span>
+                  <span aria-hidden="true">→</span>
                 </span>
               </div>
             </div>
