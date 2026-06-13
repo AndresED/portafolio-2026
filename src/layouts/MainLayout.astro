@@ -112,7 +112,7 @@ function mobileNavClasses(item: NavItem, isActive: boolean) {
               height={112}
               densities={[1, 2]}
               class="size-full object-cover"
-              loading="eager"
+              loading="lazy"
               decoding="async"
             />
           </div>
@@ -186,10 +186,6 @@ function mobileNavClasses(item: NavItem, isActive: boolean) {
           ))
         }
       </nav>
-
-      <div class="mt-4 text-center font-mono text-xs text-ink-muted">
-        <p>&copy; {new Date().getFullYear()}</p>
-      </div>
     </aside>
 
     <!-- Mobile Header -->
