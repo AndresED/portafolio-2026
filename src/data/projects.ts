@@ -74,8 +74,8 @@ export const projects: Project[] = [
       'Documentar temas técnicos profundos sin perder claridad para quien implementa.',
     ),
     impact: loc(
-      '17+ articles on algorithms, cryptography, and backend patterns; reference for peers and interviews.',
-      '17+ artículos sobre algoritmos, criptografía y patrones backend; referencia para colegas y entrevistas.',
+      '18+ articles on algorithms, cryptography, and backend patterns; reference for peers and interviews.',
+      '18+ artículos sobre algoritmos, criptografía y patrones backend; referencia para colegas y entrevistas.',
     ),
   }),
   withLayers({

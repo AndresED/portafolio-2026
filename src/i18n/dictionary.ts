@@ -132,7 +132,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'home.featured.lead':
       'Three highlights from a growing portfolio — production IoT at SIMS Technology plus event-driven backend reference work.',
     'home.featured.viewAll': 'View full portfolio',
-    'home.featured.makingCode': 'Making Code — 17+ articles ↗',
+    'home.featured.makingCode': 'Making Code — 18+ articles ↗',
     'portfolio.hireMe': 'Hire Me',
     'portfolio.clientLabel': 'Client',
     'portfolio.viewLive': 'Live',
@@ -342,7 +342,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     'home.featured.lead':
       'Tres destacados de un portafolio en crecimiento — IoT en producción en SIMS Technology más referencias backend orientadas a eventos.',
     'home.featured.viewAll': 'Ver portafolio completo',
-    'home.featured.makingCode': 'Making Code — 17+ artículos ↗',
+    'home.featured.makingCode': 'Making Code — 18+ artículos ↗',
     'portfolio.hireMe': 'Contrátame',
     'portfolio.clientLabel': 'Cliente',
     'portfolio.viewLive': 'Ver sitio',

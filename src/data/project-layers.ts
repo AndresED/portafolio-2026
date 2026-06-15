@@ -101,7 +101,7 @@ export const projectLayers: Record<string, ProjectLayer[]> = {
       'Articles authored in MDX with code samples, diagrams, and metadata for cryptography, algorithms, blockchain, and backend topics.',
       'Artículos en MDX con muestras de código, diagramas y metadatos sobre criptografía, algoritmos, blockchain y backend.',
       ['MDX', 'Markdown', 'Frontmatter'],
-      [loc('17+ published articles from production experience', '17+ artículos publicados desde experiencia productiva')],
+      [loc('18+ published articles from production experience', '18+ artículos publicados desde experiencia productiva')],
     ),
     layer(
       'design-system',

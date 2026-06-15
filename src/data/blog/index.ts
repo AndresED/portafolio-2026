@@ -13,6 +13,20 @@ export const blogFilters = [
 
 export const posts: BlogPost[] = [
   {
+    id: 'fintech-core-rebuild-from-zero-slowly',
+    title: "Why I'm Rebuilding a Fintech Core — From Zero, Slowly",
+    description:
+      'A public series on rebuilding a fintech reference backend from scratch — NestJS, hexagonal boundaries, PostgreSQL, Redpanda, outbox/idempotency, and honest trade-offs after sprinting the Arkano banking challenge.',
+    coverImage: 'fintench.webp',
+    publishedAt: '2026-06-08',
+    tags: ['NestJS', 'Fintech', 'Architecture', 'Event-Driven', 'Hexagonal'],
+    mediumUrl:
+      'https://www.makingcode.dev/blog/why-i-m-rebuilding-a-fintech-core-from-zero-slowly',
+    readingTime: '8 min',
+    featured: true,
+    category: 'architecture',
+  },
+  {
     id: 'multi-tenant-nestjs-saas',
     title: 'How to Build a Multi-Tenant SaaS Application in NestJS Without Duplicating Your Code',
     description:

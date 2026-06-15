@@ -67,7 +67,7 @@ export const topics: TopicHub[] = [
       'nestjs-microservice-users',
       'arkano-banking-challenge',
     ],
-    blogPostIds: ['nestjs-event-driven-api', 'cqrs-nestjs-reads-writes'],
+    blogPostIds: ['fintech-core-rebuild-from-zero-slowly', 'nestjs-event-driven-api', 'cqrs-nestjs-reads-writes'],
     resources: [
       {
         label: loc('Software Architecture Academy', 'Academia Arquitectura'),
@@ -87,8 +87,8 @@ export const topics: TopicHub[] = [
       'Controllers que saben demasiado y entidades llenas de decoradores ORM son síntomas — no causas. Este cluster enlaza un starter enterprise, una guía hexagonal paso a paso y repos curriculares para diseño backend mantenible.',
     ),
     keywords: ['hexagonal architecture', 'clean architecture', 'ports and adapters', 'NestJS'],
-    projectIds: ['nestjs-enterprise-starter', 'spec-driven-development-framework'],
-    blogPostIds: ['hexagonal-architecture-nestjs'],
+    projectIds: ['nestjs-enterprise-starter', 'spec-driven-development-framework', 'arkano-banking-challenge'],
+    blogPostIds: ['fintech-core-rebuild-from-zero-slowly', 'hexagonal-architecture-nestjs'],
     resources: [
       {
         label: loc('Software Architecture Academy', 'Academia Arquitectura'),
