@@ -102,11 +102,25 @@ PUBLIC_SHOW_IN_PROGRESS_CERTIFICATIONS=false
 PUBLIC_EMAILJS_SERVICE_ID=your_service_id
 PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+
+# Google Analytics 4 (optional — leave empty to disable)
+PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
 **`PUBLIC_SHOW_IN_PROGRESS_CERTIFICATIONS`** — When `true`, displays in-progress certifications from `src/data/resume.ts`. After passing an exam, set status to `valid` in that file and keep this `false`.
 
 **EmailJS** — Without the three `PUBLIC_EMAILJS_*` variables, the contact form shows an error instead of sending mail.
+
+**Google Analytics 4** — Set `PUBLIC_GA_MEASUREMENT_ID` to your GA4 measurement ID (format `G-XXXXXXXXXX`). The gtag snippet loads on every page via `BaseLayout`. Leave empty in local dev if you do not want to pollute production analytics.
+
+#### Google Analytics setup
+
+1. Go to [Google Analytics](https://analytics.google.com/) → **Admin** → **Create property** (or use an existing one).
+2. Add a **Web** data stream for `https://www.andresed.dev`.
+3. Copy the **Measurement ID** (`G-…`) from the stream details.
+4. Add `PUBLIC_GA_MEASUREMENT_ID=G-…` to `.env` locally and to your hosting dashboard (Vercel / Netlify / Cloudflare Pages).
+5. Redeploy — Astro inlines `PUBLIC_*` vars at build time, so a new deploy is required after changing the ID.
+6. In GA4 **Reports → Realtime**, open your site in another tab to confirm hits.
 
 #### EmailJS template setup
 
